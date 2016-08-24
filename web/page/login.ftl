@@ -36,7 +36,7 @@
         <br>
         <br>
 
-        <form method="post" class="am-form">
+        <form method="post" class="am-form" action="login">
             <label for="email">邮箱:</label>
             <input type="email" name="" id="email" value="">
             <br>

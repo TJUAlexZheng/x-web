@@ -1,7 +1,7 @@
 package com.demo.common.config;
 
 import com.demo.biz.blog.BlogController;
-import com.demo.biz.index.IndexController;
+import com.demo.biz.page.PageController;
 import com.demo.common.model._MappingKit;
 import com.jfinal.config.*;
 import com.jfinal.kit.PropKit;
@@ -24,7 +24,8 @@ public class WebConfig extends JFinalConfig {
 
     @Override
     public void configRoute(Routes me) {
-        me.add("/", IndexController.class, "/index");    // 第三个参数为该Controller的视图存放路径
+        //页面渲染逻辑
+        me.add("/", PageController.class, "/page");
         me.add("/blog", BlogController.class);
     }
 
