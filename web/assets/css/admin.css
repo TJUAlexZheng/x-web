@@ -2,6 +2,7 @@
  * admin.css
  */
 
+
 /*
  fixed-layout 固定头部和边栏布局
 */
@@ -143,7 +144,6 @@ ul {
 .admin-content-table a {
     color: #535353;
 }
-
 .admin-content-file {
     margin-bottom: 0;
     color: #666;
@@ -212,7 +212,6 @@ ul {
 .admin-content-pagination {
     margin-bottom: 0;
 }
-
 .admin-content-pagination li a {
     padding: 4px 8px;
 }

@@ -1,4 +1,4 @@
-/*! Amaze UI v2.7.2 ~ IE8 Fucker | by Amaze UI Team | (c) 2016 AllMobilize, Inc. | Licensed under MIT | 2016-08-17T16:17:24+0800 */
+/*! Amaze UI v2.7.2 ~ IE8 Fucker | by Amaze UI Team | (c) 2016 AllMobilize, Inc. | Licensed under MIT | 2016-08-17T16:17:24+0800 */ 
 /*!
  * https://github.com/es-shims/es5-shim
  * @license es5-shim Copyright 2009-2015 by contributors, MIT License
@@ -233,14 +233,14 @@
                 val = valueOf.call(input);
                 if (isPrimitive(val)) {
                     return val;
-                }
+            }
             }
             toStr = input.toString;
             if (isCallable(toStr)) {
                 val = toStr.call(input);
                 if (isPrimitive(val)) {
                     return val;
-                }
+            }
             }
             throw new TypeError();
         },
@@ -251,7 +251,7 @@
         ToObject: function (o) {
             if (o == null) { // this matches both null and undefined
                 throw new TypeError("can't convert " + o + ' to object');
-            }
+        }
             return $Object(o);
         },
 
@@ -489,7 +489,7 @@
                 }, 'x');
             } catch (e) {
                 threwException = true;
-            }
+        }
         }
         return !!method && !threwException && properlyBoxesNonStrict && properlyBoxesStrict;
     };
@@ -518,9 +518,9 @@
                         callbackfn(self[i], i, object);
                     } else {
                         callbackfn.call(T, self[i], i, object);
-                    }
                 }
             }
+        }
         }
     }, !properlyBoxesContext(ArrayPrototype.forEach));
 
@@ -549,9 +549,9 @@
                         result[i] = callbackfn(self[i], i, object);
                     } else {
                         result[i] = callbackfn.call(T, self[i], i, object);
-                    }
                 }
             }
+        }
             return result;
         }
     }, !properlyBoxesContext(ArrayPrototype.map));
@@ -581,9 +581,9 @@
                     value = self[i];
                     if (typeof T === 'undefined' ? callbackfn(value, i, object) : callbackfn.call(T, value, i, object)) {
                         pushCall(result, value);
-                    }
                 }
             }
+        }
             return result;
         }
     }, !properlyBoxesContext(ArrayPrototype.filter));
@@ -609,8 +609,8 @@
             for (var i = 0; i < length; i++) {
                 if (i in self && !(typeof T === 'undefined' ? callbackfn(self[i], i, object) : callbackfn.call(T, self[i], i, object))) {
                     return false;
-                }
             }
+        }
             return true;
         }
     }, !properlyBoxesContext(ArrayPrototype.every));
@@ -636,8 +636,8 @@
             for (var i = 0; i < length; i++) {
                 if (i in self && (typeof T === 'undefined' ? callbackfn(self[i], i, object) : callbackfn.call(T, self[i], i, object))) {
                     return true;
-                }
             }
+        }
             return false;
         }
     }, !properlyBoxesContext(ArrayPrototype.some));
@@ -673,17 +673,17 @@
                 result = arguments[1];
             } else {
                 do {
-                    if (i in self) {
-                        result = self[i++];
-                        break;
-                    }
+                if (i in self) {
+                    result = self[i++];
+                    break;
+                }
 
                     // if array contains no values, no initial value to return
                     if (++i >= length) {
                         throw new TypeError('reduce of empty array with no initial value');
                     }
                 } while (true);
-            }
+        }
 
             for (; i < length; i++) {
                 if (i in self) {
@@ -725,22 +725,22 @@
             if (arguments.length >= 2) {
                 result = arguments[1];
             } else {
-                do {
-                    if (i in self) {
-                        result = self[i--];
-                        break;
-                    }
+            do {
+                if (i in self) {
+                    result = self[i--];
+                    break;
+                }
 
-                    // if array contains no values, no initial value to return
-                    if (--i < 0) {
-                        throw new TypeError('reduceRight of empty array with no initial value');
-                    }
-                } while (true);
+                // if array contains no values, no initial value to return
+                if (--i < 0) {
+                    throw new TypeError('reduceRight of empty array with no initial value');
+                }
+            } while (true);
             }
 
             if (i < 0) {
-                return result;
-            }
+            return result;
+        }
 
             do {
                 if (i in self) {
@@ -775,8 +775,8 @@
             for (; i < length; i++) {
                 if (i in self && self[i] === searchElement) {
                     return i;
-                }
             }
+        }
             return -1;
         }
     }, hasFirefox2IndexOfBug);
@@ -791,8 +791,8 @@
             var length = ES.ToUint32(self.length);
 
             if (length === 0) {
-                return -1;
-            }
+            return -1;
+        }
             var i = length - 1;
             if (arguments.length > 1) {
                 i = min(i, ES.ToInteger(arguments[1]));
@@ -842,10 +842,10 @@
                 args = arraySlice(arguments);
                 if (args.length < 2) {
                     pushCall(args, this.length - start);
-                } else {
+            } else {
                     args[1] = ES.ToInteger(deleteCount);
-                }
             }
+        }
             return array_splice.apply(this, args);
         }
     }, !spliceWorksWithEmptyObject);
@@ -884,9 +884,9 @@
                 from = $String(actualStart + k);
                 if (owns(O, from)) {
                     A[k] = O[from];
-                }
-                k += 1;
             }
+                k += 1;
+        }
 
             var items = arraySlice(arguments, 2);
             var itemCount = items.length;
@@ -897,13 +897,13 @@
                 while (k < maxK) {
                     from = $String(k + actualDeleteCount);
                     to = $String(k + itemCount);
-                    if (owns(O, from)) {
-                        O[to] = O[from];
-                    } else {
-                        delete O[to];
-                    }
-                    k += 1;
+                if (owns(O, from)) {
+                    O[to] = O[from];
+                } else {
+                    delete O[to];
                 }
+                k += 1;
+            }
                 k = len;
                 var minK = len - actualDeleteCount + itemCount;
                 while (k > minK) {
@@ -919,10 +919,10 @@
                         O[to] = O[from];
                     } else {
                         delete O[to];
-                    }
-                    k -= 1;
                 }
+                    k -= 1;
             }
+        }
             k = actualStart;
             for (var i = 0; i < items.length; ++i) {
                 O[k] = items[i];
@@ -931,7 +931,7 @@
             O.length = len - actualDeleteCount + itemCount;
 
             return A;
-        }
+    }
     }, !spliceWorksWithLargeSparseArrays || !spliceWorksWithSmallSparseArrays);
 
     var originalJoin = ArrayPrototype.join;
@@ -946,18 +946,18 @@
             join: function join(separator) {
                 var sep = typeof separator === 'undefined' ? ',' : separator;
                 return originalJoin.call(isString(this) ? strSplit(this, '') : this, sep);
-            }
+        }
         }, hasStringJoinBug);
     }
 
     var hasJoinUndefinedBug = [1, 2].join(undefined) !== '1,2';
     if (hasJoinUndefinedBug) {
-        defineProperties(ArrayPrototype, {
-            join: function join(separator) {
-                var sep = typeof separator === 'undefined' ? ',' : separator;
-                return originalJoin.call(this, sep);
-            }
-        }, hasJoinUndefinedBug);
+    defineProperties(ArrayPrototype, {
+        join: function join(separator) {
+            var sep = typeof separator === 'undefined' ? ',' : separator;
+            return originalJoin.call(this, sep);
+        }
+    }, hasJoinUndefinedBug);
     }
 
     var pushShim = function push(item) {
@@ -1017,7 +1017,7 @@
         // this is a problem in Firefox 4, in which `typeof /a/ === 'function'`
         try {
             [1, 2].sort(/a/);
-            return false;
+        return false;
         } catch (e) { /**/
         }
         return true;
@@ -1026,7 +1026,7 @@
         // applies in IE 8, for one.
         try {
             [1, 2].sort(undefined);
-            return true;
+        return true;
         } catch (e) { /**/
         }
         return false;
@@ -1035,10 +1035,10 @@
         sort: function sort(compareFn) {
             if (typeof compareFn === 'undefined') {
                 return arraySort(this);
-            }
+        }
             if (!isCallable(compareFn)) {
                 throw new TypeError('Array.prototype.sort callback must be a function');
-            }
+        }
             return arraySort(this, compareFn);
         }
     }, sortIgnoresNonFunctions || !sortIgnoresUndefined || !sortThrowsOnRegex);
@@ -1078,13 +1078,13 @@
             return false;
         }
         for (var k in window) {
-            try {
-                if (!blacklistedKeys['$' + k] && owns(window, k) && window[k] !== null && typeof window[k] === 'object') {
-                    equalsConstructorPrototype(window[k]);
-                }
-            } catch (e) {
-                return true;
+        try {
+            if (!blacklistedKeys['$' + k] && owns(window, k) && window[k] !== null && typeof window[k] === 'object') {
+                equalsConstructorPrototype(window[k]);
             }
+        } catch (e) {
+            return true;
+        }
         }
         return false;
     }());
@@ -1139,15 +1139,15 @@
             if ((isStr && hasStringEnumBug) || isArgs) {
                 for (var i = 0; i < object.length; ++i) {
                     pushCall(theKeys, $String(i));
-                }
+            }
             }
 
             if (!isArgs) {
                 for (var name in object) {
                     if (!(skipProto && name === 'prototype') && owns(object, name)) {
                         pushCall(theKeys, $String(name));
-                    }
                 }
+            }
             }
 
             if (hasDontEnumBug) {
@@ -1156,9 +1156,9 @@
                     var dontEnum = dontEnums[j];
                     if (!(skipConstructor && dontEnum === 'constructor') && owns(object, dontEnum)) {
                         pushCall(theKeys, dontEnum);
-                    }
                 }
             }
+        }
             return theKeys;
         }
     });
@@ -1178,7 +1178,7 @@
                 return originalKeys(arraySlice(object));
             } else {
                 return originalKeys(object);
-            }
+        }
         }
     }, !keysWorksWithArguments || keysHasArgumentsLengthBug);
 
@@ -1251,7 +1251,7 @@
             if (year < 0 && month > 11) {
                 if (month === 12) {
                     return date;
-                }
+            }
                 var days = daysInMonth(0, year + 1);
                 return (days - date) + 1;
             }
@@ -1288,10 +1288,10 @@
             if (year < 0 && month > 11) {
                 if (month === 12) {
                     return date;
-                }
+            }
                 var days = daysInMonth(0, year + 1);
                 return (days - date) + 1;
-            }
+        }
             return date;
         }
     }, hasNegativeMonthYearBug);
@@ -1300,7 +1300,7 @@
         toUTCString: function toUTCString() {
             if (!this || !(this instanceof Date)) {
                 throw new TypeError('this is not a Date object.');
-            }
+        }
             var day = originalGetUTCDay(this);
             var date = originalGetUTCDate(this);
             var month = originalGetUTCMonth(this);
@@ -1323,7 +1323,7 @@
         toDateString: function toDateString() {
             if (!this || !(this instanceof Date)) {
                 throw new TypeError('this is not a Date object.');
-            }
+        }
             var day = this.getDay();
             var date = this.getDate();
             var month = this.getMonth();
@@ -1340,7 +1340,7 @@
         Date.prototype.toString = function toString() {
             if (!this || !(this instanceof Date)) {
                 throw new TypeError('this is not a Date object.');
-            }
+        }
             var day = this.getDay();
             var date = this.getDate();
             var month = this.getMonth();
@@ -1368,7 +1368,7 @@
                 enumerable: false,
                 writable: true
             });
-        }
+    }
     }
 
 // ES5 15.9.5.43
@@ -1409,7 +1409,7 @@
             for (var i = 0; i < result.length; ++i) {
                 // pad months, days, hours, minutes, and seconds to have two digits.
                 result[i] = strSlice('00' + result[i], -2);
-            }
+        }
             // pad milliseconds to have three digits.
             return (
                 year + '-' + arraySlice(result, 0, 2).join('-') +
@@ -1450,7 +1450,7 @@
             // 3. If tv is a Number and is not finite, return null.
             if (typeof tv === 'number' && !isFinite(tv)) {
                 return null;
-            }
+        }
             // 4. Let toISO be the result of calling the [[Get]] internal method of
             // O with argument "toISOString".
             var toISO = O.toISOString;
@@ -1504,7 +1504,7 @@
                         var sToShift = Math.floor(msToShift / 1e3);
                         seconds += sToShift;
                         millis -= sToShift * 1e3;
-                    }
+                }
                     date = length === 1 && $String(Y) === Y ? // isString(Y)
                         // We explicitly pass it through parse:
                         new NativeDate(DateShim.parse(Y)) :
@@ -1581,7 +1581,7 @@
             for (var key in NativeDate) {
                 if (owns(NativeDate, key)) {
                     DateShim[key] = NativeDate[key];
-                }
+            }
             }
 
             // Copy "native" methods explicitly; they may be non-enumerable
@@ -1636,11 +1636,11 @@
                             ) * 1000 + millisecond;
                         if (isLocalTime) {
                             result = toUTC(result);
-                        }
+                    }
                         if (-8.64e15 <= result && result <= 8.64e15) {
                             return result;
                         }
-                    }
+                }
                     return NaN;
                 }
                 return NativeDate.parse.apply(this, arguments);
@@ -1785,7 +1785,7 @@
                 while (j >= 23) {
                     toFixedHelpers.divide(1 << 23);
                     j -= 23;
-                }
+            }
 
                 toFixedHelpers.divide(1 << j);
                 toFixedHelpers.multiply(1, 1);
@@ -1795,7 +1795,7 @@
                 toFixedHelpers.multiply(0, z);
                 toFixedHelpers.multiply(1 << (-e), 0);
                 m = toFixedHelpers.numToString() + strSlice('0.00000000000000000000', 2, 2 + f);
-            }
+        }
         }
 
         if (f > 0) {
@@ -1803,9 +1803,9 @@
 
             if (k <= f) {
                 m = s + strSlice('0.0000000000000000000', 0, f - k + 2) + m;
-            } else {
+        } else {
                 m = s + strSlice(m, 0, k - f) + '.' + strSlice(m, k - f);
-            }
+        }
         } else {
             m = s + m;
         }
@@ -1906,20 +1906,20 @@
                                 for (var i = 1; i < arguments.length - 2; i++) {
                                     if (typeof arguments[i] === 'undefined') {
                                         match[i] = void 0;
-                                    }
+                                }
                                 }
                             });
                             /* eslint-enable no-loop-func */
-                        }
+                    }
                         if (match.length > 1 && match.index < string.length) {
                             array_push.apply(output, arraySlice(match, 1));
-                        }
+                    }
                         lastLength = match[0].length;
                         lastLastIndex = lastIndex;
                         if (output.length >= splitLimit) {
                             break;
-                        }
                     }
+                }
                     if (separatorCopy.lastIndex === match.index) {
                         separatorCopy.lastIndex++; // Avoid an infinite loop
                     }
@@ -1993,7 +1993,7 @@
             var normalizedStart = start;
             if (start < 0) {
                 normalizedStart = max(this.length + start, 0);
-            }
+        }
             return string_substr.call(this, normalizedStart, length);
         }
     }, hasNegativeSubstrBug);
@@ -2014,7 +2014,7 @@
         trim: function trim() {
             if (typeof this === 'undefined' || this === null) {
                 throw new TypeError("can't convert " + this + ' to object');
-            }
+        }
             return $String(this).replace(trimBeginRegexp, '').replace(trimEndRegexp, '');
         }
     }, hasTrimWhitespaceBug);
@@ -2038,17 +2038,17 @@
                 var index = strIndexOf(strSlice(S, k, start + searchLen), searchStr);
                 if (index !== -1) {
                     return k + index;
-                }
             }
-            return -1;
         }
+            return -1;
+    }
     }, hasLastIndexBug);
 
     var originalLastIndexOf = StringPrototype.lastIndexOf;
     defineProperties(StringPrototype, {
         lastIndexOf: function lastIndexOf(searchString) {
             return originalLastIndexOf.apply(this, arguments);
-        }
+    }
     }, StringPrototype.lastIndexOf.length !== 1);
 
 // ES-5 15.1.2.2
@@ -2062,7 +2062,7 @@
                 var string = trim(str);
                 var defaultedRadix = $Number(radix) || (hexRegex.test(string) ? 16 : 10);
                 return origParseInt(string, defaultedRadix);
-            };
+        };
         }(parseInt));
     }
 
@@ -2074,7 +2074,7 @@
                 var inputString = trim(string);
                 var result = origParseFloat(inputString);
                 return result === 0 && strSlice(inputString, 0, 1) === '-' ? -0 : result;
-            };
+        };
         }(parseFloat));
     }
 
@@ -2082,7 +2082,7 @@
         var errorToStringShim = function toString() {
             if (typeof this === 'undefined' || this === null) {
                 throw new TypeError("can't convert " + this + ' to object');
-            }
+        }
             var name = this.name;
             if (typeof name === 'undefined') {
                 name = 'Error';
@@ -2118,7 +2118,7 @@
         ensureNonEnumerable(Error.prototype, 'message');
         if (Error.prototype.message !== '') {
             Error.prototype.message = '';
-        }
+    }
         ensureNonEnumerable(Error.prototype, 'name');
     }
 
@@ -2241,7 +2241,7 @@
             doesGetOwnPropertyDescriptorWork(document.createElement('div'));
         if (!getOwnPropertyDescriptorWorksOnDom || !getOwnPropertyDescriptorWorksOnObject) {
             var getOwnPropertyDescriptorFallback = Object.getOwnPropertyDescriptor;
-        }
+    }
     }
 
     if (!Object.getOwnPropertyDescriptor || getOwnPropertyDescriptorFallback) {
@@ -2260,7 +2260,7 @@
                     return getOwnPropertyDescriptorFallback.call(Object, object, property);
                 } catch (exception) {
                     // try the shim if the real one doesn't work
-                }
+            }
             }
 
             var descriptor;
@@ -2305,14 +2305,14 @@
                 if (getter || setter) {
                     if (getter) {
                         descriptor.get = getter;
-                    }
+                }
                     if (setter) {
                         descriptor.set = setter;
                     }
                     // If it was accessor property we're done and return here
                     // in order to avoid adding `value` to the descriptor.
                     return descriptor;
-                }
+            }
             }
 
             // If we got this far we know that object has an own property that is
@@ -2404,7 +2404,7 @@
         if (supportsProto || typeof document === 'undefined') {
             createEmpty = function () {
                 return {__proto__: null};
-            };
+        };
         } else {
             // In old IE __proto__ can't be used to manually set `null`, nor does
             // any other method exist to make an object that inherits from nothing,
@@ -2429,8 +2429,8 @@
                 Empty.prototype = empty;
                 // short-circuit future calls
                 createEmpty = function () {
-                    return new Empty();
-                };
+                return new Empty();
+            };
                 return new Empty();
             };
         }
@@ -2451,7 +2451,7 @@
                     // like they are in modern browsers. Using `Object.create` on DOM elements
                     // is...err...probably inappropriate, but the native version allows for it.
                     throw new TypeError('Object prototype may only be an Object or null'); // same msg as Chrome
-                }
+            }
                 Type.prototype = prototype;
                 object = new Type();
                 // IE has no built-in implementation of `Object.getPrototypeOf`
@@ -2501,7 +2501,7 @@
         if (!definePropertyWorksOnObject || !definePropertyWorksOnDom) {
             var definePropertyFallback = Object.defineProperty,
                 definePropertiesFallback = Object.defineProperties;
-        }
+    }
     }
 
     if (!Object.defineProperty || definePropertyFallback) {
@@ -2523,7 +2523,7 @@
                     return definePropertyFallback.call(Object, object, property, descriptor);
                 } catch (exception) {
                     // try the shim if the real one doesn't work
-                }
+            }
             }
 
             // If it's a data property.
@@ -2557,9 +2557,9 @@
                     // Setting original `__proto__` back now.
                     object.__proto__ = prototype;
                     /* eslint-enable no-proto */
-                } else {
+            } else {
                     object[property] = descriptor.value;
-                }
+            }
             } else {
                 if (!supportsAccessors && (('get' in descriptor) || ('set' in descriptor))) {
                     throw new TypeError(ERR_ACCESSORS_NOT_SUPPORTED);
@@ -2586,7 +2586,7 @@
                     return definePropertiesFallback.call(Object, object, properties);
                 } catch (exception) {
                     // try the shim if the real one doesn't work
-                }
+            }
             }
 
             Object.keys(properties).forEach(function (property) {
@@ -2637,8 +2637,8 @@
                     return object;
                 } else {
                     return freezeObject(object);
-                }
-            };
+            }
+        };
         }(Object.freeze));
     }
 

@@ -16,6 +16,10 @@ public class BlogController extends Controller {
         render("blog.ftl");
     }
 
+    public void add() {
+        render("add.ftl");
+    }
+
     @Before(BlogValidator.class)
     public void save() {
         getModel(Blog.class).save();
