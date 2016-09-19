@@ -48,7 +48,7 @@ public class PageController extends Controller {
     }
 
     @ActionKey("/test")
-    @Before({PageInterceptor.class, CacheInterceptor.class})
+    @Before({CacheInterceptor.class})
     public void test() {
 //        Blog blogs = Blog.dao.findById(2);
         Page<Blog> blog = Blog.dao.paginate(1, 2, "select *", "from blog where title is not null");

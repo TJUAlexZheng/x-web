@@ -2,7 +2,6 @@ package com.demo.common.config;
 
 import com.demo.biz.blog.BlogController;
 import com.demo.biz.page.PageController;
-import com.demo.common.model._MappingKit;
 import com.jfinal.config.*;
 import com.jfinal.json.FastJsonFactory;
 import com.jfinal.kit.PropKit;
@@ -49,7 +48,7 @@ public class WebConfig extends JFinalConfig {
         me.add(new EhCachePlugin());
 
         // 所有配置在 MappingKit 中搞定
-        _MappingKit.mapping(arp);
+//        _MappingKit.mapping(arp);
     }
 
     @Override

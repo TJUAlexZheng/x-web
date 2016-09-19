@@ -16,6 +16,7 @@ public class PageControllerTest extends DBTest {
     @Test
     public void testTest1() throws Exception {
         List<Blog> blogs = Blog.dao.find("select * from blog");
+        System.out.println(blogs);
         Assert.assertNotNull(blogs);
     }
 
