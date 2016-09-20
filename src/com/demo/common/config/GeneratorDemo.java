@@ -5,7 +5,7 @@ import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
 import com.jfinal.plugin.activerecord.generator.Generator;
-import com.jfinal.plugin.c3p0.C3p0Plugin;
+import com.jfinal.plugin.druid.DruidPlugin;
 
 import javax.sql.DataSource;
 
@@ -16,9 +16,11 @@ public class GeneratorDemo {
 
     public static DataSource getDataSource() {
         Prop p = PropKit.use("db_config.properties");
-        C3p0Plugin c3p0Plugin = new C3p0Plugin(p.get("jdbcUrl"), p.get("user"), p.get("password"));
-        c3p0Plugin.start();
-        return c3p0Plugin.getDataSource();
+	    DruidPlugin druidPlugin = new DruidPlugin(p.get("jdbcUrl"), p.get("user"), p.get("password"));
+//        C3p0Plugin c3p0Plugin = new C3p0Plugin(p.get("jdbcUrl"), p.get("user"), p.get("password"));
+//        c3p0Plugin.start();
+	    druidPlugin.start();
+	    return druidPlugin.getDataSource();
     }
 
     public static void main(String[] args) {
@@ -41,8 +43,8 @@ public class GeneratorDemo {
         // 设置是否在 Model 中生成 dao 对象
         gernerator.setGenerateDaoInModel(true);
         // 设置是否生成字典文件
-        gernerator.setGenerateDataDictionary(false);
-        // 设置需要被移除的表名前缀用于生成modelName。例如表名 "osc_user"，移除前缀 "osc_"后生成的model名为 "User"而非 OscUser
+	    gernerator.setGenerateDataDictionary(true);
+	    // 设置需要被移除的表名前缀用于生成modelName。例如表名 "osc_user"，移除前缀 "osc_"后生成的model名为 "User"而非 OscUser
         gernerator.setRemovedTableNamePrefixes("t_");
         // 生成
         gernerator.generate();

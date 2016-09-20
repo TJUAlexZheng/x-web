@@ -4,11 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1">
-    <title>Amaze UI Examples</title>
+    <meta name="description" content="天津大学材料科学与工程学院主页">
+    <meta name="keywords" content="天津大学材料科学与工程学院主页">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>天津大学材料科学与工程学院主页</title>
 
     <!-- Set render engine for 360 browser -->
     <meta name="renderer" content="webkit">
@@ -37,21 +36,14 @@
     <link rel="canonical" href="http://www.example.com/">
     -->
 
-    <link rel="stylesheet" href="/assets/css/amazeui.flat.min.css">
+<#--<link rel="stylesheet" href="/assets/css/amazeu i.flat.min.css">-->
     <link rel="stylesheet" href="/assets/css/app.css">
+    <script src="/assets/js/jquery-1.12.4.min.js"></script>
 </head>
 <body>
     <#nested>
-<!--[if lt IE 9]>
-<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="/assets/js/amazeui.ie8polyfill.min.js"></script>
-<![endif]-->
 
-<!--[if (gte IE 9)|!(IE)]><!-->
-<script src="/assets/js/jquery-1.4.4.min.js"></script>
-<!--<![endif]-->
-<script src="/assets/js/amazeui.min.js"></script>
+<#--<script src="/assets/js/amazeui.min.js"></script>-->
 
 </body>
 </html>

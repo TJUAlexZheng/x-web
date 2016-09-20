@@ -7,5 +7,5 @@ import com.demo.common.model.base.BaseAdmin;
  */
 @SuppressWarnings("serial")
 public class Admin extends BaseAdmin<Admin> {
-    public static final Admin dao = new Admin();
+	public static final Admin dao = new Admin();
 }

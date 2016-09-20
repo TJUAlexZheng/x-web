@@ -9,28 +9,28 @@ import com.jfinal.plugin.activerecord.Model;
 @SuppressWarnings("serial")
 public abstract class BaseBlog<M extends BaseBlog<M>> extends Model<M> implements IBean {
 
-    public java.lang.Integer getId() {
-        return get("id");
-    }
+	public java.lang.Integer getId() {
+		return get("id");
+	}
 
-    public void setId(java.lang.Integer id) {
-        set("id", id);
-    }
+	public void setId(java.lang.Integer id) {
+		set("id", id);
+	}
 
-    public java.lang.String getTitle() {
-        return get("title");
-    }
+	public java.lang.String getTitle() {
+		return get("title");
+	}
 
-    public void setTitle(java.lang.String title) {
-        set("title", title);
-    }
+	public void setTitle(java.lang.String title) {
+		set("title", title);
+	}
 
-    public java.lang.String getContent() {
-        return get("content");
-    }
+	public java.lang.String getContent() {
+		return get("content");
+	}
 
-    public void setContent(java.lang.String content) {
-        set("content", content);
-    }
+	public void setContent(java.lang.String content) {
+		set("content", content);
+	}
 
 }
