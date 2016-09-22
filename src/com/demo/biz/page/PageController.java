@@ -35,6 +35,12 @@ public class PageController extends Controller {
 	 */
 	@ActionKey("/login")
 	public void login() {
+		//验证码
+		if (!validateCaptcha("captcha")) {
+			renderJson("verify", false);
+			return;
+		}
+		//验证用户登陆是否成功
 		Optional<User> user = Optional.ofNullable(User.dao.findFirst("select * from user where account = ? and password = md5(?)", getPara("user.account"), getPara("user.password")));
 		if (user.isPresent()) {
 			setSessionAttr(USER_KEY, user.get());
@@ -63,6 +69,9 @@ public class PageController extends Controller {
 	}
 
 
+	/**
+	 * 渲染验证码
+	 */
 	@ActionKey("/captcha")
 	public void captcha() {
 		renderCaptcha();

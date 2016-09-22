@@ -41,6 +41,13 @@
             <label for="password">密码:</label>
             <input type="password" name="user.password" id="password" value="">
             <br/>
+            <label for="">验证码:</label>
+            <br>
+            <input id="captcha" type="text" name="captcha" value=""
+                   style="display: inline;margin-right: 10px;width: 65%;float: left">
+            <img src="/captcha" style="cursor: pointer;float: left" onclick="this.src='/captcha?rnd=' + Math.random();">
+            <br>
+            <hr>
             <div class="am-cf">
                 <input id="btn-login" type="button" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fl">
             </div>
@@ -60,7 +67,8 @@
                 if (data['verify']) {
                     location.reload();
                 } else {
-                    alert("账号密码错")
+                    alert("登陆失败,请检查账号、密码以及验证码是否正确!")
+                    location.reload();
                 }
             }
         })
