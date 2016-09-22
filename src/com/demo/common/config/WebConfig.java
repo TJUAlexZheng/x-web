@@ -2,6 +2,7 @@ package com.demo.common.config;
 
 import com.demo.biz.blog.BlogController;
 import com.demo.biz.page.PageController;
+import com.demo.common.model._MappingKit;
 import com.jfinal.config.*;
 import com.jfinal.json.FastJsonFactory;
 import com.jfinal.kit.PropKit;
@@ -37,7 +38,6 @@ public class WebConfig extends JFinalConfig {
     public void configPlugin(Plugins me) {
         // 配置druid数据库连接池插件
         DruidPlugin druidPlugin = new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password").trim());
-        //C3p0Plugin C3p0Plugin = new C3p0Plugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password").trim());
         me.add(druidPlugin);
 
         // 配置ActiveRecord插件
@@ -48,7 +48,7 @@ public class WebConfig extends JFinalConfig {
         me.add(new EhCachePlugin());
 
         // 所有配置在 MappingKit 中搞定
-//        _MappingKit.mapping(arp);
+        _MappingKit.mapping(arp);
     }
 
     @Override
