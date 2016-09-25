@@ -1,6 +1,7 @@
 package com.demo.common.config;
 
 import com.demo.biz.blog.BlogController;
+import com.demo.biz.content.ContentController;
 import com.demo.biz.page.PageController;
 import com.demo.common.model._MappingKit;
 import com.jfinal.config.*;
@@ -32,6 +33,7 @@ public class WebConfig extends JFinalConfig {
         //页面渲染逻辑
         me.add("/", PageController.class, "/page");
         me.add("/blog", BlogController.class, "/front.blog");
+        me.add("/content", ContentController.class, "/front/content");
     }
 
     @Override

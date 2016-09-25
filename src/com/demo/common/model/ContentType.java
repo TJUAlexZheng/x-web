@@ -19,4 +19,11 @@ public class ContentType extends BaseContentType<ContentType> {
 	}
 
 
+	public ContentType getFirstSubContentType(long parentId){
+		List<ContentType> contentTypes = dao.find("select * from content_type where parent_id = ?", parentId);
+		if (contentTypes.size() > 0) {
+			return contentTypes.get(0);
+		}
+		return null;
+	}
 }
