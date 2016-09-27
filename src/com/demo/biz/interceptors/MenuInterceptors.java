@@ -1,6 +1,6 @@
 package com.demo.biz.interceptors;
 
-import com.demo.common.model.ContentType;
+import com.demo.common.model.Category;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 
@@ -13,7 +13,7 @@ public class MenuInterceptors implements Interceptor {
 
 	@Override
 	public void intercept(Invocation inv) {
-		List<ContentType> types = ContentType.dao.find("select * from content_type where parent_id is null");
+		List<Category> types = Category.dao.find("select * from category where parent_id is null limit 10");
 		inv.getController().setAttr("types", types);
 		inv.invoke();
 	}

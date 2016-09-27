@@ -224,7 +224,7 @@ nav li a:hover, nav .hover {
 }
 
 .ui-line-hover {
-    background: url("../images/stuj.png") no-repeat left center;
+    background: url("../i/stuj.png") no-repeat left center;
 }
 
 .ullinehover {
@@ -263,7 +263,7 @@ nav li a:hover, nav .hover {
 }
 
 .ui-banner .ui-banner-arrow.ui-banner-arrow-prev {
-    background: transparent url("../images/jleft.jpg") no-repeat scroll 0 0;
+    background: transparent url("../i/jleft.jpg") no-repeat scroll 0 0;
     height: 23px;
     right: -34px;
     top: 6px;
@@ -271,7 +271,7 @@ nav li a:hover, nav .hover {
 }
 
 .ui-banner .ui-banner-arrow.ui-banner-arrow-next {
-    background: transparent url("../images/jright.jpg") no-repeat;
+    background: transparent url("../i/jright.jpg") no-repeat;
     height: 23px;
     right: -34px;
     top: 33px;

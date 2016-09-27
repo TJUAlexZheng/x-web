@@ -1,12 +1,9 @@
 package com.demo.biz.content;
 
 import com.demo.biz.interceptors.MenuInterceptors;
-import com.demo.common.model.ContentType;
+import com.demo.common.model.Category;
 import com.jfinal.aop.Before;
-import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
-
-import java.util.List;
 
 /**
  * Created by YanZ on 16/9/7.
@@ -15,22 +12,17 @@ import java.util.List;
 public class ContentController extends Controller {
 
     public void index(){
-        ContentType hT = ContentType.dao.findById(getParaToInt());
+        Category hT = Category.dao.findById(getParaToInt());
         if (hT.getParentId() == null){
-            setAttr("contentType", ContentType.dao.getFirstSubContentType(hT.getId()));
+            setAttr("contentType", Category.dao.getFirstSubContentType(hT.getId()));
         }else {
             setAttr("contentType", hT);
         }
         while (hT.getParentId() != null){
-            hT = ContentType.dao.findById(hT.getParentId());
+            hT = Category.dao.findById(hT.getParentId());
         }
         setAttr("headType",hT);
 
         render("content.ftl");
-    }
-    @ActionKey("/edit")
-    public void edit(){
-        render("edit.ftl");
-
     }
 }
