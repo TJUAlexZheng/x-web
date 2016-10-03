@@ -1,5 +1,5 @@
-<#include "/common/_layout.ftl"/>
-<#import "/common/_menu.ftl" as m/>
+<#include "/front/common/_layout.ftl"/>
+<#import "/front/common/_menu.ftl" as m/>
 <@layout>
 
 <script type="text/javascript" src="../assets/js/jquery-1.7.2.min.js"></script>

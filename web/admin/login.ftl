@@ -1,4 +1,4 @@
-<#include "/common/_layout.ftl"/>
+<#include "/front/common/_layout.ftl"/>
 <@layout>
 <style>
     .header {
@@ -61,7 +61,7 @@
     $("#btn-login").on('click', function () {
         $.ajax({
             type: 'POST',
-            url: '/login',
+            url: '/admin/login',
             data: $("#login-form").serialize(),
             success: function (data) {
                 if (data['verify']) {

@@ -1,7 +1,7 @@
-<#include "/common/_layout.ftl"/>
-<#import "/common/_menu.ftl" as m/>
-<#import "/common/_treemenu.ftl" as tm/>
-<#import "/common/_newscontent.ftl" as nc/>
+<#include "/front/common/_layout.ftl"/>
+<#import "/front/common/_menu.ftl" as m/>
+<#import "/front/common/_treemenu.ftl" as tm/>
+<#import "/front/common/_newscontent.ftl" as nc/>
 <@layout>
 <link href="/assets/css/2015_default2.css" rel="stylesheet" type="text/css" media="all">
 <!--推荐站点--需JQquery文件-->
