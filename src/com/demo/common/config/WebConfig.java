@@ -41,6 +41,7 @@ public class WebConfig extends JFinalConfig {
         me.add("/admin", AdminController.class, "/admin");
         me.add("/admin/user", UserController.class, "/admin");
         me.add("/admin/teacher", TeacherController.class, "/admin");
+	    me.add("/admin/blog", com.demo.biz.admin.BlogController.class, "/admin/blog");
     }
 
     @Override
@@ -62,7 +63,6 @@ public class WebConfig extends JFinalConfig {
 
     @Override
     public void configInterceptor(Interceptors me) {
-
     }
 
     @Override

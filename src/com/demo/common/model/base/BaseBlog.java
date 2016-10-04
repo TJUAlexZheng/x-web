@@ -33,4 +33,28 @@ public abstract class BaseBlog<M extends BaseBlog<M>> extends Model<M> implement
 		set("content", content);
 	}
 
+	public java.lang.Integer getType() {
+		return get("type");
+	}
+
+	public void setType(java.lang.Integer type) {
+		set("type", type);
+	}
+
+	public java.util.Date getCreatetime() {
+		return get("createtime");
+	}
+
+	public void setCreatetime(java.util.Date createtime) {
+		set("createtime", null);
+	}
+
+	public java.util.Date getUpdatetime() {
+		return get("updatetime");
+	}
+
+	public void setUpdatetime(java.util.Date updatetime) {
+		set("updatetime", null);
+	}
+
 }

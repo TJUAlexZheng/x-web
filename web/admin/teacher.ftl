@@ -44,6 +44,7 @@
 
                     <p>
                         <button type="button" class="am-btn am-btn-primary" @click="saveItem">保存</button>
+                        <button type="button" class="am-btn am-btn-danger" @click="deleteItem">删除</button>
                         <button type="button" class="am-btn am-btn-default" @click="clearItem">取消</button>
                     </p>
                 </fieldset>
@@ -100,6 +101,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/dataTables/amazeui.datatables.min.css">
     <script type="text/javascript" charset="utf8" src="/assets/dataTables/amazeui.datatables.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="/assets/js/vue.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/assets/js/vue-resource.min.js"></script>
 
     <script type="text/javascript">
         $(function () {
@@ -131,11 +133,13 @@
                 "columnDefs": [{
                     "targets": -1,
                     "data": null,
-                    "defaultContent": '<div class="am-btn-toolbar"> <div class="am-btn-group am-btn-group-xs"> <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑 </button><button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button></div>'
+                    "defaultContent": '<div class="am-btn-toolbar"> <div class="am-btn-group am-btn-group-xs"> <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑 </button></div>'
                 }]
             });
             $('#dt tbody').on('click', 'tr', function () {
+//                teacherData.currentItem = table.row($(this).parents('tr')).data();
                 if ($(this).hasClass('selected')) {
+//                    teacherData.currentItem =null;
                     $(this).removeClass('selected');
                 }
                 else {
@@ -152,20 +156,40 @@
                 console.log(data)
             });
 
-            $("div.am-btn-toolbar").html('<div class="am-btn-group am-btn-group-xs"><button id="btn-add" type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span>新增 </button> <button id="save-btn" type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span>保存 </button> <button id="grant-btn" type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span>审核 </button> <button id="delete-btn" type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span>删除 </button> </div>');
+            $("div.am-btn-toolbar").html('<div class="am-btn-group am-btn-group-xs"><button id="btn-add" type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span>新增 </button></div>');
 
             $("#btn-add").on('click', function () {
                 teacherData.currentItem = {};
             })
 
             new Vue({
+                http: {
+                    root: '/admin/teacher',
+                },
                 el: "#teacher-form",
                 data: teacherData,
                 methods: {
                     "saveItem": function () {
-                        console.log(this.currentItem);
-                        this.currentItem = null;
-                        table.draw();
+                        this.$http.post('save', this.currentItem).then(function (json) {
+                            this.currentItem = null;
+                            table.draw();
+                            layer.alert('操作成功');
+                        }, function (json) {
+                            layer.alert('操作失败，请重试');
+                        });
+
+                    },
+                    "deleteItem": function () {
+                        this.$http.get('delete', {
+                            params: {id: this.currentItem.id}
+                        }).then(function (json) {
+                            this.currentItem = null;
+                            table.draw();
+                            layer.alert('操作成功');
+                        }, function (json) {
+                            layer.alert('操作失败，请重试');
+                        });
+
                     },
                     "clearItem": function () {
                         this.currentItem = null;
@@ -178,12 +202,5 @@
                 }
             });
         });
-
-        var userManage = {
-            currentItem: null,
-            showItemDetail: function (item) {
-
-            }
-        }
     </script>
 </@layout>

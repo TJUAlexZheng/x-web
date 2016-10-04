@@ -113,7 +113,7 @@
                         shadeClose: true,
                         shade: 0.8,
                         area: ['60%', '90%'],
-                        content: '/admin/teacher/form',
+                        content: '/admin/blog/content?id=4',
                     })
                 })
             </script>

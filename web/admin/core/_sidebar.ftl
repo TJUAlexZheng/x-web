@@ -3,7 +3,8 @@
     <div class="am-offcanvas-bar admin-offcanvas-bar">
         <ul class="am-list admin-sidebar-list">
             <li><a href="/admin"><span class="am-icon-home"></span> 首页</a></li>
-            <li><a href="/admin/teacher"><span class="am-icon-home"></span> 教师管理</a></li>
+            <li><a href="/admin/teacher"><span class="am-icon-home"></span> 教师</a></li>
+            <li><a href="/admin/blog"><span class="am-icon-home"></span> 新闻</a></li>
 
 
             <li class="admin-parent">

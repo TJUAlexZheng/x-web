@@ -1,7 +1,9 @@
 package com.demo.biz.admin;
 
+import com.demo.biz.interceptors.AuthInterceptor;
 import com.demo.common.model.User;
 import com.jfinal.aop.Before;
+import com.jfinal.aop.Clear;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.interceptor.SessionInViewInterceptor;
 
@@ -10,7 +12,7 @@ import java.util.Optional;
 /**
  * Created by YanZ on 16/9/30.
  */
-@Before(SessionInViewInterceptor.class)
+@Before({AuthInterceptor.class, SessionInViewInterceptor.class})
 public class AdminController extends Controller {
 
 	public static final String USER_KEY = "user";
@@ -18,6 +20,7 @@ public class AdminController extends Controller {
 	/**
 	 * 后台管理页面
 	 */
+	@Clear(AuthInterceptor.class)
 	public void index() {
 		if (isLogin()) {
 			render("index.ftl");
@@ -29,7 +32,7 @@ public class AdminController extends Controller {
 	/**
 	 * ajax处理用户登陆验证逻辑
 	 */
-//	@ActionKey("/login")
+	@Clear(AuthInterceptor.class)
 	public void login() {
 		//验证码
 		if (!validateCaptcha("captcha")) {
@@ -50,6 +53,7 @@ public class AdminController extends Controller {
 	 * ajax处理用户登出逻辑
 	 */
 //	@ActionKey("/logout")
+	@Clear(AuthInterceptor.class)
 	public void logout() {
 		removeSessionAttr(USER_KEY);
 		redirect("/admin");

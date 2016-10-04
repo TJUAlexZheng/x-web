@@ -1,25 +1,23 @@
 package com.demo.biz.admin;
 
 import com.demo.biz.builders.DataTable;
+import com.demo.biz.interceptors.AuthInterceptor;
 import com.demo.common.model.User;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.interceptor.SessionInViewInterceptor;
+import com.jfinal.kit.HttpKit;
+import com.jfinal.kit.JsonKit;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Page;
-
-import java.util.List;
 
 /**
  * Created by YanZ on 16/9/30.
  */
-@Before(SessionInViewInterceptor.class)
+@Before({AuthInterceptor.class, SessionInViewInterceptor.class})
 public class TeacherController extends Controller {
 
 	public void index() {
-		User.dao.paginate(1, 10);
-		List<User> users = User.dao.find("select * from user");
-		setAttr("users", users);
 		render("teacher.ftl");
 	}
 
@@ -28,17 +26,35 @@ public class TeacherController extends Controller {
 		DataTable params = DataTable.build(this);
 
 		//模糊查询
-		String whereClause = "";
+		StringBuilder sb = new StringBuilder("from user ");
+		Object[] selectParams = new Object[0];
 		if (StrKit.notBlank(params.getSearchValue())) {
-			whereClause = String.format("where id like '%%%1$s%%' or account like '%%%1$s%%' or name like '%%%1$s%%' ", params.getSearchValue());
+			sb.append("where id like ? or account like ? or name like ? ");
+			String value = "%" + params.getSearchValue() + "%";
+			selectParams = new Object[]{value, value, value};
 		}
-		String sqlExceptSelect = String.format("from user %s order by %s %s", whereClause, params.getOrderColumn(), params.getOrderDirection());
-		Page<User> userList = User.dao.paginate(params.getPageNumber(), params.getPageSize(),
-				"select *", sqlExceptSelect);
+		sb.append("order by " + params.getOrderColumn() + " " + params.getOrderDirection());
+		Page<User> userList = User.dao.paginate(params.getPageNumber(), params.getPageSize(), "select *", sb.toString(), selectParams);
 		renderJson(userList);
 	}
 
-	public void form() {
-		render("form.ftl");
+	public void save() {
+		User model = JsonKit.parse(HttpKit.readData(getRequest()), User.class);
+		if (model.getId() != null) {
+			model.update();
+		} else {
+			model.save();
+		}
+		renderJson(model);
 	}
+
+	public void delete() {
+		try {
+			User.dao.deleteById(getParaToInt("id"));
+		} catch (Exception e) {
+			getResponse().setStatus(500);
+		}
+		renderJson();
+	}
+
 }
