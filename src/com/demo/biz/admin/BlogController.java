@@ -87,6 +87,11 @@ public class BlogController extends Controller {
 		render("ueeditor.ftl");
 	}
 
+	public void verified() {
+		Integer id = getParaToInt("id");
+		// TODO: 16/10/5 blog审核通过 更新数据库
+	}
+
 	public void categories() {
 		String id = getPara("id");
 		List<Category> categories;

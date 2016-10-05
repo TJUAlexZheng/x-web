@@ -20,13 +20,12 @@
 
             <div class="am-g">
                 <div class="am-u-sm-3" style="border-right: 1px solid #eeeeee;">
-                    <h3 style="text-align: center">类型</h3>
-                    <hr>
-                    <#--树形菜单的渲染-->
+                <#--树形菜单的渲染-->
                     <ul class="am-tree am-tree-folder-select" role="tree" id="categoryTree">
-                        <li class="am-tree-branch am-hide" data-template="treebranch" role="treeitem" aria-expanded="false">
+                        <li class="am-tree-branch am-hide" data-template="treebranch" role="treeitem"
+                            aria-expanded="false">
                             <div class="am-tree-branch-header">
-                                <#--<button class="am-tree-icon am-tree-icon-caret am-icon-caret-right"><span class="am-sr-only">Open</span></button>-->
+                            <#--<button class="am-tree-icon am-tree-icon-caret am-icon-caret-right"><span class="am-sr-only">Open</span></button>-->
                                 <button class="am-tree-branch-name">
                                     <span class="am-tree-icon am-tree-icon-folder"></span>
                                     <span class="am-tree-label"></span>
@@ -37,7 +36,7 @@
                         </li>
                         <li class="am-tree-item am-hide" data-template="treeitem" role="treeitem">
                             <button class="am-tree-item-name">
-                                <#--<span class="am-tree-icon am-tree-icon-item"></span>-->
+                            <#--<span class="am-tree-icon am-tree-icon-item"></span>-->
                                 <span class="am-tree-label"></span>
                             </button>
                         </li>
@@ -90,10 +89,10 @@
                                    class="am-table am-table-striped am-table-bordered am-table-compact am-text-nowrap display">
                                 <thead>
                                 <tr>
-                                    <th class="table-check">编号</th>
-                                    <th class="table-id">标题</th>
-                                    <th class="table-title">标题</th>
-                                    <th class="table-type">操作</th>
+                                    <th>编号</th>
+                                    <th>标题</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
                                 <#--<th class="table-author am-hide-sm-only">作者</th>-->
                                 <#--<th class="table-date am-hide-sm-only">修改日期</th>-->
                                 <#--<th class="table-set">操作</th>-->
@@ -139,20 +138,19 @@
 <link rel="stylesheet" href="/assets/amazeui-tree/amazeui.tree.min.css">
 <script type="text/javascript" charset="utf8" src="/assets/dataTables/amazeui.datatables.min.js"></script>
 <script src="/assets/amazeui-tree/amazeui.tree.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="/assets/js/vue.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="/assets/js/vue-resource.min.js"></script>
+<script src="/assets/js/moment.js"></script>
 
 <script type="text/javascript">
     $(function () {
 
         //init vue share data
-        var teacherData = {
-            currentItem: null
-        };
+//        var teacherData = {
+//            currentItem: null
+//        };
 
         $('#categoryTree').tree({
-            dataSource: function(options, callback) {
-                $.getJSON("categories", {id:options.id}, function (data) {
+            dataSource: function (options, callback) {
+                $.getJSON("categories", {id: options.id}, function (data) {
                     for (var d in data) {
                         data[d].title = data[d].name;
                         data[d].type = data[d].subContentTypes.length > 0 ? "folder" : "item"
@@ -183,14 +181,25 @@
             "columns": [
                 {"data": "id"},
                 {"data": "title"},
-                {"data": "type"},
+                {"data": "createtime"},
                 {"data": ""}
             ],
             "columnDefs": [{
                 "targets": -1,
+//                "width": "10%",
                 "data": null,
-                "defaultContent": '<div class="am-btn-toolbar"> <div class="am-btn-group am-btn-group-xs"> <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 查看详情 </button></div>'
-            }]
+                "defaultContent": '<div class="am-btn-toolbar"> ' +
+                '<div class="am-btn-group am-btn-group-xs"> ' +
+                '<button class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil-square-o"></span>编辑</button>' +
+                '<button class="am-btn am-btn-success am-btn-xs"><span class="am-icon-pencil-square-o"></span>审核通过</button>' +
+                '<button class="am-btn am-btn-danger am-btn-xs"><span class="am-icon-pencil-square-o"></span> 删除 </button>' +
+                '</div>'
+            },{
+                "render": function ( data, type, row ) {
+                    return moment(data).format("YYYY-MM-DD HH:mm:ss");
+                },
+                "targets": 2
+            },]
         });
 
         $('#categoryTree').on('selected.tree.amui', function (event, data) {
@@ -204,74 +213,105 @@
             table.columns(3).search("").draw()
         });
 
-        $('#dt tbody').on('click', 'tr', function () {
-//                teacherData.currentItem = table.row($(this).parents('tr')).data();
-            if ($(this).hasClass('selected')) {
-//                    teacherData.currentItem =null;
-                $(this).removeClass('selected');
-            }
-            else {
-                table.$('tr.selected').removeClass('selected');
-                $(this).addClass('selected');
-            }
-        });
+//        $('#dt tbody').on('click', 'tr', function () {
+////                teacherData.currentItem = table.row($(this).parents('tr')).data();
+//            if ($(this).hasClass('selected')) {
+////                    teacherData.currentItem =null;
+//                $(this).removeClass('selected');
+//            }
+//            else {
+//                table.$('tr.selected').removeClass('selected');
+//                $(this).addClass('selected');
+//            }
+//        });
 
         $('#dt tbody').on('click', 'button', function (event) {
-            event.stopPropagation();
-            event.preventDefault();
             var data = table.row($(this).parents('tr')).data();
-            teacherData.currentItem = data;
-            window.open("content?id=" + data.id)
-            console.log(data)
+            if ($(this).hasClass("am-btn-danger")) {
+                layer.confirm('确定删除？', {
+                    btn: ['确定', '取消'] //按钮
+                }, function () {
+                    $.get("/admin/blog/delete?id="+data.id, function(data){
+                        layer.msg('删除成功', {icon: 1});
+                        table.draw();
+                    })
+                });
+            } else if ($(this).hasClass("am-btn-default")) {
+                layer.open({
+                    type: 2,
+                    title: '修改新闻',
+                    shadeClose: true,
+                    shade: 0.8,
+                    area: ['80%', '90%'],
+                    content: '/admin/blog/content?id=' + data.id,
+                })
+            } else if($(this).hasClass("am-btn-success")) {
+                layer.confirm('确定审核通过？', {
+                    btn: ['确定', '取消'] //按钮
+                }, function () {
+                    $.get("/admin/blog/verified?id="+data.id, function(data){
+                        layer.msg('删除成功', {icon: 1});
+                        table.draw();
+                    })
+                });
+            }
         });
 
         $("div.am-btn-toolbar").html('<div class="am-btn-group am-btn-group-xs"><button id="btn-add" type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span>新增 </button></div>');
 
         $("#btn-add").on('click', function () {
-            teacherData.currentItem = {};
+//            teacherData.currentItem = {};
+            layer.open({
+                type: 2,
+                title: '新增新闻',
+                shadeClose: true,
+                shade: 0.8,
+                area: ['80%', '90%'],
+                content: '/admin/blog/content',
+            })
         })
 
 
         //init vue component
-        new Vue({
-            http: {
-                root: '/admin/teacher',
-            },
-            el: "#blog-form",
-            data: teacherData,
-            methods: {
-                "saveItem": function () {
-                    this.$http.post('save', this.currentItem).then(function (json) {
-                        this.currentItem = null;
-                        table.draw();
-                        layer.alert('操作成功');
-                    }, function (json) {
-                        layer.alert('操作失败，请重试');
-                    });
-
-                },
-                "deleteItem": function () {
-                    this.$http.get('delete', {
-                        params: {id: this.currentItem.id}
-                    }).then(function (json) {
-                        this.currentItem = null;
-                        table.draw();
-                        layer.alert('操作成功');
-                    }, function (json) {
-                        layer.alert('操作失败，请重试');
-                    });
-
-                },
-                "clearItem": function () {
-                    this.currentItem = null;
-                }
-            },
-            computed: {
-                show: function () {
-                    return !this.currentItem ? 'none' : 'block';
-                }
-            }
-        });
+//        new Vue({
+//            http: {
+//                root: '/admin/teacher',
+//            },
+//            el: "#blog-form",
+//            data: teacherData,
+//            methods: {
+//                "saveItem": function () {
+//                    this.$http.post('save', this.currentItem).then(function (json) {
+//                        this.currentItem = null;
+//                        table.draw();
+//                        layer.alert('操作成功');
+//                    }, function (json) {
+//                        layer.alert('操作失败，请重试');
+//                    });
+//
+//                },
+//                "deleteItem": function () {
+//                    this.$http.get('delete', {
+//                        params: {id: this.currentItem.id}
+//                    }).then(function (json) {
+//                        this.currentItem = null;
+//                        table.draw();
+//                        layer.alert('操作成功');
+//                    }, function (json) {
+//                        layer.alert('操作失败，请重试');
+//                    });
+//
+//                },
+//                "clearItem": function () {
+//                    this.currentItem = null;
+//                }
+//            },
+//            computed: {
+//                show: function () {
+//                    return !this.currentItem ? 'none' : 'block';
+//                }
+//            }
+//        });
     });
 </script>
 </@layout>

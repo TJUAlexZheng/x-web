@@ -22,7 +22,9 @@
     <el-row :gutter="20">
         <el-col :span="18" :offset="3">
             <h2>新闻内容</h2>
+        <#if id??>
             <p>创建于:{{this.blog.createtime | moment}} - 更新时间:{{this.blog.updatetime | moment}}</p>
+        </#if>
             <el-form :inline="true" :model="blog" @submit.prevent="onSubmit" class="demo-form-inline">
                 <el-form-item>
                     <el-input v-model="blog.title" placeholder="标题"></el-input>
@@ -47,6 +49,7 @@
             <script id="editor" type="text/plain" style="height:300px;"></script>
         </el-col>
     </el-row>
+
 </div>
 
 <script type="text/javascript">
@@ -88,6 +91,7 @@
             this.$http.get("categories").then(
                     function (json) {
                         this.categories = json.data
+                    <#if id??>
                         this.$http.get("detail", {params: {id: "${id}"}}).then(
                                 function (json) {
                                     this.blog = json.data
@@ -99,6 +103,7 @@
                                     });
                                 }
                         )
+                    </#if>
                     }, function () {
                         this.$message({
                             message: '保存错误，请重试',
