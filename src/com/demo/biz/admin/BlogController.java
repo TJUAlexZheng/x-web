@@ -9,6 +9,7 @@ import com.jfinal.ext.interceptor.SessionInViewInterceptor;
 import com.jfinal.kit.HttpKit;
 import com.jfinal.kit.JsonKit;
 import com.jfinal.kit.StrKit;
+import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 
 import java.util.ArrayList;
@@ -87,10 +88,12 @@ public class BlogController extends Controller {
 		render("ueeditor.ftl");
 	}
 
-	public void verified() {
+    //审核新闻
+    public void verified() {
 		Integer id = getParaToInt("id");
-		// TODO: 16/10/5 blog审核通过 更新数据库
-	}
+        Db.update("update blog set verified = 1 where id = ?", id);
+        renderJson();
+    }
 
 	public void categories() {
 		String id = getPara("id");

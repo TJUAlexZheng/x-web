@@ -33,4 +33,12 @@ public abstract class BaseAdmin<M extends BaseAdmin<M>> extends Model<M> impleme
 		set("password", password);
 	}
 
+    public java.lang.String getName() {
+        return get("name");
+    }
+
+    public void setName(java.lang.String name) {
+        set("name", name);
+    }
+
 }

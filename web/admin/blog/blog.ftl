@@ -91,6 +91,7 @@
                                 <tr>
                                     <th>编号</th>
                                     <th>标题</th>
+                                    <th>审核状态</th>
                                     <th>创建时间</th>
                                     <th>操作</th>
                                 <#--<th class="table-author am-hide-sm-only">作者</th>-->
@@ -150,7 +151,7 @@
 
         $('#categoryTree').tree({
             dataSource: function (options, callback) {
-                $.getJSON("categories", {id: options.id}, function (data) {
+                $.getJSON("/admin/blog/categories", {id: options.id}, function (data) {
                     for (var d in data) {
                         data[d].title = data[d].name;
                         data[d].type = data[d].subContentTypes.length > 0 ? "folder" : "item"
@@ -181,6 +182,7 @@
             "columns": [
                 {"data": "id"},
                 {"data": "title"},
+                {"data": "verified"},
                 {"data": "createtime"},
                 {"data": ""}
             ],
@@ -198,8 +200,13 @@
                 "render": function ( data, type, row ) {
                     return moment(data).format("YYYY-MM-DD HH:mm:ss");
                 },
+                "targets": 3
+            }, {
+                "render": function (data, type, row) {
+                    return data == 1 ? "审核通过" : "不通过";
+                },
                 "targets": 2
-            },]
+            }]
         });
 
         $('#categoryTree').on('selected.tree.amui', function (event, data) {
@@ -250,7 +257,7 @@
                     btn: ['确定', '取消'] //按钮
                 }, function () {
                     $.get("/admin/blog/verified?id="+data.id, function(data){
-                        layer.msg('删除成功', {icon: 1});
+                        layer.msg('成功通过审核', {icon: 1});
                         table.draw();
                     })
                 });

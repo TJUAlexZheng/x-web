@@ -25,6 +25,14 @@ public abstract class BaseCategory<M extends BaseCategory<M>> extends Model<M> i
 		set("name", name);
 	}
 
+    public java.lang.Long getType() {
+        return get("type");
+    }
+
+    public void setType(java.lang.Long type) {
+        set("type", type);
+    }
+
 	public java.lang.Integer getParentId() {
 		return get("parent_id");
 	}

@@ -1,7 +1,7 @@
 package com.demo.biz.admin;
 
 import com.demo.biz.interceptors.AuthInterceptor;
-import com.demo.common.model.User;
+import com.demo.common.model.Admin;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
 import com.jfinal.core.Controller;
@@ -40,10 +40,10 @@ public class AdminController extends Controller {
 			return;
 		}
 		//验证用户登陆是否成功
-		Optional<User> user = Optional.ofNullable(User.dao.findFirst("select * from user where account = ? and password = md5(?)", getPara("user.account"), getPara("user.password")));
-		if (user.isPresent()) {
-			setSessionAttr(USER_KEY, user.get());
-			renderJson("verify", true);
+        Optional<Admin> admin = Optional.ofNullable(Admin.dao.findFirst("select * from admin where account = ? and password = md5(?)", getPara("user.account"), getPara("user.password")));
+        if (admin.isPresent()) {
+            setSessionAttr(USER_KEY, admin.get());
+            renderJson("verify", true);
 		} else {
 			renderJson("verify", false);
 		}

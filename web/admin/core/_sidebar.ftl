@@ -20,8 +20,17 @@
                     <li><a href="admin-404.html"><span class="am-icon-bug"></span> 404</a></li>
                 </ul>
             </li>
-            <li><a href="/admin/admin"><span class="am-icon-table"></span> 用户管理</a></li>
-            <li><a href="/admin/privileges"><span class="am-icon-pencil-square-o"></span> 权限管理</a></li>
+
+            <li class="admin-parent">
+                <a class="am-cf" data-am-collapse="{target: '#admin-collapse'}"><span class="am-icon-file"></span>
+                    后台管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                <ul class="am-list am-collapse admin-sidebar-sub am-in" id="admin-collapse">
+                    <li><a href="/admin/administrator"><span class="am-icon-table"></span> 管理员</a></li>
+                    <li><a href="/admin/administrator/privileges"><span class="am-icon-pencil-square-o"></span> 权限管理</a>
+                    </li>
+                </ul>
+            </li>
+
             <li><a href="/admin/logout"><span class="am-icon-sign-out"></span> 注销</a></li>
         </ul>
 
