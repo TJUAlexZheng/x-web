@@ -17,44 +17,44 @@ import com.jfinal.plugin.activerecord.Page;
 @Before({AuthInterceptor.class, SessionInViewInterceptor.class})
 public class TeacherController extends Controller {
 
-	public void index() {
-		render("teacher.ftl");
-	}
+    public void index() {
+        render("teacher.ftl");
+    }
 
-	public void list() {
-		//解析页面传递参数，构建dataTables参数
-		DataTable params = DataTable.build(this);
+    public void list() {
+        //解析页面传递参数，构建dataTables参数
+        DataTable params = DataTable.build(this);
 
-		//模糊查询
-		StringBuilder sb = new StringBuilder("from user ");
-		Object[] selectParams = new Object[0];
-		if (StrKit.notBlank(params.getSearchValue())) {
-			sb.append("where id like ? or account like ? or name like ? ");
-			String value = "%" + params.getSearchValue() + "%";
-			selectParams = new Object[]{value, value, value};
-		}
-		sb.append("order by " + params.getOrderColumn() + " " + params.getOrderDirection());
-		Page<User> userList = User.dao.paginate(params.getPageNumber(), params.getPageSize(), "select *", sb.toString(), selectParams);
-		renderJson(userList);
-	}
+        //模糊查询
+        StringBuilder sb = new StringBuilder("from user ");
+        Object[] selectParams = new Object[0];
+        if (StrKit.notBlank(params.getSearchValue())) {
+            sb.append("where id like ? or account like ? or name like ? ");
+            String value = "%" + params.getSearchValue() + "%";
+            selectParams = new Object[]{value, value, value};
+        }
+        sb.append("order by " + params.getOrderColumn() + " " + params.getOrderDirection());
+        Page<User> userList = User.dao.paginate(params.getPageNumber(), params.getPageSize(), "select *", sb.toString(), selectParams);
+        renderJson(userList);
+    }
 
-	public void save() {
-		User model = JsonKit.parse(HttpKit.readData(getRequest()), User.class);
-		if (model.getId() != null) {
-			model.update();
-		} else {
-			model.save();
-		}
-		renderJson(model);
-	}
+    public void save() {
+        User model = JsonKit.parse(HttpKit.readData(getRequest()), User.class);
+        if (model.getId() != null) {
+            model.update();
+        } else {
+            model.save();
+        }
+        renderJson(model);
+    }
 
-	public void delete() {
-		try {
-			User.dao.deleteById(getParaToInt("id"));
-		} catch (Exception e) {
-			getResponse().setStatus(500);
-		}
-		renderJson();
-	}
+    public void delete() {
+        try {
+            User.dao.deleteById(getParaToInt("id"));
+        } catch (Exception e) {
+            getResponse().setStatus(500);
+        }
+        renderJson();
+    }
 
 }

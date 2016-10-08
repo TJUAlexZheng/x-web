@@ -13,8 +13,8 @@ import com.jfinal.plugin.activerecord.Page;
 @Before({AuthInterceptor.class, SessionInViewInterceptor.class})
 public class UserController extends Controller {
 
-	public void index() {
-		Page<User> userList = User.dao.paginate(1, 10);
-		renderJson(userList);
-	}
+    public void index() {
+        Page<User> userList = User.dao.paginate(1, 10);
+        renderJson(userList);
+    }
 }
