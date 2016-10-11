@@ -3,6 +3,7 @@ package com.demo.biz.admin;
 import com.demo.biz.builders.DataTable;
 import com.demo.common.model.Blog;
 import com.demo.common.model.Category;
+import com.demo.common.model.News;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.interceptor.SessionInViewInterceptor;
@@ -11,27 +12,22 @@ import com.jfinal.kit.JsonKit;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.Record;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static com.demo.biz.admin.AdminController.USER_PRIVILEGES_KEY;
 
 /**
- * Created by YanZ on 16/10/3.
+ * Created by tjliqy on 2016/10/10.
  */
 @Before({SessionInViewInterceptor.class})
-public class BlogController extends Controller {
-
+public class NewsController extends Controller {
     public void index() {
-        render("blog.ftl");
-    }
-
-    public void verify(){
-        render("verify.ftl");
+        render("news.ftl");
     }
 
     public void list() {
@@ -39,7 +35,7 @@ public class BlogController extends Controller {
         DataTable params = DataTable.build(this);
 
         //模糊查询
-        StringBuilder sb = new StringBuilder("from blog where 1=1 ");
+        StringBuilder sb = new StringBuilder("from news where 1=1 ");
         List<String> selectParams = new ArrayList<>();
         if (StrKit.notBlank(params.getSearchValue())) {
             sb.append("and title like ?");
@@ -51,12 +47,12 @@ public class BlogController extends Controller {
             selectParams.add(getPara("columns[3][search][value]"));
         }
         sb.append("order by " + params.getOrderColumn() + " " + params.getOrderDirection());
-        Page<Blog> blogList = Blog.dao.paginate(params.getPageNumber(), params.getPageSize(), "select *", sb.toString(), selectParams.toArray());
-        renderJson(blogList);
+        Page<News> newsList = News.dao.paginate(params.getPageNumber(), params.getPageSize(), "select *", sb.toString(), selectParams.toArray());
+        renderJson(newsList);
     }
 
     public void save() {
-        Blog model = JsonKit.parse(HttpKit.readData(getRequest()), Blog.class);
+        News model = JsonKit.parse(HttpKit.readData(getRequest()), News.class);
         if (model.getId() != null) {
             model.remove("createtime", "updatetime");
             model.update();
@@ -69,29 +65,30 @@ public class BlogController extends Controller {
 
     public void delete() {
         try {
-            Blog.dao.deleteById(getParaToInt("id"));
+            News.dao.deleteById(getParaToInt("id"));
         } catch (Exception e) {
             getResponse().setStatus(500);
         }
         renderJson();
     }
 
+    //查看新闻详细内容
     public void detail() {
         Integer id = getParaToInt("id");
         if (id == null) {
             getResponse().setStatus(500);
             return;
         }
-        Blog blog = Blog.dao.findFirst("select * from blog where type = ?",id);
-        if (blog == null) {
-            blog = new Blog();
-            blog.setTitle("");
-            blog.setType(id);
-            blog.setContent("");
+        News news = News.dao.findById(id);
+        if (news == null) {
+            getResponse().setStatus(500);
+            renderJson();
+            return;
         }
-        renderJson(blog);
+        renderJson(news);
     }
 
+    //打开查看新闻详情页面
     public void content() {
         setAttr("id", getPara("id"));
         render("ueeditor.ftl");
@@ -100,27 +97,13 @@ public class BlogController extends Controller {
     //审核新闻
     public void verified() {
         Integer id = getParaToInt("id");
-        Db.update("update blog set verified = 1 where id = ?", id);
+        Db.update("update news set verified = 1 where id = ?", id);
         renderJson();
     }
 
     public void categories() {
-        String id = getPara("id");
         List<Category> categories;
-        if (id != null) {
-            categories = Category.dao.find("select id, name from category where parent_id = ?", id);
-        } else {
-            categories = Category.dao.find("select id, name from category where parent_id is null and type = 1");
-            String[] privileges = getSessionAttr(USER_PRIVILEGES_KEY);
-            categories = categories.stream().filter(category -> {
-                for (String s: privileges) {
-                    if (Objects.equals(category.getId(), Long.valueOf(s))){
-                        return true;
-                    }
-                }
-                return false;
-            }).collect(Collectors.toList());
-        }
+        categories = Category.dao.find("select id, name from category where parent_id is not null and type = 3");
         renderJson(categories);
     }
 }

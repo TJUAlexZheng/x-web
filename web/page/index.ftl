@@ -194,7 +194,7 @@
                 </div>
             </div>
             <div class="newsBox floatRight">
-                <div class="mainNewsTitle">通知公告<span>/<a href="news_list.php-type=notice.html" target="_blank">查看更多</a></span>
+                <div class="mainNewsTitle">通知通告<span><a href="/content/83" target="_blank">more</a></span>
                 </div>
                 <div class="mainNewsLine">
                     <div class="mainNewsLineBlue floatLeft"></div>
@@ -211,25 +211,30 @@
                     <div class="mainNewsLi"><a href="news_detail.php-id=302.html" target="_blank"
                                                title="天津大学材料学院2017年研究生招生夏令营通知">天津大学材料学院2017年研究生招</a>2016-05-23
                     </div>
-                    <div class="mainNewsLi"><a href="news_detail.php-id=285.html" target="_blank"
-                                               title="天津大学材料学院应届毕业生问卷调查">天津大学材料学院应届毕业生问卷</a>2016-05-10
+                </div>
+                <div class="mainNewsTitle">活动预告<span><a href="/content/86" target="_blank">more</a></span>
+                </div>
+                <div class="mainNewsLine">
+                    <div class="mainNewsLineBlue floatLeft"></div>
+                    <div class="mainNewsLineGray floatRight" style="width:220px;"></div>
+                    <div class="cb"></div>
+                </div>
+                <div class="mainNewsContent">
+                    <div class="mainNewsLi"><a href="news_detail.php-id=340.html" target="_blank"
+                                               title="材料学院 2017年接收外校推免研究生的说明">材料学院 2017年接收外校推免研究</a>2016-08-31
                     </div>
-                    <div class="mainNewsLi"><a href="news_detail.php-id=274.html" target="_blank"
-                                               title="2016级硕士研究生档案邮寄地址">2016级硕士研究生档案邮寄地址</a>2016-04-18
+                    <div class="mainNewsLi"><a href="news_detail.php-id=303.html" target="_blank"
+                                               title="天津大学材料学院2016年本科生招生简章">天津大学材料学院2016年本科生招</a>2016-06-01
                     </div>
-                    <div class="mainNewsLi"><a href="news_detail.php-id=269.html" target="_blank"
-                                               title="2016年研究生招生递补公示">2016年研究生招生递补公示</a>2016-03-29
-                    </div>
-                    <div class="mainNewsLi"><a href="news_detail.php-id=268.html" target="_blank"
-                                               title="材料学院2016年博士研究生拟录取名单">材料学院2016年博士研究生拟录取</a>2016-03-25
+                    <div class="mainNewsLi"><a href="news_detail.php-id=302.html" target="_blank"
+                                               title="天津大学材料学院2017年研究生招生夏令营通知">天津大学材料学院2017年研究生招</a>2016-05-23
                     </div>
                 </div>
             </div>
             <div class="cb"></div>
         </div>
         <div class="mainRight">
-            <div class="mainNewsTitle">新闻动态<span>/<a href="news_list.php-type=news.html" target="_blank">查看更多</a></span>
-            </div>
+            <div class="mainNewsTitle">新闻动态<span><a href="/content/82" target="_blank">more</a></span></div>
             <div class="mainNewsLine">
                 <div class="mainNewsLineBlue floatLeft"></div>
                 <div class="mainNewsLineGray floatRight" style="width:460px;"></div>
@@ -260,10 +265,15 @@
         <div class="cb"></div>
     </div>
     <div id="mainEnter">
-        <div class="mainLeft"><a href="content.php-block=a11.html" target="_blank" class="floatLeft"><img
-                src="../assets/i/2015_contact.jpg"/></a><a href="index.php.html#%23%23"
-                                                      onClick="javascript:alert('院长信箱：dean_smse@tju.edu.cn');"
-                                                      class="floatRight"><img src="../assets/i/2015_login.jpg"/></a></div>
+        <div class="mainLeft">
+            <a href="/content/23" target="_blank" class="floatLeft"><img
+                src="../assets/i/2015_contact.jpg"/>
+            </a>
+            <a href="index.php.html#%23%23"
+               onClick="javascript:alert('院长信箱：dean_smse@tju.edu.cn');"
+               class="floatRight"><img src="../assets/i/2015_login.jpg"/>
+            </a>
+        </div>
         <div class="mainRight"><a href="vote/index.php.html" target="_blank"><img src="../assets/i/mainTip.jpg"/></a></div>
         <div class="cb"></div>
     </div>

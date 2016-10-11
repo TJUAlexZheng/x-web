@@ -21,16 +21,16 @@
 <div id="app">
     <el-row :gutter="20">
         <el-col :span="18" :offset="3">
-            <h2>新闻内容</h2>
+            <h2>文章内容</h2>
         <#if id??>
-            <p>创建于:{{this.blog.createtime | moment}} - 更新时间:{{this.blog.updatetime | moment}}</p>
+            <p>创建于:{{this.news.createtime | moment}} - 更新时间:{{this.news.updatetime | moment}}</p>
         </#if>
-            <el-form :inline="true" :model="blog" @submit.prevent="onSubmit" class="demo-form-inline">
+            <el-form :inline="true" :model="news" @submit.prevent="onSubmit" class="demo-form-inline">
                 <el-form-item>
-                    <el-input v-model="blog.title" placeholder="标题"></el-input>
+                    <el-input v-model="news.title" placeholder="标题"></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-select v-model="blog.type" filterable>
+                    <el-select v-model="news.type" filterable placeholder="分类">
                         <el-option
                                 v-for="item in categories"
                                 :label="item.name"
@@ -61,10 +61,10 @@
     new Vue({
         el: "#app",
         http: {
-            root: '/admin/blog',
+            root: '/admin/news',
         },
         data: {
-            blog: {},
+            news: {},
             formInline: {
                 user: '',
                 region: ''
@@ -75,9 +75,9 @@
         },
         methods: {
             save: function () {
-                this.blog.content = UE.getEditor('editor').getContent();
-                this.$http.post('save', this.blog).then(function (json) {
-                    this.blog = json.data
+                this.news.content = UE.getEditor('editor').getContent();
+                this.$http.post('save', this.news).then(function (json) {
+                    this.news = json.data
                     this.$message('保存成功');
                 }, function (json) {
                     this.$message({
@@ -94,8 +94,8 @@
                     <#if id??>
                         this.$http.get("detail", {params: {id: "${id}"}}).then(
                                 function (json) {
-                                    this.blog = json.data
-                                    UE.getEditor('editor').setContent(this.blog.content)
+                                    this.news = json.data
+                                    UE.getEditor('editor').setContent(this.news.content)
                                 }, function () {
                                     this.$message({
                                         message: '读取数据错误，请重试',

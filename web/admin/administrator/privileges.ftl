@@ -34,8 +34,8 @@
             <form class="am-form am-form-inline">
                 <fieldset>
                     <legend>管理员详情</legend>
-                    <span>请按住键盘 "Ctrl+左键" 进行多选: {{ selected }}</span>
-
+                    <span>请按住键盘 "Ctrl+左键" 进行多选:</span>
+                    {{privileges | json}}`
                     <select v-model="privileges" multiple style="height: 300px;">
                         <option v-for="o in categories" :value="o.id">{{o.name}}</option>
                     </select>

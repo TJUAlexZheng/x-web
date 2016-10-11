@@ -21,6 +21,7 @@ public class _MappingKit {
         arp.addMapping("blog", "id", Blog.class);
 		arp.addMapping("category", "id", Category.class);
 		arp.addMapping("user", "id", User.class);
+		arp.addMapping("news","id", News.class);
 	}
 }
 

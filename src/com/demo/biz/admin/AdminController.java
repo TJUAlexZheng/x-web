@@ -17,7 +17,7 @@ import java.util.Optional;
 public class AdminController extends Controller {
 
     public static final String USER_KEY = "user";
-    private static final String USER_PRIVILEGES_KEY = "userPrivileges";
+    public static final String USER_PRIVILEGES_KEY = "userPrivileges";
 
     /**
      * 后台管理页面

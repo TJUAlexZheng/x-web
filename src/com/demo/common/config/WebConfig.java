@@ -1,9 +1,6 @@
 package com.demo.common.config;
 
-import com.demo.biz.admin.AdminController;
-import com.demo.biz.admin.AdministratorController;
-import com.demo.biz.admin.TeacherController;
-import com.demo.biz.admin.UserController;
+import com.demo.biz.admin.*;
 import com.demo.biz.blog.BlogController;
 import com.demo.biz.content.ContentController;
 import com.demo.biz.page.PageController;
@@ -44,6 +41,7 @@ public class WebConfig extends JFinalConfig {
         me.add("/admin/teacher", TeacherController.class, "/admin");
         me.add("/admin/administrator", AdministratorController.class, "/admin/administrator");
         me.add("/admin/blog", com.demo.biz.admin.BlogController.class, "/admin/blog");
+        me.add("/admin/news", NewsController.class,"/admin/blog");
     }
 
     @Override

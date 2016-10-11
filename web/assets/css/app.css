@@ -339,7 +339,7 @@ nav li a:hover, nav .hover {
 .mainNewsTitle span a {
     color: #000000;
     text-decoration: none;
-    margin-left: 6px;
+    float: right;
 }
 
 .mainNewsLine {

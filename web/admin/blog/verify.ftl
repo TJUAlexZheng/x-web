@@ -1,21 +1,6 @@
 <#include "../core/_layout.ftl"/>
 <@layout>
-<head>
-<#--<link rel="stylesheet" href="/assets/css/bootstrap.min.css">-->
-    <link rel="stylesheet" href="/assets/js/element.css">
-<#--<script src="/assets/js/jquery.min.js"></script>-->
-<#--<script src="/assets/js/bootstrap.min.js"></script>-->
-    <script src="/assets/js/moment.js"></script>
 
-    <script type="text/javascript" charset="utf-8" src="/assets/ueeditor/ueditor.config.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/assets/ueeditor/ueditor.all.min.js"></script>
-    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
-    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
-    <script type="text/javascript" charset="utf-8" src="/assets/ueeditor/lang/zh-cn/zh-cn.js"></script>
-    <script src="/assets/js/vue2.0.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/assets/js/vue-resource.min.js"></script>
-    <script src="/assets/js/element.js"></script>
-</head>
 <div class="am-cf admin-main">
 
 <#--渲染左侧菜单-->
@@ -100,31 +85,47 @@
                     <div class="am-g">
                     <#--table内容-->
                         <div class="am-u-sm-12">
-                            <div id="app">
-                                <el-row :gutter="20">
-                                    <el-col :span="18" :offset="3">
-                                        <#if id??>
-                                            <p>创建于:{{this.blog.createtime | moment}} - 更新时间:{{this.blog.updatetime |
-                                                moment}}</p>
-                                        </#if>
-                                        <el-form :inline="true" :model="blog" @submit.prevent="onSubmit"
-                                                 class="demo-form-inline">
-                                            <el-form-item>
-                                                <el-input id="input" v-model="blog.title" placeholder="标题"></el-input>
-                                            </el-form-item>
-                                            <el-form-item>
-                                                <el-button type="primary" @click.native="save">保存</el-button>
-                                            </el-form-item>
-                                        </el-form>
-                                    </el-col>
-                                </el-row>
-                                <el-row :gutter="20">
-                                    <el-col :span="18" :offset="3">
-                                        <script id="editor" type="text/plain" style="height:300px;"></script>
-                                    </el-col>
-                                </el-row>
+                            <table id="dt"
+                                   class="am-table am-table-striped am-table-bordered am-table-compact am-text-nowrap display">
+                                <thead>
+                                <tr>
+                                    <th>编号</th>
+                                    <th>标题</th>
+                                    <th>审核状态</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
+                                <#--<th class="table-author am-hide-sm-only">作者</th>-->
+                                <#--<th class="table-date am-hide-sm-only">修改日期</th>-->
+                                <#--<th class="table-set">操作</th>-->
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <#--<tr>-->
+                            <#--<td><input type="checkbox"/></td>-->
+                            <#--<td>1</td>-->
+                            <#--<td><a href="#">Business management</a></td>-->
+                            <#--<td>default</td>-->
+                            <#--<td class="am-hide-sm-only">测试1号</td>-->
+                            <#--<td class="am-hide-sm-only">2014年9月4日 7:28:47</td>-->
+                            <#--<td>-->
+                                <#--<div class="am-btn-toolbar">-->
+                                    <#--<div class="am-btn-group am-btn-group-xs">-->
+                                        <#--<button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span-->
+                                                <#--class="am-icon-pencil-square-o"></span> 编辑-->
+                                        <#--</button>-->
+                                        <#--<button class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span-->
+                                                <#--class="am-icon-copy"></span> 复制-->
+                                        <#--</button>-->
+                                        <#--<button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">-->
+                                            <#--<span class="am-icon-trash-o"></span> 删除-->
+                                        <#--</button>-->
+                                    <#--</div>-->
+                                <#--</div>-->
+                            <#--</td>-->
+                        <#--</tr>-->
 
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -144,17 +145,9 @@
     $(function () {
 
         //init vue share data
-        var data = {
-            blog:{
-                title:""
-            },
-            formInline: {
-                user: '',
-                region: ''
-            },
-            value8: '',
-            dialogVisible: false
-        };
+//        var teacherData = {
+//            currentItem: null
+//        };
 
         $('#categoryTree').tree({
             dataSource: function (options, callback) {
@@ -170,32 +163,61 @@
             cacheItems: true,
             folderSelect: false
         });
+        //init jquery datagrid
+        var table = $('#dt').DataTable({
+            "ajax": {
+                "url": "/admin/blog/list",
+                "dataSrc": function (json) {
+                    json.data = json.list
+                    json.recordsTotal = json.totalRow
+                    json.recordsFiltered = json.totalRow
+                    return json.data;
+                }
+            },
+            searchDelay: 350,
+            processing: true,
+            serverSide: true,
+            "dom": '<"am-g am-datatable-hd" <"am-u-sm-6" <"am-btn-toolbar">> <"am-u-sm-6"f>>lrt<"am-g am-datatable-footer" <"am-u-sm-5"i> <"am-u-sm-7"p>>',
+            "autoWidth": true,
+            "columns": [
+                {"data": "id"},
+                {"data": "title"},
+                {"data": "verified"},
+                {"data": "createtime"},
+                {"data": ""}
+            ],
+            "columnDefs": [{
+                "targets": -1,
+//                "width": "10%",
+                "data": null,
+                "defaultContent": '<div class="am-btn-toolbar"> ' +
+                '<div class="am-btn-group am-btn-group-xs"> ' +
+                '<button class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil-square-o"></span>编辑</button>' +
+                '<button class="am-btn am-btn-success am-btn-xs"><span class="am-icon-pencil-square-o"></span>审核通过</button>' +
+                '<button class="am-btn am-btn-danger am-btn-xs"><span class="am-icon-pencil-square-o"></span> 删除 </button>' +
+                '</div>'
+            },{
+                "render": function ( data, type, row ) {
+                    return moment(data).format("YYYY-MM-DD HH:mm:ss");
+                },
+                "targets": 3
+            }, {
+                "render": function (data, type, row) {
+                    return data == 1 ? "审核通过" : "不通过";
+                },
+                "targets": 2
+            }]
+        });
 
-        $('#categoryTree').on('selected.tree.amui', function (event, d) {
+        $('#categoryTree').on('selected.tree.amui', function (event, data) {
             // do something with data: { selected: [array], target: [object] }
-//            table.columns(3).search(data.target.id).draw()
-            $.get("/admin/blog/detail?id=" + d.target.id).then(
-                    function (json) {
-                        if (json != null){
-                            data.blog = json;
-                            UE.getEditor('editor').setContent(json.content);
-                        }else {
-                            data.blog = null;
-                            data.blog.type = d.target.id;
-                            UE.getEditor('editor').setContent("");
-                        }
-//                        document.getElementById("input").value = data.title;
-                    }, function () {
-                        this.$message({
-                            message: '读取数据错误，请重试',
-                            type: 'error'
-                        });
-                    }
-            )
+            table.columns(3).search(data.target.id).draw()
         });
 
         $('#categoryTree').on('deselected.tree.amui', function (event, data) {
-            console.log(data.target.id);
+            // do something with data: { selected: [array], target: [object] }
+            console.log(data.target.id)
+            table.columns(3).search("").draw()
         });
 
         $('#dt tbody').on('click', 'button', function (event) {
@@ -204,7 +226,7 @@
                 layer.confirm('确定删除？', {
                     btn: ['确定', '取消'] //按钮
                 }, function () {
-                    $.get("/admin/blog/delete?id=" + data.id, function (data) {
+                    $.get("/admin/blog/delete?id="+data.id, function(data){
                         layer.msg('删除成功', {icon: 1});
                         table.draw();
                     })
@@ -218,52 +240,17 @@
                     area: ['80%', '90%'],
                     content: '/admin/blog/content?id=' + data.id,
                 })
-            } else if ($(this).hasClass("am-btn-success")) {
+            } else if($(this).hasClass("am-btn-success")) {
                 layer.confirm('确定审核通过？', {
                     btn: ['确定', '取消'] //按钮
                 }, function () {
-                    $.get("/admin/blog/verified?id=" + data.id, function (data) {
+                    $.get("/admin/blog/verified?id="+data.id, function(data){
                         layer.msg('成功通过审核', {icon: 1});
                         table.draw();
                     })
                 });
             }
         });
-
-        var ue = UE.getEditor('editor');
-
-        new Vue({
-            el: "#app",
-            http: {
-                root: '/admin/blog'
-            },
-            data: data,
-            methods: {
-                save: function () {
-                    this.blog.content = UE.getEditor('editor').getContent();
-                    this.$http.post('save', this.blog).then(function (json) {
-                        this.blog = json.data
-                        this.$message('保存成功');
-                    }, function (json) {
-                        this.$message({
-                            message: '保存错误，请重试',
-                            type: 'error'
-                        });
-                    });
-                }
-            },
-            filters: {
-                moment: function (date) {
-                    return moment(date).format('YYYY-MM-DD HH:mm:ss');
-                }
-            },
-            watch: {
-                blog: function (newvalue) {
-                    console.log(newvalue)
-                }
-            }
-        })
-    })
-    ;
+    });
 </script>
 </@layout>
