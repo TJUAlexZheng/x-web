@@ -1,11 +1,11 @@
-<#macro list newsList>
+<#macro list newsList width>
 <#if newsList??>
     <#local news = newsList>
 <div class="mainNewsContent">
     <#list news as newsitem>
-        <div class="mainNewsLi"><a href="/news/${newsitem.id}" target="_blank"
+        <div class="mainNewsLi"><a href="/news/${newsitem.id}" target="_blank"  style="width: ${width}rem;"
                                    title="${newsitem.title}">
-            <#if newsitem.title?length gt 17>${newsitem.title[0..17]}<#else >${newsitem.title}</#if></a>
+            ${newsitem.title}</a>
         ${newsitem.updatetime?keep_before(" ")}
         </div>
     </#list>

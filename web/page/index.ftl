@@ -184,14 +184,14 @@
                     <div class="mainNewsLineGray floatRight" style="width:220px;"></div>
                     <div class="cb"></div>
                 </div>
-                <@nl.list newsList = notice_news/>
-                <div class="mainNewsTitle">活动预告<span><a href="/content/86" target="_blank" style="font-size: 1.3rem">>>more</a></span>
+                <@nl.list newsList = notice_news width=19.4/>
+                <div class="mainNewsTitle">活动预告<span><a href="/content/86" target="_blank">more</a></span>
                 </div>
                 <div class="mainNewsLine">
                     <div class="mainNewsLineBlue floatLeft"></div>
                     <div class="mainNewsLineGray floatRight" style="width:460px;"></div>
                     <div class="cb"></div>
-                    <@nl.list newsList = predict_news/>
+                    <@nl.list newsList = predict_news width=19.4/>
                 </div>
             </div>
             <div class="cb"></div>
@@ -204,7 +204,7 @@
                 <div class="mainNewsLineBlue floatLeft"></div>
                 <div class="mainNewsLineGray floatRight" style="width:460px;"></div>
                 <div class="cb"></div>
-                <@nl.list newsList = dynamic_news/>
+                <@nl.list newsList = dynamic_news width=41.4/>
             </div>
         </div>
         <div class="cb"></div>

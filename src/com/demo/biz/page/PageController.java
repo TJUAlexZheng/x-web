@@ -23,17 +23,17 @@ public class PageController extends Controller {
 	public void index() {
 		List<News> noticeNews = News.dao.find("select * from news where type = 83");
 		if (noticeNews.size() > 3){
-			noticeNews.subList(0,3);
+			noticeNews = noticeNews.subList(0,3);
 		}
 		setAttr("notice_news",noticeNews);
 		List<News> predictNews = News.dao.find("select * from news where type = 86");
-		if (predictNews.size() > 3){
-			predictNews.subList(0,3);
+		if (predictNews.size() > 2){
+			predictNews = predictNews.subList(0,2);
 		}
 		setAttr("predict_news", predictNews);
 		List<News> dynamicNews = News.dao.find("select * from news where type = 82");
 		if (dynamicNews.size() > 7){
-			dynamicNews.subList(0,7);
+			dynamicNews = dynamicNews.subList(0,7);
 		}
 		setAttr("dynamic_news", dynamicNews);
 		List<RecommendedSite> recommendedSites = RecommendedSite.dao.find("select * from recommended_site");

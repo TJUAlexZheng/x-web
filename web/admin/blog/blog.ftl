@@ -102,7 +102,7 @@
                         <div class="am-u-sm-12">
                             <div id="app">
                                 <el-row :gutter="20">
-                                    <el-col :span="18" :offset="3">
+                                    <el-col :span="18">
                                         <#if id??>
                                             <p>创建于:{{this.blog.createtime | moment}} - 更新时间:{{this.blog.updatetime |
                                                 moment}}</p>
@@ -119,7 +119,7 @@
                                     </el-col>
                                 </el-row>
                                 <el-row :gutter="20">
-                                    <el-col :span="18" :offset="3">
+                                    <el-col :span="18"      >
                                         <script id="editor" type="text/plain" style="height:300px;"></script>
                                     </el-col>
                                 </el-row>

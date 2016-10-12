@@ -1,7 +1,7 @@
 <#include "/front/common/_layout.ftl"/>
 <#import "/front/common/_menu.ftl" as m/>
 <#import "/front/common/_treemenu.ftl" as tm/>
-<#import "/front/common/_detail.ftl" as d/>
+<#import "/front/common/_newsdetail.ftl" as dn/>
 <@layout>
 <link href="/assets/css/2015_default2.css" rel="stylesheet" type="text/css" media="all">
 <!--推荐站点--需JQquery文件-->
@@ -57,9 +57,9 @@
         <@tm.type headType = headType/>
     </div>
     <div id="sub_right">
-        <div id="news_position">现在位置：<span class="news_index"><a href="/">首页</a></span> &gt;&gt; ${contentType.name} &gt;&gt; 正文        </div>
+        <div id="news_position">现在位置：<span class="news_index"><a href="/">首页</a></span> &gt;&gt; <span class="news_title"><a href="/content/${contentType.id}">${contentType.name}</a></span> &gt;&gt; ${news.title}</div>
         <!--<div id="news_titles">学院简介</div-->
-        <@d.detail type=contentType.type detail=detail/>
+        <@dn.detail detail=news/>
     </div>
     <div style="clear:both;"></div>
 </div>
