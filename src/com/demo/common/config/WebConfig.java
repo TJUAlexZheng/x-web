@@ -45,6 +45,7 @@ public class WebConfig extends JFinalConfig {
         me.add("/admin/blog", com.demo.biz.admin.BlogController.class, "/admin/blog");
         me.add("/admin/mail", com.demo.biz.admin.MailController.class, "/admin/mail");
         me.add("/admin/news", NewsController.class,"/admin/blog");
+        me.add("/admin/recommendSite", RecommentSiteController.class, "/admin/recommendSite");
     }
 
     @Override

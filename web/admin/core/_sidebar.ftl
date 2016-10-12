@@ -11,9 +11,9 @@
             <li><a href="/admin/news"><span class="am-icon-home"></span> 新闻</a></li>
         </#if>
             <li class="admin-parent">
-                <a class="am-cf" data-am-collapse="{target: '#admin-collapse'}"><span class="am-icon-file"></span>
+                <a class="am-cf" data-am-collapse="{target: '#module-collapse'}"><span class="am-icon-file"></span>
                     板块 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
-                <ul class="am-list am-collapse admin-sidebar-sub am-in" id="admin-collapse">
+                <ul class="am-list am-collapse admin-sidebar-sub am-in" id="module-collapse">
                     <li><a href="/admin/blog/verify"><span class="am-icon-table"></span> 文章审核</a></li>
                     <li><a href="/admin/blog"><span class="am-icon-pencil-square-o"></span> 文章发布</a>
                     </li>
@@ -45,6 +45,17 @@
                     </li>
                 </ul>
             </li>
+            <li><a href="/admin/recommendSite"><span class="am-icon-sign-out"></span> 推荐站点</a></li>
+        <#--<li>-->
+        <#--<a class="am-cf" data-am-collapse="{target: '#site-collapse'}"><span class="am-icon-file"></span>-->
+        <#--推荐站点<span class="am-icon-angle-right am-fr am-margin-right"></span></a>-->
+        <#--<ul class="am-list am-collapse admin-sidebar-sub am-in" id="site-collapse">-->
+        <#--<li><a href="/admin/recommendSite/1"><span class="am-icon-table"></span> 实验研究</a></li>-->
+        <#--<li><a href="/admin/recommendSite/2"><span class="am-icon-pencil-square-o"></span> 校内链接</a></li>-->
+        <#--<li><a href="/admin/recommendSite/3"><span class="am-icon-pencil-square-o"></span> 友情链接</a></li>-->
+        <#--</li>-->
+        <#--</ul>-->
+        <#--</li>-->
         </#if>
 
 
