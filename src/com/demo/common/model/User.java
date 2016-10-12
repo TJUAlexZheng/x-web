@@ -14,4 +14,17 @@ public class User extends BaseUser<User> {
 		return paginate(pageNumber, pageSize, "select *", "from user order by id asc");
 	}
 
+	public String award() {
+		if (this.getAwardType() == 1) {
+			return "长江学者奖励计划";
+		} else if (this.getAwardType() == 2) {
+			return "国家重点基础研究发展规划(973)首席科学家";
+		} else if (this.getAwardType() == 3) {
+			return "国家杰出青年基金获得者";
+		} else if (this.getAwardType() == 4) {
+			return "国家千人计划入选者";
+		}
+		return null;
+	}
+
 }

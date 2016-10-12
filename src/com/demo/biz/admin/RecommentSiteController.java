@@ -2,6 +2,7 @@ package com.demo.biz.admin;
 
 
 import com.demo.biz.builders.DataTable;
+import com.demo.biz.interceptors.AuthInterceptor;
 import com.demo.common.model.RecommendedSite;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
@@ -17,7 +18,7 @@ import java.util.List;
 /**
  * Created by yanz on 2016/10/12.
  */
-@Before({SessionInViewInterceptor.class})
+@Before({AuthInterceptor.class, SessionInViewInterceptor.class})
 public class RecommentSiteController extends Controller {
 
     public void index() {

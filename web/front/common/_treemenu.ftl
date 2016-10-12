@@ -5,7 +5,11 @@
     <#if 0 < subMenuItems.size()>
         <#list subMenuItems as subItem>
         <div class="sub_left_list<#if 1 == index%2> gray</#if>">
+            <#if subItem.href??>
+                <a href="/${subItem.href}/${subItem.id}">${subItem.name}</a>
+            <#else>
             <a href="/content/${subItem.id}">${subItem.name}</a>
+            </#if>
         </div>
             <#local index = index+1>
             <#local subMenuItems2 = subItem.getSubContentTypes()>

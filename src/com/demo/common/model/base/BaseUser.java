@@ -41,4 +41,28 @@ public abstract class BaseUser<M extends BaseUser<M>> extends Model<M> implement
 		set("name", name);
 	}
 
+	public java.lang.String getAwardName() {
+		return get("award_name");
+	}
+
+	public void setAwardName(java.lang.String awardName) {
+		set("award_name", awardName);
+	}
+
+	public java.util.Date getAwardDate() {
+		return get("award_date");
+	}
+
+	public void setAwardDate(java.util.Date awardDate) {
+		set("award_date", awardDate);
+	}
+
+	public java.lang.Long getAwardType() {
+		return get("award_type");
+	}
+
+	public void setAwardType(java.lang.Long awardType) {
+		set("award_type", awardType);
+	}
+
 }

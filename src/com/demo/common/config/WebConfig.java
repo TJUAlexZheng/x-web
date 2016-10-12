@@ -37,6 +37,7 @@ public class WebConfig extends JFinalConfig {
         me.add("/blog", BlogController.class, "/front.blog");
         me.add("/content", ContentController.class, "/front/content");
         me.add("/mail", MailController.class, "/front/mail");
+        me.add("/teacher", com.demo.biz.teacher.TeacherController.class, "/front/teacher");
 
         me.add("/admin", AdminController.class, "/admin");
         me.add("/admin/user", UserController.class, "/admin");

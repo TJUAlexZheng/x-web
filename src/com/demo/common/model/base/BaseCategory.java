@@ -41,4 +41,12 @@ public abstract class BaseCategory<M extends BaseCategory<M>> extends Model<M> i
 		set("parent_id", parentId);
 	}
 
+    public java.lang.String getHref() {
+        return get("href");
+    }
+
+    public void setHref(java.lang.String href) {
+        set("href", href);
+    }
+
 }

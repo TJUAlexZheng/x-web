@@ -1,6 +1,7 @@
 package com.demo.biz.admin;
 
 import com.demo.biz.builders.DataTable;
+import com.demo.biz.interceptors.AuthInterceptor;
 import com.demo.common.model.Blog;
 import com.demo.common.model.Category;
 import com.jfinal.aop.Before;
@@ -15,7 +16,6 @@ import com.jfinal.plugin.activerecord.Page;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static com.demo.biz.admin.AdminController.USER_PRIVILEGES_KEY;
@@ -23,7 +23,7 @@ import static com.demo.biz.admin.AdminController.USER_PRIVILEGES_KEY;
 /**
  * Created by YanZ on 16/10/3.
  */
-@Before({SessionInViewInterceptor.class})
+@Before({AuthInterceptor.class, SessionInViewInterceptor.class})
 public class BlogController extends Controller {
 
     public void index() {
