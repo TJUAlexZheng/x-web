@@ -8,6 +8,7 @@ import com.jfinal.core.Controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -18,18 +19,26 @@ public class TeacherController extends Controller {
 
     public void index() {
         initMenus();
-        List<User> teacherList = User.dao.find("select * from user where award_type is not null");
-        Map<String, List<User>> teachers = teacherList.stream().collect(Collectors.groupingBy(User::award));
+        List<User> teacherList;
+        Map<String, List<User>> teachers = null;
+        Function<User, String> groupStrategy = null;
+        String sql = null;
+        //查看杰出人才
+        if (getParaToInt() == 29) {
+            groupStrategy = User::award;
+            sql = "select * from user where award_type is not null order by job_title desc, name";
+            setAttr("strategy", "award");
+        } else if (getParaToInt() == 25) {  //查看教师简介
+            groupStrategy = User::laboratory;
+            sql = "select * from user where laboratory is not null order by job_title desc, name";
+            setAttr("strategy", "jobTitle");
+        } else {
+            redirect("/");
+        }
+        teacherList = User.dao.find(sql);
+        teachers = teacherList.stream().collect(Collectors.groupingBy(groupStrategy));
         setAttr("teachers", teachers);
         render("award_list.ftl");
-    }
-
-    public void list() {
-        initMenus();
-        List<User> teacherList = User.dao.find("select * from user");
-        setAttr("teachers", teacherList);
-
-        render("teacher_list.ftl");
     }
 
     private void initMenus() {

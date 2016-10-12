@@ -68,9 +68,14 @@
     }
 
     div.t-l li {
-        border-bottom: 1px #CCCCCC dashed;
+            <#if strategy == "award">border-bottom: 1px #CCCCCC dashed;</#if>
+            <#if strategy == "jobTitle">float: left;</#if>
         color: #999999;
-        margin-left: 0px;
+        <#if strategy == "jobTitle">
+            margin: 0 2.5rem;
+        <#else >
+            margin-left: 0px;
+        </#if>
         padding-left: 10px;
         height: 30px;
         line-height: 30px;
@@ -84,7 +89,8 @@
         <@tm.type headType = headType/>
     </div>
     <div id="sub_right">
-        <div id="news_position">现在位置：<span class="news_index"><a href="/">首页</a></span> &gt;&gt; ${contentType.name}
+        <div id="news_position">现在位置：<span class="news_index"><a href="/">首页</a></span>
+            &gt;&gt; ${contentType.name}
         </div>
 
         <div class="t-l" style="margin-top:15px;">
@@ -92,10 +98,11 @@
                 <h1>${k.key}</h1>
                 <ul>
                     <#list k.value as t>
-                        <li>
-                            <a href="/teacher/detail/${t.id}">${t.awardName}: ${t.name}</a>
-                        </li>
+                        <li><a href="/teacher/detail/${t.id}"><#if strategy == "award">${t.awardName}
+                            : </#if>${t.name}</a></li>
                     </#list>
+                    <#if strategy == "jobTitle">
+                        <div style="clear:both"></div></#if>
                 </ul>
                 <br>
             </#list>

@@ -41,6 +41,14 @@ public abstract class BaseUser<M extends BaseUser<M>> extends Model<M> implement
 		set("name", name);
 	}
 
+    public java.lang.Integer getJobTitle() {
+        return get("job_title");
+    }
+
+    public void setJobTitle(java.lang.Integer jobTitle) {
+        set("job_title", jobTitle);
+    }
+
 	public java.lang.String getAwardName() {
 		return get("award_name");
 	}
@@ -63,6 +71,22 @@ public abstract class BaseUser<M extends BaseUser<M>> extends Model<M> implement
 
 	public void setAwardType(java.lang.Long awardType) {
 		set("award_type", awardType);
-	}
+    }
+
+    public java.lang.Integer getLaboratory() {
+        return get("laboratory");
+    }
+
+    public void setLaboratory(java.lang.Integer laboratory) {
+        set("laboratory", laboratory);
+    }
+
+    public java.lang.Integer getOrderIndex() {
+        return get("order_index");
+    }
+
+    public void setOrderIndex(java.lang.Integer orderIndex) {
+        set("order_index", orderIndex);
+    }
 
 }

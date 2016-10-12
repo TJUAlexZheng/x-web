@@ -196,8 +196,8 @@
                 '<button class="am-btn am-btn-success am-btn-xs"><span class="am-icon-pencil-square-o"></span>审核通过</button>' +
                 '<button class="am-btn am-btn-danger am-btn-xs"><span class="am-icon-pencil-square-o"></span> 删除 </button>' +
                 '</div>'
-            },{
-                "render": function ( data, type, row ) {
+            }, {
+                "render": function (data, type, row) {
                     return moment(data).format("YYYY-MM-DD HH:mm:ss");
                 },
                 "targets": 3
@@ -238,7 +238,7 @@
                 layer.confirm('确定删除？', {
                     btn: ['确定', '取消'] //按钮
                 }, function () {
-                    $.get("/admin/news/delete?id="+data.id, function(data){
+                    $.get("/admin/news/delete?id=" + data.id, function (data) {
                         layer.msg('删除成功', {icon: 1});
                         table.draw();
                     })
@@ -252,11 +252,11 @@
                     area: ['80%', '90%'],
                     content: '/admin/news/content?id=' + data.id,
                 })
-            } else if($(this).hasClass("am-btn-success")) {
+            } else if ($(this).hasClass("am-btn-success")) {
                 layer.confirm('确定审核通过？', {
                     btn: ['确定', '取消'] //按钮
                 }, function () {
-                    $.get("/admin/news/verified?id="+data.id, function(data){
+                    $.get("/admin/news/verified?id=" + data.id, function (data) {
                         layer.msg('成功通过审核', {icon: 1});
                         table.draw();
                     })

@@ -17,8 +17,23 @@
 
     <hr/>
 
-    <div class="am-g" id="teacher-form" style="display: none" :style="{display:show}">
-        <div class="am-u-sm-12 am-u-md-12">
+    <div class="am-g">
+    <#--table内容-->
+        <div class="am-u-sm-8">
+            <table id="dt" class="am-table am-table-striped am-table-bordered am-table-compact am-text-nowrap display">
+                <thead>
+                <tr>
+                    <th class="table-check">编号</th>
+                    <th class="table-id">账号</th>
+                    <th class="table-title">标题</th>
+                    <th class="table-type">职称</th>
+                    <th class="table-type">操作</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="am-u-sm-4" id="data-form">
             <form class="am-form am-form-inline">
                 <fieldset>
                     <legend>教师详情</legend>
@@ -34,6 +49,12 @@
                         <span :class="{'am-icon-check':!!currentItem.account, 'am-icon-times':!currentItem.account}"></span>
                     </div>
 
+                    <div class="am-form-group am-form-icon am-form-feedback">
+                        <label>密码</label>
+                        <input class="am-form-field am-input-sm" type="password" v-model="currentItem.password"
+                               placeholder="输入密码">
+                    </div>
+
                     <div class="am-form-group am-form-icon am-form-feedback"
                          :class="{'am-form-error':!currentItem.name, 'am-form-success':!!currentItem.name}">
                         <label>教师姓名</label>
@@ -42,59 +63,34 @@
                         <span :class="{'am-icon-check':!!currentItem.name, 'am-icon-times':!currentItem.name}"></span>
                     </div>
 
+                    <div style="margin-top: 0.8rem">
+                        <label for="">职称</label>
+                        <select v-model="currentItem.jobTitle">
+                            <option :value="1">讲师</option>
+                            <option :value="2">副教授</option>
+                            <option :value="3">教授</option>
+                        </select>
+                    </div>
+
+
+                    <div style="margin-top: 0.8rem">
+                        <label for="">实验室</label>
+                        <select v-model="currentItem.laboratory">
+                            <option :value="1">塑形成性技术与装备研究院</option>
+                            <option :value="2">复合材料研究所</option>
+                            <option :value="3">轻合金研究所</option>
+                            <option :value="4">研究所4</option>
+                        </select>
+                    </div>
+
                     <p>
                         <button type="button" class="am-btn am-btn-primary" @click="saveItem">保存</button>
-                        <button type="button" class="am-btn am-btn-danger" @click="deleteItem">删除</button>
-                        <button type="button" class="am-btn am-btn-default" @click="clearItem">取消</button>
+                        <button type="button" class="am-btn am-btn-danger" @click="deleteItem"
+                                :disabled="!currentItem.id">删除
+                        </button>
                     </p>
                 </fieldset>
             </form>
-        </div>
-    </div>
-
-    <div class="am-g">
-    <#--table内容-->
-        <div class="am-u-sm-12">
-            <table id="dt" class="am-table am-table-striped am-table-bordered am-table-compact am-text-nowrap display">
-                <thead>
-                <tr>
-                    <th class="table-check">编号</th>
-                    <th class="table-id">账号</th>
-                    <th class="table-title">标题</th>
-                    <th class="table-type">类别</th>
-                    <th class="table-type">操作</th>
-                <#--<th class="table-author am-hide-sm-only">作者</th>-->
-                <#--<th class="table-date am-hide-sm-only">修改日期</th>-->
-                <#--<th class="table-set">操作</th>-->
-                </tr>
-                </thead>
-                <tbody>
-                <#--<tr>-->
-                            <#--<td><input type="checkbox"/></td>-->
-                            <#--<td>1</td>-->
-                            <#--<td><a href="#">Business management</a></td>-->
-                            <#--<td>default</td>-->
-                            <#--<td class="am-hide-sm-only">测试1号</td>-->
-                            <#--<td class="am-hide-sm-only">2014年9月4日 7:28:47</td>-->
-                            <#--<td>-->
-                                <#--<div class="am-btn-toolbar">-->
-                                    <#--<div class="am-btn-group am-btn-group-xs">-->
-                                        <#--<button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span-->
-                                                <#--class="am-icon-pencil-square-o"></span> 编辑-->
-                                        <#--</button>-->
-                                        <#--<button class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span-->
-                                                <#--class="am-icon-copy"></span> 复制-->
-                                        <#--</button>-->
-                                        <#--<button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">-->
-                                            <#--<span class="am-icon-trash-o"></span> 删除-->
-                                        <#--</button>-->
-                                    <#--</div>-->
-                                <#--</div>-->
-                            <#--</td>-->
-                        <#--</tr>-->
-
-                </tbody>
-            </table>
         </div>
     </div>
 
@@ -106,7 +102,12 @@
     <script type="text/javascript">
         $(function () {
             var teacherData = {
-                currentItem: null
+                currentItem: {
+                    account: "",
+                    name: "",
+                    password: "",
+                    jobTitle: 1
+                }
             };
             var table = $('#dt').DataTable({
                 "ajax": {
@@ -127,19 +128,32 @@
                     {"data": "id"},
                     {"data": "account"},
                     {"data": "name"},
-                    {"data": "password"},
+                    {"data": "jobTitle"},
                     {"data": ""}
                 ],
                 "columnDefs": [{
                     "targets": -1,
                     "data": null,
                     "defaultContent": '<div class="am-btn-toolbar"> <div class="am-btn-group am-btn-group-xs"> <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑 </button></div>'
+                }, {
+                    targets: 3,
+                    render: function (data) {
+                        switch (data) {
+                            case 1:
+                                return '讲师';
+                            case 2:
+                                return '副教授';
+                            case 3:
+                                return '教授';
+                        }
+                        return '异常数据';
+                    }
                 }]
             });
             $('#dt tbody').on('click', 'tr', function () {
-//                teacherData.currentItem = table.row($(this).parents('tr')).data();
+                teacherData.currentItem = table.row($(this)).data();
                 if ($(this).hasClass('selected')) {
-//                    teacherData.currentItem =null;
+                    teacherData.currentItem = {};
                     $(this).removeClass('selected');
                 }
                 else {
@@ -166,12 +180,11 @@
                 http: {
                     root: '/admin/teacher',
                 },
-                el: "#teacher-form",
+                el: "#data-form",
                 data: teacherData,
                 methods: {
                     "saveItem": function () {
                         this.$http.post('save', this.currentItem).then(function (json) {
-                            this.currentItem = null;
                             table.draw();
                             layer.alert('操作成功');
                         }, function (json) {

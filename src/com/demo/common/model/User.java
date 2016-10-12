@@ -27,4 +27,17 @@ public class User extends BaseUser<User> {
 		return null;
 	}
 
+	public String laboratory() {
+		if (this.getLaboratory() == 1) {
+			return "塑形成性技术与装备研究院";
+		} else if (this.getLaboratory() == 2) {
+			return "复合材料研究所";
+		} else if (this.getLaboratory() == 3) {
+			return "轻合金研究所";
+		} else if (this.getLaboratory() == 4) {
+			return "研究所4";
+		}
+		return null;
+	}
+
 }

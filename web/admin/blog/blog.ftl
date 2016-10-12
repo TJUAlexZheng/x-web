@@ -145,8 +145,8 @@
 
         //init vue share data
         var data = {
-            blog:{
-                title:""
+            blog: {
+                title: ""
             },
             formInline: {
                 user: '',
@@ -176,10 +176,10 @@
 //            table.columns(3).search(data.target.id).draw()
             $.get("/admin/blog/detail?id=" + d.target.id).then(
                     function (json) {
-                        if (json != null){
+                        if (json != null) {
                             data.blog = json;
                             UE.getEditor('editor').setContent(json.content);
-                        }else {
+                        } else {
                             data.blog = null;
                             data.blog.type = d.target.id;
                             UE.getEditor('editor').setContent("");
