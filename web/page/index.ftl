@@ -1,5 +1,7 @@
 <#include "/front/common/_layout.ftl"/>
 <#import "/front/common/_menu.ftl" as m/>
+<#import "/front/common/_newslist.ftl" as nl/>
+<#import "/front/common/_sitemenu.ftl" as hm/>
 <@layout>
 
 <script type="text/javascript" src="../assets/js/jquery-1.7.2.min.js"></script>
@@ -154,30 +156,12 @@
                         <li><a href="index.php.html#">院长信箱</a></li>
                     </ul><!--一级菜单列表-->
                     <div class="menu-cont" style="display:none;">
-                        <div class="menu-cont-list" style="display:none;">
-                            <ul>
-                                <li><a href="tnjrc/index.html" target="_blank">TU-NIMS联合研究中心</a></li>
-                                <li><a href="bgm/index.htm" target="_blank">非晶合金研究中心</a></li>
-                                <li><a href="ajt/index.html" target="_blank">现代连接技术重点实验室</a></li>
-                                <li><a href="taoci/index.html" target="_blank">先进陶瓷与加工技术教育部重点实验室</a></li>
-                                <li><a href="cfm/index.html" target="_blank">材料复合与功能化重点实验室</a></li>
-                            </ul>
-                        </div>
+                        <@hm.site siteList=recommended_site type=1/>
 
-                        <div class="menu-cont-list" style="display:none;">
-                            <ul>
-                                <li><a href="http://219.243.39.24/wctju3/index1.aspx" target="_blank">天津大学财务信息网</a></li>
-                                <li><a href="http://kj.tju.edu.cn" target="_blank">天津大学科技网</a></li>
-                            </ul>
-                        </div>
-                        <div class="menu-cont-list" style="display:none;">
-                            <ul>
-                                <li><a href="http://www.nsfc.gov.cn/" target="_blank">国家自然科学基金委</a></li>
-                                <li><a href="http://www.tstc.gov.cn/" target="_blank">天津市科委</a></li>
-                                <li><a href="http://www.scholarmate.com/scmwebsns/" target="_blank">科研之友</a></li>
-                                <li><a href="http:///www.meeting.edu.cn/" target="_blank">中国学术会议在线</a></li>
-                            </ul>
-                        </div>
+                        <@hm.site siteList=recommended_site type=2/>
+
+                        <@hm.site siteList=recommended_site type=3/>
+
                         <div class="menu-cont-list" style="display: none;">
                             <ul>
                                 <li><a href="content.php-block=e7.html" target="_blank">本科生教学</a></li>
@@ -190,71 +174,36 @@
                             </ul>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div class="newsBox floatRight">
-                <div class="mainNewsTitle">通知公告<span>/<a href="news_list.php-type=notice.html" target="_blank">查看更多</a></span>
+                <div class="mainNewsTitle">通知公告<span><a href="/content/83" target="_blank">more</a></span>
                 </div>
                 <div class="mainNewsLine">
                     <div class="mainNewsLineBlue floatLeft"></div>
                     <div class="mainNewsLineGray floatRight" style="width:220px;"></div>
                     <div class="cb"></div>
                 </div>
-                <div class="mainNewsContent">
-                    <div class="mainNewsLi"><a href="news_detail.php-id=340.html" target="_blank"
-                                               title="材料学院 2017年接收外校推免研究生的说明">材料学院 2017年接收外校推免研究</a>2016-08-31
-                    </div>
-                    <div class="mainNewsLi"><a href="news_detail.php-id=303.html" target="_blank"
-                                               title="天津大学材料学院2016年本科生招生简章">天津大学材料学院2016年本科生招</a>2016-06-01
-                    </div>
-                    <div class="mainNewsLi"><a href="news_detail.php-id=302.html" target="_blank"
-                                               title="天津大学材料学院2017年研究生招生夏令营通知">天津大学材料学院2017年研究生招</a>2016-05-23
-                    </div>
-                    <div class="mainNewsLi"><a href="news_detail.php-id=285.html" target="_blank"
-                                               title="天津大学材料学院应届毕业生问卷调查">天津大学材料学院应届毕业生问卷</a>2016-05-10
-                    </div>
-                    <div class="mainNewsLi"><a href="news_detail.php-id=274.html" target="_blank"
-                                               title="2016级硕士研究生档案邮寄地址">2016级硕士研究生档案邮寄地址</a>2016-04-18
-                    </div>
-                    <div class="mainNewsLi"><a href="news_detail.php-id=269.html" target="_blank"
-                                               title="2016年研究生招生递补公示">2016年研究生招生递补公示</a>2016-03-29
-                    </div>
-                    <div class="mainNewsLi"><a href="news_detail.php-id=268.html" target="_blank"
-                                               title="材料学院2016年博士研究生拟录取名单">材料学院2016年博士研究生拟录取</a>2016-03-25
-                    </div>
+                <@nl.list newsList = notice_news/>
+                <div class="mainNewsTitle">活动预告<span><a href="/content/86" target="_blank">more</a></span>
+                </div>
+                <div class="mainNewsLine">
+                    <div class="mainNewsLineBlue floatLeft"></div>
+                    <div class="mainNewsLineGray floatRight" style="width:460px;"></div>
+                    <div class="cb"></div>
+                    <@nl.list newsList = predict_news/>
                 </div>
             </div>
             <div class="cb"></div>
         </div>
         <div class="mainRight">
-            <div class="mainNewsTitle">新闻动态<span>/<a href="news_list.php-type=news.html" target="_blank">查看更多</a></span>
+            <div class="mainNewsTitle">新闻动态<span><a href="/content/82" target="_blank">more</a></span>
             </div>
             <div class="mainNewsLine">
                 <div class="mainNewsLineBlue floatLeft"></div>
                 <div class="mainNewsLineGray floatRight" style="width:460px;"></div>
                 <div class="cb"></div>
-            </div>
-            <div class="mainNewsContent">
-                <div class="mainNewsLi"><a href="news_detail.php-id=342.html" target="_blank" title="材料学院优秀校友座谈会成功举办">材料学院优秀校友座谈会成功举办</a>2016-09-05
-                </div>
-                <div class="mainNewsLi"><a href="news_detail.php-id=341.html" target="_blank" title="材料学院举办资助工作专题讲座">材料学院举办资助工作专题讲座</a>2016-09-01
-                </div>
-                <div class="mainNewsLi"><a href="news_detail.php-id=339.html" target="_blank"
-                                           title="材料学院开展2016级研究生入学学则教育">材料学院开展2016级研究生入学学则教育</a>2016-08-30
-                </div>
-                <div class="mainNewsLi"><a href="news_detail.php-id=338.html" target="_blank"
-                                           title="材料学院2016级新生开学典礼隆重举行">材料学院2016级新生开学典礼隆重举行</a>2016-08-30
-                </div>
-                <div class="mainNewsLi"><a href="news_detail.php-id=337.html" target="_blank"
-                                           title="材料学院召开2016级本科生“师昌绪荣誉学位计划”宣讲会">材料学院召开2016级本科生“师昌绪荣誉学位计划”宣讲会</a>2016-08-30
-                </div>
-                <div class="mainNewsLi"><a href="news_detail.php-id=336.html" target="_blank"
-                                           title="迎在起点，助力启航――材料学院2016级迎新工作顺利完成">迎在起点，助力启航――材料学院2016级迎新工作顺利完成</a>2016-08-26
-                </div>
-                <div class="mainNewsLi"><a href="news_detail.php-id=335.html" target="_blank"
-                                           title="华为销服体系交流会在材料学院成功举办">华为销服体系交流会在材料学院成功举办</a>2016-08-26
-                </div>
+                <@nl.list newsList = dynamic_news/>
             </div>
         </div>
         <div class="cb"></div>
