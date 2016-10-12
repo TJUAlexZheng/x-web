@@ -177,7 +177,7 @@
                 </div>
             </div>
             <div class="newsBox floatRight">
-                <div class="mainNewsTitle">通知公告<span><a href="/content/83" target="_blank">more</a></span>
+                <div class="mainNewsTitle">通知公告<span><a href="/content/83" target="_blank" style="font-size: 1.3rem">>>more</a></span>
                 </div>
                 <div class="mainNewsLine">
                     <div class="mainNewsLineBlue floatLeft"></div>
@@ -185,7 +185,7 @@
                     <div class="cb"></div>
                 </div>
                 <@nl.list newsList = notice_news/>
-                <div class="mainNewsTitle">活动预告<span><a href="/content/86" target="_blank">more</a></span>
+                <div class="mainNewsTitle">活动预告<span><a href="/content/86" target="_blank" style="font-size: 1.3rem">>>more</a></span>
                 </div>
                 <div class="mainNewsLine">
                     <div class="mainNewsLineBlue floatLeft"></div>
@@ -197,7 +197,8 @@
             <div class="cb"></div>
         </div>
         <div class="mainRight">
-            <div class="mainNewsTitle">新闻动态<span><a href="/content/82" target="_blank">more</a></span>
+            <div class="mainNewsTitle">新闻动态<span><a href="/content/82" target="_blank"
+                                                    style="font-size: 1.3rem">>>more</a></span>
             </div>
             <div class="mainNewsLine">
                 <div class="mainNewsLineBlue floatLeft"></div>

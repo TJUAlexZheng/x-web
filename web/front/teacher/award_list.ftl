@@ -85,7 +85,6 @@
     </div>
     <div id="sub_right">
         <div id="news_position">现在位置：<span class="news_index"><a href="/">首页</a></span> &gt;&gt; ${contentType.name}
-            &gt;&gt; 正文
         </div>
 
         <div class="t-l" style="margin-top:15px;">

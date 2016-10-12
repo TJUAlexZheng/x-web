@@ -9,7 +9,13 @@
                 <#if 0 < subMenuItems.size()>
                     <ul>
                         <#list subMenuItems as subItem>
-                            <li><a href="/content/${subItem.id}">${subItem.name}</a></li>
+                            <li>
+                                <#if subItem.href??>
+                                    <a href="/${subItem.href}/${subItem.id}">${subItem.name}</a>
+                                <#else>
+                                    <a href="/content/${subItem.id}">${subItem.name}</a>
+                                </#if>
+                            </li>
                         </#list>
                     </ul>
                 </#if>
