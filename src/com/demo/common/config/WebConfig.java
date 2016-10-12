@@ -3,6 +3,7 @@ package com.demo.common.config;
 import com.demo.biz.admin.*;
 import com.demo.biz.blog.BlogController;
 import com.demo.biz.content.ContentController;
+import com.demo.biz.mail.MailController;
 import com.demo.biz.page.PageController;
 import com.demo.common.model._MappingKit;
 import com.jfinal.config.*;
@@ -35,12 +36,14 @@ public class WebConfig extends JFinalConfig {
         me.add("/", PageController.class, "/page");
         me.add("/blog", BlogController.class, "/front.blog");
         me.add("/content", ContentController.class, "/front/content");
+        me.add("/mail", MailController.class, "/front/mail");
 
         me.add("/admin", AdminController.class, "/admin");
         me.add("/admin/user", UserController.class, "/admin");
         me.add("/admin/teacher", TeacherController.class, "/admin");
         me.add("/admin/administrator", AdministratorController.class, "/admin/administrator");
         me.add("/admin/blog", com.demo.biz.admin.BlogController.class, "/admin/blog");
+        me.add("/admin/mail", com.demo.biz.admin.MailController.class, "/admin/mail");
         me.add("/admin/news", NewsController.class,"/admin/blog");
     }
 
