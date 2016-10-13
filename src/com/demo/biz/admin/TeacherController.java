@@ -3,7 +3,7 @@ package com.demo.biz.admin;
 import com.demo.biz.builders.DataTable;
 import com.demo.biz.interceptors.AuthInterceptor;
 import com.demo.common.model.User;
-import com.demo.common.util.StringUtils;
+import com.demo.common.util.StringUtil;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.interceptor.SessionInViewInterceptor;
@@ -34,7 +34,7 @@ public class TeacherController extends Controller {
             String value = "%" + params.getSearchValue() + "%";
             selectParams = new Object[]{value, value, value};
         }
-        sb.append("order by " + StringUtils.camel2Underscore(params.getOrderColumn()) + " " + params.getOrderDirection());
+        sb.append("order by " + StringUtil.camel2Underscore(params.getOrderColumn()) + " " + params.getOrderDirection());
         Page<User> userList = User.dao.paginate(params.getPageNumber(), params.getPageSize(), "select id, account, name, job_title, laboratory", sb.toString(), selectParams);
         renderJson(userList);
     }

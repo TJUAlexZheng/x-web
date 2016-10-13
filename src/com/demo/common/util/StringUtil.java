@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 /**
  * Created by yanz on 2016/10/12.
  */
-public class StringUtils extends StrKit {
+public class StringUtil extends StrKit {
 
     private static Pattern p = Pattern.compile("([A-Z])");
 

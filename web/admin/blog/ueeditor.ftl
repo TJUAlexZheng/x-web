@@ -27,6 +27,19 @@
         </#if>
             <el-form :inline="true" :model="news" @submit.prevent="onSubmit" class="demo-form-inline">
                 <el-form-item>
+                    <img :src="imgUrl" style="width: 400px;height:200px">
+
+                    <el-upload
+                            :action="uploadPath"
+                            :multiple="false"
+                            :on-success="handleSuccess"
+                            :before-upload="checkUpload">
+                        <el-button size="small" type="primary" :disabled="!news.id">点击上传主图片</el-button>
+                        <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+                    </el-upload>
+                </el-form-item>
+                <br>
+                <el-form-item>
                     <el-input v-model="news.title" placeholder="标题"></el-input>
                 </el-form-item>
                 <el-form-item>
@@ -38,12 +51,13 @@
                         </el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item>
-                    <el-button type="primary" @click.native="save">保存</el-button>
-                </el-form-item>
+
+
+                <el-button type="primary" @click.native="save">保存</el-button>
             </el-form>
         </el-col>
     </el-row>
+
     <el-row :gutter="20">
         <el-col :span="18" :offset="3">
             <script id="editor" type="text/plain" style="height:300px;"></script>
@@ -85,8 +99,40 @@
                         type: 'error'
                     });
                 });
+            },
+            checkUpload: function (file) {
+                if (file.name.indexOf(".jpg") < 0 && file.name.indexOf(".png") < 0) {
+                    this.$message({
+                        message: '请选择正确的文件类型',
+                        type: 'error'
+                    });
+                    return false
+                } else if (file.size > 512000) {
+                    this.$message({
+                        message: '文件过大',
+                        type: 'error'
+                    });
+                    return false
+                }
+                return true;
+            },
+            handleSuccess: function (file, fileList) {
+//                this.news.img = file.name
+                window.location.reload()
             }
+
         },
+        computed: {
+            uploadPath: function () {
+                return "/admin/file/upload/" + this.news.id
+            }
+            ,
+            imgUrl: function () {
+                return !this.news.img ? "" : "/upload/" + this.news.img
+
+            }
+        }
+        ,
         created: function () {
             this.$http.get("categories").then(
                     function (json) {
@@ -112,7 +158,8 @@
                     }
             )
 
-        },
+        }
+        ,
         filters: {
             moment: function (date) {
                 return moment(date).format('YYYY-MM-DD HH:mm:ss');

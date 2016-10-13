@@ -89,4 +89,12 @@ public abstract class BaseUser<M extends BaseUser<M>> extends Model<M> implement
         set("order_index", orderIndex);
     }
 
+    public java.lang.Integer getVerified() {
+        return get("verified");
+    }
+
+    public void setVerified(java.lang.Integer verified) {
+        set("verified", verified);
+    }
+
 }

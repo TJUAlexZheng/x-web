@@ -41,28 +41,36 @@ public abstract class BaseBlog<M extends BaseBlog<M>> extends Model<M> implement
 		set("type", type);
 	}
 
-    public java.lang.Integer getVerified() {
-        return get("verified");
-    }
+	public java.lang.Integer getVerified() {
+		return get("verified");
+	}
 
-    public void setVerified(java.lang.Integer verified) {
-        set("verified", verified);
-    }
+	public void setVerified(java.lang.Integer verified) {
+		set("verified", verified);
+	}
 
 	public java.util.Date getCreatetime() {
 		return get("createtime");
 	}
 
 	public void setCreatetime(java.util.Date createtime) {
-        set("createtime", createtime);
-    }
+		set("createtime", createtime);
+	}
 
 	public java.util.Date getUpdatetime() {
 		return get("updatetime");
 	}
 
 	public void setUpdatetime(java.util.Date updatetime) {
-        set("updatetime", updatetime);
-    }
+		set("updatetime", updatetime);
+	}
+
+	public java.lang.String getImage() {
+		return get("image");
+	}
+
+	public void setImage(java.lang.String image) {
+		set("image", image);
+	}
 
 }
