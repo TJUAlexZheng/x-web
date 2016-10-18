@@ -2,6 +2,7 @@
 <#import "/front/common/_menu.ftl" as m/>
 <#import "/front/common/_newslist.ftl" as nl/>
 <#import "/front/common/_sitemenu.ftl" as hm/>
+<#import "/front/common/_newsbanner.ftl" as nb/>
 <@layout>
 
 <script type="text/javascript" src="../assets/js/jquery-1.7.2.min.js"></script>
@@ -60,85 +61,86 @@
     <div id="newsarea"><!--图片新闻开始-->
         <div class="indexadd mt50 mb60">
             <div id="banners" class="ui-banner">
-                <ul class="ui-banner-slides">
-                    <li><a href="news_detail.php-id=342.html" target="_blank"><img
-                            src="upload/photo/1473048783E7AoaH.JPG" alt="材料学院优秀校友座谈会成功举办" title="材料学院优秀校友座谈会成功举办"/></a>
-                    </li>
-                    <li><a href="news_detail.php-id=338.html" target="_blank"><img
-                            src="upload/photo/1472519138xmuMDy.JPG" alt="材料学院2016级新生开学典礼隆重举行"
-                            title="材料学院2016级新生开学典礼隆重举行"/></a></li>
-                    <li><a href="news_detail.php-id=328.html" target="_blank"><img
-                            src="upload/photo/1469753584Ux7gkF.JPG" alt="材料学院2017年研究生招生夏令营开营"
-                            title="材料学院2017年研究生招生夏令营开营"/></a></li>
-                    <li><a href="news_detail.php-id=311.html" target="_blank"><img
-                            src="upload/photo/1467595466hw3Wd2.JPG" alt="材料学院召开纪念建党95周年“七一”表彰大会"
-                            title="材料学院召开纪念建党95周年“七一”表彰大会"/></a></li>
-                    <li><a href="news_detail.php-id=304.html" target="_blank"><img
-                            src="upload/photo/1467595516myO0wK.JPG" alt="材料学院师昌绪塑像落成仪式" title="材料学院师昌绪塑像落成仪式"/></a></li>
-                </ul><!--ui-banner-slides end-->
-                <ul class="ui-banner-slogans">
-                    <li class="ui-line">
-                        <div class="ullinehover">
-                            <div class="ui-bnnerimg floatLeft">
-                                <img src="upload/photo/small/1473048783E7AoaH.JPG" alt="" width="103"/>
-                            </div>
-                            <div class="ui-bnnerp floatRight">
-                                <h3 style="margin-top: 10px;">材料学院优秀校友座谈会成功举办</h3>
-                                <p>　　为进一步突出各行各业优秀校友的联动作用，搭建优秀校友与在校学生沟通交流平台。9月3日下午2点，天津大学...</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="ui-line">
-                        <div class="ullinehover">
-                            <div class="ui-bnnerimg floatLeft">
-                                <img src="upload/photo/small/1472519138xmuMDy.JPG" alt="" width="103"/>
-                            </div>
-                            <div class="ui-bnnerp floatRight">
-                                <h3 style="margin-top: 10px;">材料学院2016级新生开学典礼隆重举行</h3>
-                                <p>　　8月29日上午，天津大学材料学院2016级新生开学典礼在新校区大通学生活动中心隆重举行。院长胡文彬、院党委...</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="ui-line">
-                        <div class="ullinehover">
-                            <div class="ui-bnnerimg floatLeft">
-                                <img src="upload/photo/small/1469753584Ux7gkF.JPG" alt="" width="103"/>
-                            </div>
-                            <div class="ui-bnnerp floatRight">
-                                <h3 style="margin-top: 10px;">材料学院2017年研究生招生夏令营开营</h3>
-                                <p>
+                <@nb.banner banneritems=banner_news/>
+                <#--<ul class="ui-banner-slides">-->
+                    <#--<li><a href="news_detail.php-id=342.html" target="_blank"><img-->
+                            <#--src="upload/photo/1473048783E7AoaH.JPG" alt="材料学院优秀校友座谈会成功举办" title="材料学院优秀校友座谈会成功举办"/></a>-->
+                    <#--</li>-->
+                    <#--<li><a href="news_detail.php-id=338.html" target="_blank"><img-->
+                            <#--src="upload/photo/1472519138xmuMDy.JPG" alt="材料学院2016级新生开学典礼隆重举行"-->
+                            <#--title="材料学院2016级新生开学典礼隆重举行"/></a></li>-->
+                    <#--<li><a href="news_detail.php-id=328.html" target="_blank"><img-->
+                            <#--src="upload/photo/1469753584Ux7gkF.JPG" alt="材料学院2017年研究生招生夏令营开营"-->
+                            <#--title="材料学院2017年研究生招生夏令营开营"/></a></li>-->
+                    <#--<li><a href="news_detail.php-id=311.html" target="_blank"><img-->
+                            <#--src="upload/photo/1467595466hw3Wd2.JPG" alt="材料学院召开纪念建党95周年“七一”表彰大会"-->
+                            <#--title="材料学院召开纪念建党95周年“七一”表彰大会"/></a></li>-->
+                    <#--<li><a href="news_detail.php-id=304.html" target="_blank"><img-->
+                            <#--src="upload/photo/1467595516myO0wK.JPG" alt="材料学院师昌绪塑像落成仪式" title="材料学院师昌绪塑像落成仪式"/></a></li>-->
+                <#--</ul><!--ui-banner-slides end&ndash;&gt;-->
+                <#--<ul class="ui-banner-slogans">-->
+                    <#--<li class="ui-line">-->
+                        <#--<div class="ullinehover">-->
+                            <#--<div class="ui-bnnerimg floatLeft">-->
+                                <#--<img src="upload/photo/small/1473048783E7AoaH.JPG" alt="" width="103"/>-->
+                            <#--</div>-->
+                            <#--<div class="ui-bnnerp floatRight">-->
+                                <#--<h3 style="margin-top: 10px;">材料学院优秀校友座谈会成功举办</h3>-->
+                                <#--<p>　　为进一步突出各行各业优秀校友的联动作用，搭建优秀校友与在校学生沟通交流平台。9月3日下午2点，天津大学...</p>-->
+                            <#--</div>-->
+                        <#--</div>-->
+                    <#--</li>-->
+                    <#--<li class="ui-line">-->
+                        <#--<div class="ullinehover">-->
+                            <#--<div class="ui-bnnerimg floatLeft">-->
+                                <#--<img src="upload/photo/small/1472519138xmuMDy.JPG" alt="" width="103"/>-->
+                            <#--</div>-->
+                            <#--<div class="ui-bnnerp floatRight">-->
+                                <#--<h3 style="margin-top: 10px;">材料学院2016级新生开学典礼隆重举行</h3>-->
+                                <#--<p>　　8月29日上午，天津大学材料学院2016级新生开学典礼在新校区大通学生活动中心隆重举行。院长胡文彬、院党委...</p>-->
+                            <#--</div>-->
+                        <#--</div>-->
+                    <#--</li>-->
+                    <#--<li class="ui-line">-->
+                        <#--<div class="ullinehover">-->
+                            <#--<div class="ui-bnnerimg floatLeft">-->
+                                <#--<img src="upload/photo/small/1469753584Ux7gkF.JPG" alt="" width="103"/>-->
+                            <#--</div>-->
+                            <#--<div class="ui-bnnerp floatRight">-->
+                                <#--<h3 style="margin-top: 10px;">材料学院2017年研究生招生夏令营开营</h3>-->
+                                <#--<p>-->
 
-                                    7月9日上午，天津大学材料科学与工程学院2017年研究生招生夏令营开营仪式在31楼2105报告厅举行。此次夏令营活...</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="ui-line">
-                        <div class="ullinehover">
-                            <div class="ui-bnnerimg floatLeft">
-                                <img src="upload/photo/small/1467595466hw3Wd2.JPG" alt="" width="103"/>
-                            </div>
-                            <div class="ui-bnnerp floatRight">
-                                <h3 style="margin-top: 10px;">材料学院召开纪念建党95周年“七一”表彰大会</h3>
-                                <p>
+                                    <#--7月9日上午，天津大学材料科学与工程学院2017年研究生招生夏令营开营仪式在31楼2105报告厅举行。此次夏令营活...</p>-->
+                            <#--</div>-->
+                        <#--</div>-->
+                    <#--</li>-->
+                    <#--<li class="ui-line">-->
+                        <#--<div class="ullinehover">-->
+                            <#--<div class="ui-bnnerimg floatLeft">-->
+                                <#--<img src="upload/photo/small/1467595466hw3Wd2.JPG" alt="" width="103"/>-->
+                            <#--</div>-->
+                            <#--<div class="ui-bnnerp floatRight">-->
+                                <#--<h3 style="margin-top: 10px;">材料学院召开纪念建党95周年“七一”表彰大会</h3>-->
+                                <#--<p>-->
 
-                                    为庆祝建党95周年，深入推进&ldquo;两学一做&rdquo;学习教育，表彰2015&mdash;2016年度为学院改革、发展和稳...</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="ui-line">
-                        <div class="ullinehover">
-                            <div class="ui-bnnerimg floatLeft">
-                                <img src="upload/photo/small/1467595516myO0wK.JPG" alt="" width="103"/>
-                            </div>
-                            <div class="ui-bnnerp floatRight">
-                                <h3 style="margin-top: 10px;">材料学院师昌绪塑像落成仪式</h3>
-                                <p>
+                                    <#--为庆祝建党95周年，深入推进&ldquo;两学一做&rdquo;学习教育，表彰2015&mdash;2016年度为学院改革、发展和稳...</p>-->
+                            <#--</div>-->
+                        <#--</div>-->
+                    <#--</li>-->
+                    <#--<li class="ui-line">-->
+                        <#--<div class="ullinehover">-->
+                            <#--<div class="ui-bnnerimg floatLeft">-->
+                                <#--<img src="upload/photo/small/1467595516myO0wK.JPG" alt="" width="103"/>-->
+                            <#--</div>-->
+                            <#--<div class="ui-bnnerp floatRight">-->
+                                <#--<h3 style="margin-top: 10px;">材料学院师昌绪塑像落成仪式</h3>-->
+                                <#--<p>-->
 
-                                    2016年5月27日下午，天津大学材料学院师昌绪塑像落成仪式暨师昌绪荣誉学位计划座谈会在天津大学北洋园校区31...</p>
-                            </div>
-                        </div>
-                    </li>
-                </ul><!--ui-banner-slogans end-->
+                                    <#--2016年5月27日下午，天津大学材料学院师昌绪塑像落成仪式暨师昌绪荣誉学位计划座谈会在天津大学北洋园校区31...</p>-->
+                            <#--</div>-->
+                        <#--</div>-->
+                    <#--</li>-->
+                <#--</ul><!--ui-banner-slogans end&ndash;&gt;-->
             </div>
         </div>
 
