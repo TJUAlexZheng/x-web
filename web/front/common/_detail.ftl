@@ -1,11 +1,7 @@
 <#macro detail type detail>
-    <#if type == 1>
-    <div id="news_contents" style="margin-top:15px;">${detail.content}</div>
-
-    <#elseif type == 3>
     <div id="news_contents">
-        <#list detail.list as newsItem>
-            <li><a href="/news/${newsItem.id}">${newsItem.title}</a> ${newsItem.updatetime}</li>
+        <#list detail.list as item>
+            <li><a href="/news/${item.id}">${item.title}</a> ${item.updatetime}</li>
         </#list>
     </div>
     <div class="manu">共 <b>${detail.totalRow}</b> 条,&nbsp;&nbsp;<b>${detail.pageNumber}</b> 页&nbsp;
@@ -20,10 +16,12 @@
                 <a href="/content/${type}/?page=${page}"> page</a>
             </#if>
         </#list>
+        <#if detail.pageNumber != 1>
+
+        </#if>
         <#if detail.pageNumber != detail.totalPage>
             <a href="/content/${type}/?page=${detail.pageNumber + 1}" title="下一页">下一页</a>
             <a href="/content/${type}/?page=${detail.totalPage}" title="最后一页">»</a>
         </#if>
     </div>
-    </#if>
 </#macro>

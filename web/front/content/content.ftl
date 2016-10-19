@@ -2,6 +2,7 @@
 <#import "/front/common/_menu.ftl" as m/>
 <#import "/front/common/_treemenu.ftl" as tm/>
 <#import "/front/common/_detail.ftl" as d/>
+<#import "/front/common/_blogdetail.ftl" as bd/>
 <@layout>
 <link href="/assets/css/2015_default2.css" rel="stylesheet" type="text/css" media="all">
 <!--推荐站点--需JQquery文件-->
@@ -59,7 +60,11 @@
     <div id="sub_right">
         <div id="news_position">现在位置：<span class="news_index"><a href="/">首页</a></span> &gt;&gt; ${contentType.name} &gt;&gt; 正文        </div>
         <!--<div id="news_titles">学院简介</div-->
-        <@d.detail type=contentType.type detail=detail/>
+        <#if blog??>
+            <@bd.blog blog=blog/>
+        <#else >
+            <@d.detail type=contentType.type detail=page/>
+        </#if>
     </div>
     <div style="clear:both;"></div>
 </div>

@@ -10,16 +10,7 @@
         <#if session.userPrivileges?seq_contains("11")>
             <li><a href="/admin/news"><span class="am-icon-home"></span> 新闻</a></li>
         </#if>
-            <li class="admin-parent">
-                <a class="am-cf" data-am-collapse="{target: '#module-collapse'}"><span class="am-icon-file"></span>
-                    板块 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
-                <ul class="am-list am-collapse admin-sidebar-sub am-in" id="module-collapse">
-                    <li><a href="/admin/blog/verify"><span class="am-icon-table"></span> 文章审核</a></li>
-                    <li><a href="/admin/blog"><span class="am-icon-pencil-square-o"></span> 文章发布</a>
-                    </li>
-                </ul>
-            </li>
-
+            <li><a href="/admin/blog"><span class="am-icon-home"></span> 板块</a></li>
         <#--<li class="admin-parent">-->
         <#--<a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span>-->
         <#--页面模块 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>-->

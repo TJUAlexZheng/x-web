@@ -34,6 +34,7 @@ public class BlogController extends Controller {
         render("verify.ftl");
     }
 
+    //此方法已经只在verify中需要
     public void list() {
         //解析页面传递参数，构建dataTables参数
         DataTable params = DataTable.build(this);
@@ -108,7 +109,7 @@ public class BlogController extends Controller {
         String id = getPara("id");
         List<Category> categories;
         if (id != null) {
-            categories = Category.dao.find("select id, name from category where parent_id = ?", id);
+            categories = Category.dao.find("select id, name from category where parent_id = ? and type = 1", id);
         } else {
             categories = Category.dao.find("select id, name from category where parent_id is null and type = 1");
             String[] privileges = getSessionAttr(USER_PRIVILEGES_KEY);

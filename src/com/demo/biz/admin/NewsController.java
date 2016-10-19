@@ -102,8 +102,22 @@ public class NewsController extends Controller {
     }
 
     public void categories() {
+        String id = getPara("id");
         List<Category> categories;
-        categories = Category.dao.find("select id, name from category where parent_id is not null and type = 3");
+        if (id != null) {
+            categories = Category.dao.find("select id, name from category where parent_id = ? and type = 3", id);
+        } else {
+            categories = Category.dao.find("select id, name from category where parent_id is null");
+            String[] privileges = getSessionAttr(USER_PRIVILEGES_KEY);
+            categories = categories.stream().filter(category -> {
+                for (String s: privileges) {
+                    if (Objects.equals(category.getId(), Long.valueOf(s))){
+                        return true;
+                    }
+                }
+                return false;
+            }).collect(Collectors.toList());
+        }
         renderJson(categories);
     }
 }

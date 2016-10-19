@@ -32,6 +32,6 @@ public class NewsController extends Controller{
             hT = Category.dao.findById(hT.getParentId());
         }
         setAttr("headType",hT);
-        render("news.ftl");
+        render("detail.ftl");
     }
 }
