@@ -22,13 +22,9 @@ public class FileController extends Controller {
         News n = News.dao.findById(getParaToInt());
         String uploadPath = getFile().getUploadPath();
 
-        try {
-            File file = new File(uploadPath + File.separator + n.getImg());
-            if (file.exists()) {
-                FileUtils.forceDeleteOnExit(file);
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        File file = new File(uploadPath + File.separator + n.getImg());
+        if (file.exists()) {
+            FileUtils.deleteQuietly(file);
         }
 
         String fileName = getFile().getFileName();
@@ -36,7 +32,7 @@ public class FileController extends Controller {
         try {
             File tmpFile = getFile().getFile();
             FileUtils.copyFile(tmpFile, new FileOutputStream(new File(uploadPath + File.separator + newName)));
-            FileUtils.forceDelete(tmpFile);
+            FileUtils.deleteQuietly(tmpFile);
         } catch (IOException ex) {
             ex.printStackTrace();
         }

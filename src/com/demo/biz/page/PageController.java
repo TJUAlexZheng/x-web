@@ -1,6 +1,7 @@
 package com.demo.biz.page;
 
 import com.demo.biz.interceptors.MenuInterceptors;
+import com.demo.common.model.Category;
 import com.demo.common.model.News;
 import com.demo.common.model.RecommendedSite;
 import com.jfinal.aop.Before;
@@ -64,9 +65,23 @@ public class PageController extends Controller {
         renderCaptcha();
     }
 
-    @ActionKey("/history")
+    @ActionKey("/organization")
+    @Before(MenuInterceptors.class)
     public void history() {
-        render("/front/content/history.ftl");
+
+        Category hT = Category.dao.findById(getParaToInt());//最外层的板块
+        Category cT;//当前板块
+        if (hT.getParentId() == null) {
+            cT = Category.dao.getFirstSubContentType(hT.getId());
+        } else {
+            cT = hT;
+        }
+        setAttr("contentType", cT);
+        while (hT.getParentId() != null) {
+            hT = Category.dao.findById(hT.getParentId());
+        }
+
+        render("/front/content/organization.ftl");
     }
 
 
