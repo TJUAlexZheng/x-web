@@ -64,4 +64,10 @@ public class PageController extends Controller {
         renderCaptcha();
     }
 
+    @ActionKey("/history")
+    public void history() {
+        render("/front/content/history.ftl");
+    }
+
+
 }
