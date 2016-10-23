@@ -12,7 +12,7 @@ import java.util.Optional;
 public class SubMenuInterceptor implements Interceptor {
     @Override
     public void intercept(Invocation inv) {
-        Optional<Integer> cid = Optional.of(inv.getController().getParaToInt());
+        Optional<Integer> cid = Optional.ofNullable(inv.getController().getParaToInt());
         //检查是否传递参数
         if(!cid.isPresent()){
             inv.getController().renderError(404);
