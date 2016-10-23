@@ -103,10 +103,6 @@
                             <div id="app">
                                 <el-row :gutter="20">
                                     <el-col :span="18">
-                                        <#if id??>
-                                            <p>创建于:{{this.blog.createtime | moment}} - 更新时间:{{this.blog.updatetime |
-                                                moment}}</p>
-                                        </#if>
                                         <el-form :inline="true" :model="blog" @submit.prevent="onSubmit"
                                                  class="demo-form-inline">
                                             <el-form-item>
@@ -119,7 +115,7 @@
                                     </el-col>
                                 </el-row>
                                 <el-row :gutter="20">
-                                    <el-col :span="18"      >
+                                    <el-col :span="18">
                                         <script id="editor" type="text/plain" style="height:300px;"></script>
                                     </el-col>
                                 </el-row>
@@ -242,7 +238,7 @@
                 save: function () {
                     this.blog.content = UE.getEditor('editor').getContent();
                     this.$http.post('save', this.blog).then(function (json) {
-                        this.blog = json.data
+                        this.blog = json.data;
                         this.$message('保存成功');
                     }, function (json) {
                         this.$message({

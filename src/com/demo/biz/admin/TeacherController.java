@@ -11,6 +11,7 @@ import com.jfinal.kit.HttpKit;
 import com.jfinal.kit.JsonKit;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Page;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  * Created by YanZ on 16/9/30.
@@ -41,6 +42,7 @@ public class TeacherController extends Controller {
 
     public void save() {
         User model = JsonKit.parse(HttpKit.readData(getRequest()), User.class);
+        model.setPassword(DigestUtils.md5Hex(model.getPassword()));
         if (model.getId() != null) {
             model.update();
         } else {

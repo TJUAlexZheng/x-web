@@ -97,4 +97,12 @@ public abstract class BaseUser<M extends BaseUser<M>> extends Model<M> implement
         set("verified", verified);
     }
 
+	public java.lang.String getIntroduction() {
+		return get("introduction");
+	}
+
+	public void setIntroduction(java.lang.String introduction) {
+		set("introduction", introduction);
+	}
+
 }

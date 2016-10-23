@@ -2,6 +2,7 @@ package com.demo.biz.teacher;
 
 import com.demo.biz.interceptors.AuthInterceptor;
 import com.demo.biz.interceptors.MenuInterceptors;
+import com.demo.biz.interceptors.SubMenuInterceptor;
 import com.demo.biz.interceptors.TeacherAuthInterceptor;
 import com.demo.common.model.Category;
 import com.demo.common.model.User;
@@ -9,6 +10,10 @@ import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.interceptor.SessionInViewInterceptor;
+import com.jfinal.json.Json;
+import com.jfinal.kit.HttpKit;
+import com.jfinal.kit.JsonKit;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -24,8 +29,8 @@ public class TeacherController extends Controller {
 
 	public static final String TEACHER_KEY = "teacher_key";
 
+    @Before(SubMenuInterceptor.class)
 	public void index() {
-		initMenus();
 		List<User> teacherList;
 		Map<String, List<User>> teachers = null;
 		Function<User, String> groupStrategy = null;
@@ -33,11 +38,11 @@ public class TeacherController extends Controller {
 		//查看杰出人才
 		if (getParaToInt() == 29) {
 			groupStrategy = User::award;
-			sql = "select * from user where award_type is not null order by job_title desc, name";
+			sql = "select * from user where award_type is not null and verified = 1 order by job_title desc, name";
 			setAttr("strategy", "award");
 		} else if (getParaToInt() == 25) {  //查看教师简介
 			groupStrategy = User::laboratory;
-			sql = "select * from user where laboratory is not null order by job_title desc, name";
+			sql = "select * from user where laboratory is not null and verified = 1 order by job_title desc, name";
 			setAttr("strategy", "jobTitle");
 		} else {
 			redirect("/");
@@ -48,12 +53,59 @@ public class TeacherController extends Controller {
 		render("award_list.ftl");
 	}
 
+    @Before(SubMenuInterceptor.class)
+    public void detail(){
+        User model = User.dao.findById(getParaToInt());
+        if (model.getVerified() == 1) {
+            setAttr("name", model.getName());
+            setAttr("introduction", model.getIntroduction());
+            render("detail.ftl");
+        }else {
+            renderError(404);
+        }
+    }
 	/**
 	 * 老师个人详情页面
 	 */
 	@Before({TeacherAuthInterceptor.class, SessionInViewInterceptor.class})
 	public void profile() {
 		setAttr("teacher", getSessionAttr(TEACHER_KEY));
+	}
+
+	@Before({TeacherAuthInterceptor.class, SessionInViewInterceptor.class})
+	public void introduction(){
+
+		setAttr("teacher", getSessionAttr(TEACHER_KEY));
+		render("introduction.ftl");
+	}
+    @Before({TeacherAuthInterceptor.class, SessionInViewInterceptor.class})
+	public void getTeacher(){
+        User model = getSessionAttr(TEACHER_KEY);
+        model.setPassword("");
+        renderJson(model);
+    }
+    @Before({TeacherAuthInterceptor.class, SessionInViewInterceptor.class})
+	public void saveIntroduction(){
+		String introduction = HttpKit.readData(getRequest());
+		User model = getSessionAttr(TEACHER_KEY);
+		model.setIntroduction(introduction);
+		model.update();
+		renderJson(introduction);
+//
+//		model.save();
+//		renderJson(model);
+	}
+
+    @Before({TeacherAuthInterceptor.class, SessionInViewInterceptor.class})
+	public void save() {
+		User model = JsonKit.parse(HttpKit.readData(getRequest()), User.class);
+        model.setPassword(DigestUtils.md5Hex(model.getPassword()));
+		if (model.getId() != null) {
+			model.update();
+		} else {
+			model.save();
+		}
+		renderJson(model);
 	}
 
 	public void login() {
@@ -81,22 +133,5 @@ public class TeacherController extends Controller {
 		removeSessionAttr(TEACHER_KEY);
 		redirect("/");
 	}
-
-
-	private void initMenus() {
-		Category hT = Category.dao.findById(getParaToInt());//最外层的板块
-		Category cT;//当前板块
-		if (hT.getParentId() == null) {
-			cT = Category.dao.getFirstSubContentType(hT.getId());
-		} else {
-			cT = hT;
-		}
-		setAttr("contentType", cT);
-		while (hT.getParentId() != null) {
-			hT = Category.dao.findById(hT.getParentId());
-		}
-		setAttr("headType", hT);
-	}
-
 
 }

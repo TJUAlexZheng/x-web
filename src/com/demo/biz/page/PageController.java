@@ -1,6 +1,7 @@
 package com.demo.biz.page;
 
 import com.demo.biz.interceptors.MenuInterceptors;
+import com.demo.biz.interceptors.SubMenuInterceptor;
 import com.demo.common.model.Category;
 import com.demo.common.model.News;
 import com.demo.common.model.RecommendedSite;
@@ -41,14 +42,14 @@ public class PageController extends Controller {
     private List<News> getNews(int type, int size, boolean needImg) {
         List<News> newsList = new ArrayList<>();
         if (!needImg) {
-            newsList = News.dao.find("select * from news where type = ? and top = ?", type, 1);
+            newsList = News.dao.find("select * from news where type = ? and top = ? and verified = 1", type, 1);
             if (newsList.size() < size) {
-                newsList.addAll(News.dao.find("select * from news where type = ? and top = ?", type, 0));
+                newsList.addAll(News.dao.find("select * from news where type = ? and top = ? and verified = 1", type, 0));
             }
         }else {
-            newsList = News.dao.find("select * from news where type = ? and top = ? and img is not null", type, 1);
+            newsList = News.dao.find("select * from news where type = ? and top = ? and img is not null and verified = 1", type, 1);
             if (newsList.size() < size) {
-                newsList.addAll(News.dao.find("select * from news where type = ? and top = ? and img is not null", type, 0));
+                newsList.addAll(News.dao.find("select * from news where type = ? and top = ? and img is not null and verified = 1", type, 0));
             }
         }
         if (newsList.size() > size) {
@@ -66,21 +67,8 @@ public class PageController extends Controller {
     }
 
     @ActionKey("/organization")
-    @Before(MenuInterceptors.class)
-    public void history() {
-
-        Category hT = Category.dao.findById(getParaToInt());//最外层的板块
-        Category cT;//当前板块
-        if (hT.getParentId() == null) {
-            cT = Category.dao.getFirstSubContentType(hT.getId());
-        } else {
-            cT = hT;
-        }
-        setAttr("contentType", cT);
-        while (hT.getParentId() != null) {
-            hT = Category.dao.findById(hT.getParentId());
-        }
-
+    @Before({MenuInterceptors.class, SubMenuInterceptor.class})
+    public void organization() {
         render("/front/content/organization.ftl");
     }
 

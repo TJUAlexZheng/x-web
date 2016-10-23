@@ -10,28 +10,30 @@ import com.jfinal.plugin.activerecord.Page;
 
 import java.util.List;
 
-/**
- * Created by tjliqy on 2016/10/12.
- */
 @Before(MenuInterceptors.class)
 public class NewsController extends Controller{
 
     public void index(){
         News news = News.dao.findById(getParaToInt());
-        setAttr("news", news);
+        if (news.getVerified() == 1){
+            setAttr("news", news);
 
-        Category hT = Category.dao.findById(news.getType());//最外层的板块
-        Category cT;//当前板块
-        if (hT.getParentId() == null){
-            cT = Category.dao.getFirstSubContentType(hT.getId());
+            Category hT = Category.dao.findById(news.getType());//最外层的板块
+            Category cT;//当前板块
+            if (hT.getParentId() == null){
+                cT = Category.dao.getFirstSubContentType(hT.getId());
+            }else {
+                cT = hT;
+            }
+            setAttr("contentType",cT);
+            while (hT.getParentId() != null){
+                hT = Category.dao.findById(hT.getParentId());
+            }
+            setAttr("headType",hT);
+            render("detail.ftl");
         }else {
-            cT = hT;
+            renderError(404);
         }
-        setAttr("contentType",cT);
-        while (hT.getParentId() != null){
-            hT = Category.dao.findById(hT.getParentId());
-        }
-        setAttr("headType",hT);
-        render("detail.ftl");
+
     }
 }
