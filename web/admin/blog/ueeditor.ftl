@@ -43,14 +43,9 @@
                     <el-input v-model="news.title" placeholder="标题"></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-select v-model="news.type" filterable placeholder="分类">
-                        <el-option
-                                v-for="item in categories"
-                                :label="item.name"
-                                :value="item.id">
-                        </el-option>
-                    </el-select>
+                    <el-input v-model="news.author" placeholder="发稿人"></el-input>
                 </el-form-item>
+
 
 
                 <el-button type="primary" @click.native="save">保存</el-button>
@@ -78,7 +73,8 @@
             root: '/admin/news',
         },
         data: {
-            news: {},
+            news: {
+                <#if type??>type:${type}</#if>},
             formInline: {
                 user: '',
                 region: ''

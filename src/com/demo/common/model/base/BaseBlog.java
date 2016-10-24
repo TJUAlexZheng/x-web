@@ -73,4 +73,12 @@ public abstract class BaseBlog<M extends BaseBlog<M>> extends Model<M> implement
 		set("image", image);
 	}
 
+    public java.lang.String getAuthor() {
+        return get("author");
+    }
+
+    public void setAuthor(java.lang.String author) {
+        set("author", author);
+    }
+
 }

@@ -15,7 +15,6 @@ import com.jfinal.plugin.activerecord.Page;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static com.demo.biz.admin.AdminController.USER_PRIVILEGES_KEY;
@@ -115,9 +114,8 @@ public class BlogController extends Controller {
             String[] privileges = getSessionAttr(USER_PRIVILEGES_KEY);
             categories = categories.stream().filter(category -> {
                 for (String s: privileges) {
-                    if (Objects.equals(category.getId(), Long.valueOf(s))){
+                    if (category.getParentId() == Integer.valueOf(s) || category.getId().intValue() == Integer.valueOf(s))
                         return true;
-                    }
                 }
                 return false;
             }).collect(Collectors.toList());

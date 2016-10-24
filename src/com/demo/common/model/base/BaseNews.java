@@ -81,4 +81,12 @@ public abstract class BaseNews<M extends BaseNews<M>> extends Model<M> implement
 		set("top", top);
 	}
 
+    public java.lang.String getAuthor() {
+        return get("author");
+    }
+
+    public void setAuthor(java.lang.String author) {
+        set("author", author);
+    }
+
 }

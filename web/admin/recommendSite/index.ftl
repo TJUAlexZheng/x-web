@@ -103,11 +103,12 @@
             $('#categoryTree').tree({
                 dataSource: function (option, callback) {
                     callback({
-                        data: [{title: '实验研究', type: 'item', id: 1}, {
-                            title: '校内链接',
-                            type: 'item',
-                            id: 2
-                        }, {title: '友情链接', type: 'item', id: 3}]
+                        data: [
+                            {title: '实验研究', type: 'item', id: 1},
+                            {title: '精品课程', type: 'item', id: 2},
+                            {title: '常用下载', type: 'item', id: 3},
+                            {title: '校内链接', type: 'item', id: 4},
+                            {title: '校外链接', type: 'item', id: 5}]
                     })
                 },
                 cacheItems: true,

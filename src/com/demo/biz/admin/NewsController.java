@@ -1,7 +1,7 @@
 package com.demo.biz.admin;
 
 import com.demo.biz.builders.DataTable;
-import com.demo.common.model.Blog;
+import com.demo.biz.interceptors.AuthInterceptor;
 import com.demo.common.model.Category;
 import com.demo.common.model.News;
 import com.jfinal.aop.Before;
@@ -12,11 +12,9 @@ import com.jfinal.kit.JsonKit;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
-import com.jfinal.plugin.activerecord.Record;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static com.demo.biz.admin.AdminController.USER_PRIVILEGES_KEY;
@@ -24,15 +22,21 @@ import static com.demo.biz.admin.AdminController.USER_PRIVILEGES_KEY;
 /**
  * Created by tjliqy on 2016/10/10.
  */
-@Before({SessionInViewInterceptor.class})
+@Before({AuthInterceptor.class, SessionInViewInterceptor.class})
 public class NewsController extends Controller {
     public void index() {
         render("news.ftl");
     }
 
     public void list() {
+
         //解析页面传递参数，构建dataTables参数
         DataTable params = DataTable.build(this);
+
+        if (StrKit.isBlank(getPara("columns[3][search][value]"))) {
+            renderJson(new Page<>(new ArrayList<News>(), params.getPageNumber(), params.getPageSize(), 0, 0));
+            return;
+        }
 
         //模糊查询
         StringBuilder sb = new StringBuilder("from news where 1=1 ");
@@ -54,7 +58,7 @@ public class NewsController extends Controller {
     public void save() {
         News model = JsonKit.parse(HttpKit.readData(getRequest()), News.class);
         if (model.getId() != null) {
-            model.remove("createtime", "updatetime");
+            model.remove("createtime", "updatetime", "type");
             model.update();
             model = model.findById(model.getId());
         } else {
@@ -91,13 +95,15 @@ public class NewsController extends Controller {
     //打开查看新闻详情页面
     public void content() {
         setAttr("id", getPara("id"));
+        setAttr("type", getParaToInt());
         render("ueeditor.ftl");
     }
 
     //审核新闻
     public void verified() {
         Integer id = getParaToInt("id");
-        Db.update("update news set verified = 1 where id = ?", id);
+        Boolean verified = getParaToBoolean("show", false);
+        Db.update("update news set verified = ? where id = ?", verified, id);
         renderJson();
     }
 
@@ -108,16 +114,18 @@ public class NewsController extends Controller {
             categories = Category.dao.find("select id, name from category where parent_id = ? and type = 3", id);
         } else {
             categories = Category.dao.find("select id, name from category where parent_id is null");
+            //filter the privileges
             String[] privileges = getSessionAttr(USER_PRIVILEGES_KEY);
             categories = categories.stream().filter(category -> {
                 for (String s: privileges) {
-                    if (Objects.equals(category.getId(), Long.valueOf(s))){
+                    if (category.getParentId() == Integer.valueOf(s) || category.getId().intValue() == Integer.valueOf(s))
                         return true;
-                    }
                 }
                 return false;
             }).collect(Collectors.toList());
         }
+
+
         renderJson(categories);
     }
 }

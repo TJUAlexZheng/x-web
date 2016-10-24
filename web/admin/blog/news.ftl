@@ -11,7 +11,7 @@
 
         <div class="admin-content-body">
             <div class="am-cf am-padding am-padding-bottom-0">
-                <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">新闻管理</strong> /
+                <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">内容管理</strong> /
                     <small>总览</small>
                 </div>
             </div>
@@ -36,7 +36,6 @@
                         </li>
                         <li class="am-tree-item am-hide" data-template="treeitem" role="treeitem">
                             <button class="am-tree-item-name">
-                            <#--<span class="am-tree-icon am-tree-icon-item"></span>-->
                                 <span class="am-tree-label"></span>
                             </button>
                         </li>
@@ -91,40 +90,11 @@
                                 <tr>
                                     <th>编号</th>
                                     <th>标题</th>
-                                    <th>审核状态</th>
+                                    <th>是否显示</th>
                                     <th>创建时间</th>
                                     <th>操作</th>
-                                <#--<th class="table-author am-hide-sm-only">作者</th>-->
-                                <#--<th class="table-date am-hide-sm-only">修改日期</th>-->
-                                <#--<th class="table-set">操作</th>-->
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <#--<tr>-->
-                            <#--<td><input type="checkbox"/></td>-->
-                            <#--<td>1</td>-->
-                            <#--<td><a href="#">Business management</a></td>-->
-                            <#--<td>default</td>-->
-                            <#--<td class="am-hide-sm-only">测试1号</td>-->
-                            <#--<td class="am-hide-sm-only">2014年9月4日 7:28:47</td>-->
-                            <#--<td>-->
-                                <#--<div class="am-btn-toolbar">-->
-                                    <#--<div class="am-btn-group am-btn-group-xs">-->
-                                        <#--<button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span-->
-                                                <#--class="am-icon-pencil-square-o"></span> 编辑-->
-                                        <#--</button>-->
-                                        <#--<button class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span-->
-                                                <#--class="am-icon-copy"></span> 复制-->
-                                        <#--</button>-->
-                                        <#--<button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">-->
-                                            <#--<span class="am-icon-trash-o"></span> 删除-->
-                                        <#--</button>-->
-                                    <#--</div>-->
-                                <#--</div>-->
-                            <#--</td>-->
-                        <#--</tr>-->
-
-                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -140,7 +110,9 @@
 <script type="text/javascript" charset="utf8" src="/assets/dataTables/amazeui.datatables.min.js"></script>
 <script src="/assets/amazeui-tree/amazeui.tree.min.js"></script>
 <script src="/assets/js/moment.js"></script>
+<style>
 
+</style>
 <script type="text/javascript">
     $(function () {
 
@@ -149,6 +121,7 @@
 //            currentItem: null
 //        };
 
+        var typeId = null;
         $('#categoryTree').tree({
             dataSource: function (options, callback) {
                 $.getJSON("/admin/news/categories", {id: options.id}, function (data) {
@@ -193,7 +166,7 @@
                 "defaultContent": '<div class="am-btn-toolbar"> ' +
                 '<div class="am-btn-group am-btn-group-xs"> ' +
                 '<button class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil-square-o"></span>编辑</button>' +
-                '<button class="am-btn am-btn-success am-btn-xs"><span class="am-icon-pencil-square-o"></span>审核通过</button>' +
+                '<button class="am-btn am-btn-success am-btn-xs"><span class="am-icon-pencil-square-o"></span>切换状态</button>' +
                 '<button class="am-btn am-btn-danger am-btn-xs"><span class="am-icon-pencil-square-o"></span> 删除 </button>' +
                 '</div>'
             }, {
@@ -203,34 +176,21 @@
                 "targets": 3
             }, {
                 "render": function (data, type, row) {
-                    return data == 1 ? "审核通过" : "不通过";
+                    return data == 1 ? "<span style='background-color: green;color: white;'>显示</span>" : "<span style='background-color: red;color: white;'>不显示</span>";
                 },
                 "targets": 2
             }]
         });
 
         $('#categoryTree').on('selected.tree.amui', function (event, data) {
-            // do something with data: { selected: [array], target: [object] }
+            typeId = data.target.id;
             table.columns(3).search(data.target.id).draw()
         });
 
         $('#categoryTree').on('deselected.tree.amui', function (event, data) {
-            // do something with data: { selected: [array], target: [object] }
-            console.log(data.target.id)
+            typeId = null;
             table.columns(3).search("").draw()
         });
-
-//        $('#dt tbody').on('click', 'tr', function () {
-////                teacherData.currentItem = table.row($(this).parents('tr')).data();
-//            if ($(this).hasClass('selected')) {
-////                    teacherData.currentItem =null;
-//                $(this).removeClass('selected');
-//            }
-//            else {
-//                table.$('tr.selected').removeClass('selected');
-//                $(this).addClass('selected');
-//            }
-//        });
 
         $('#dt tbody').on('click', 'button', function (event) {
             var data = table.row($(this).parents('tr')).data();
@@ -253,11 +213,11 @@
                     content: '/admin/news/content?id=' + data.id,
                 })
             } else if ($(this).hasClass("am-btn-success")) {
-                layer.confirm('确定审核通过？', {
+                layer.confirm('确定切换状态？', {
                     btn: ['确定', '取消'] //按钮
                 }, function () {
-                    $.get("/admin/news/verified?id=" + data.id, function (data) {
-                        layer.msg('成功通过审核', {icon: 1});
+                    $.get("/admin/news/verified?id=" + data.id + "&show=" + !data.verified, function (data) {
+                        layer.msg('成功', {icon: 1});
                         table.draw();
                     })
                 });
@@ -268,14 +228,19 @@
 
         $("#btn-add").on('click', function () {
 //            teacherData.currentItem = {};
-            layer.open({
-                type: 2,
-                title: '新增新闻',
-                shadeClose: true,
-                shade: 0.8,
-                area: ['80%', '90%'],
-                content: '/admin/news/content',
-            })
+            if (!!typeId) {
+                layer.open({
+                    type: 2,
+                    title: '新增新闻',
+                    shadeClose: true,
+                    shade: 0.8,
+                    area: ['80%', '90%'],
+                    content: '/admin/news/content/' + typeId,
+                })
+            } else {
+                alert("请先从左侧菜单选择类型")
+            }
+
         })
 
 

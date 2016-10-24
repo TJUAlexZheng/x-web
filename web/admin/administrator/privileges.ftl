@@ -149,7 +149,7 @@
                         this.currentItem = null;
                     }
                 }, created: function () {
-                    this.$http.get("/admin/blog/categories").then(
+                    this.$http.get("/admin/administrator/categories").then(
                             function (json) {
                                 this.categories = json.data
                             });

@@ -193,7 +193,7 @@
                 "defaultContent": '<div class="am-btn-toolbar"> ' +
                 '<div class="am-btn-group am-btn-group-xs"> ' +
                 '<button class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil-square-o"></span>编辑</button>' +
-                '<button class="am-btn am-btn-success am-btn-xs"><span class="am-icon-pencil-square-o"></span>审核通过</button>' +
+                '<button class="am-btn am-btn-success am-btn-xs"><span class="am-icon-pencil-square-o"></span>切换显示状态</button>' +
                 '<button class="am-btn am-btn-danger am-btn-xs"><span class="am-icon-pencil-square-o"></span> 删除 </button>' +
                 '</div>'
             },{
@@ -203,7 +203,7 @@
                 "targets": 3
             }, {
                 "render": function (data, type, row) {
-                    return data == 1 ? "审核通过" : "不通过";
+                    return data == 1 ? "显示" : "不显示";
                 },
                 "targets": 2
             }]
@@ -244,6 +244,7 @@
                 layer.confirm('确定审核通过？', {
                     btn: ['确定', '取消'] //按钮
                 }, function () {
+                    console.log(data);
                     $.get("/admin/blog/verified?id="+data.id, function(data){
                         layer.msg('成功通过审核', {icon: 1});
                         table.draw();

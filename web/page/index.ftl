@@ -151,11 +151,11 @@
                 <div class="recommTitle">推荐站点</div>
                 <div class="mod-menu">
                     <ul class="menu-item">
-                        <li><a href="index.php.html#">实验研究</a></li>
-                        <li><a href="index.php.html#">校内链接</a></li>
-                        <li><a href="index.php.html#">友情链接</a></li>
-                        <li><a href="index.php.html#">常用下载</a></li>
-                        <li><a href="index.php.html#">院长信箱</a></li>
+                        <li><a>实验研究</a></li>
+                        <li><a>精品课程</a></li>
+                        <li><a>常用下载</a></li>
+                        <li><a>校内链接</a></li>
+                        <li><a>校外链接</a></li>
                     </ul><!--一级菜单列表-->
                     <div class="menu-cont" style="display:none;">
                         <@hm.site siteList=recommended_site type=1/>
@@ -164,22 +164,14 @@
 
                         <@hm.site siteList=recommended_site type=3/>
 
-                        <div class="menu-cont-list" style="display: none;">
-                            <ul>
-                                <li><a href="content.php-block=e7.html" target="_blank">本科生教学</a></li>
-                                <li><a href="news_list.php-type=f14.html" target="_blank">研究生教学</a></li>
-                            </ul>
-                        </div>
-                        <div class="menu-cont-list" style="display:none;">
-                            <ul>
-                                <li><a href="index.php.html#%23" target="_blank">院长信箱Email地址</a></li>
-                            </ul>
-                        </div>
+                        <@hm.site siteList=recommended_site type=4/>
+
+                        <@hm.site siteList=recommended_site type=5/>
                     </div>
                 </div>
             </div>
             <div class="newsBox floatRight">
-                <div class="mainNewsTitle">通知公告<span><a href="/content/83" target="_blank" style="font-size: 1.3rem">>>more</a></span>
+                <div class="mainNewsTitle">通知通告<span><a href="/content/83" target="_blank" style="font-size: 1.3rem">>>more</a></span>
                 </div>
                 <div class="mainNewsLine">
                     <div class="mainNewsLineBlue floatLeft"></div>
@@ -187,7 +179,7 @@
                     <div class="cb"></div>
                 </div>
                 <@nl.list newsList = notice_news width=18.4/>
-                <div class="mainNewsTitle">活动预告<span><a href="/content/86" target="_blank" style="font-size: 1.3rem">>>more</a></span>
+                <div class="mainNewsTitle">活动预报<span><a href="/content/86" target="_blank" style="font-size: 1.3rem">>>more</a></span>
                 </div>
                 <div class="mainNewsLine">
                     <div class="mainNewsLineBlue floatLeft"></div>

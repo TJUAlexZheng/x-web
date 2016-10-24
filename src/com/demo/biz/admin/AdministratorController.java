@@ -4,6 +4,7 @@ import com.demo.biz.builders.DataTable;
 import com.demo.biz.interceptors.AuthInterceptor;
 import com.demo.common.model.Admin;
 import com.demo.common.model.AdminPrivileges;
+import com.demo.common.model.Category;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.interceptor.SessionInViewInterceptor;
@@ -15,6 +16,7 @@ import com.jfinal.plugin.activerecord.Page;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import java.sql.PreparedStatement;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -93,6 +95,11 @@ public class AdministratorController extends Controller {
             renderJson();
         }
 
+    }
+
+    public void categories() {
+        List<Category> categories = Category.dao.find("select id, name from category where parent_id is null");
+        renderJson(categories);
     }
 
 }
