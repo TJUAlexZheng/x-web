@@ -2,7 +2,6 @@ package com.demo.biz.page;
 
 import com.demo.biz.interceptors.MenuInterceptors;
 import com.demo.biz.interceptors.SubMenuInterceptor;
-import com.demo.common.model.Category;
 import com.demo.common.model.News;
 import com.demo.common.model.RecommendedSite;
 import com.jfinal.aop.Before;
@@ -73,4 +72,9 @@ public class PageController extends Controller {
     }
 
 
+    @ActionKey("/history")
+    @Before({MenuInterceptors.class, SubMenuInterceptor.class})
+    public void history() {
+        render("/front/content/history.ftl");
+    }
 }

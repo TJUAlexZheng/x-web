@@ -73,31 +73,62 @@
                     <div class="am-form-group am-form-icon am-form-feedback"
                          :class="{'am-form-error':!teacher.account, 'am-form-success':!!teacher.account}">
                         <label>账号</label>
-                        <input class="am-form-field am-input-sm" type="text" v-model="teacher.account"
+                        <input class="am-form-field" type="text" v-model="teacher.account"
                                placeholder="输入账号" :disabled="teacher.id">
                         <span :class="{'am-icon-check':!!teacher.account, 'am-icon-times':!teacher.account}"></span>
                     </div>
 
                     <div class="am-form-group am-form-icon am-form-feedback">
                         <label>密码</label>
-                        <input class="am-form-field am-input-sm" type="password" v-model="teacher.password"
+                        <input class="am-form-field" type="password" v-model="teacher.password"
                                placeholder="输入密码">
                     </div>
 
                     <div class="am-form-group am-form-icon am-form-feedback"
                          :class="{'am-form-error':!teacher.name, 'am-form-success':!!teacher.name}">
                         <label>教师姓名</label>
-                        <input class="am-form-field am-input-sm" type="text" v-model="teacher.name"
+                        <input class="am-form-field" type="text" v-model="teacher.name"
                                placeholder="教师姓名">
                         <span :class="{'am-icon-check':!!teacher.name, 'am-icon-times':!teacher.name}"></span>
                     </div>
+                    <div class="am-form-group am-form-icon am-form-feedback"
+                         :class="{'am-form-error':!teacher.department, 'am-form-success':!!teacher.department}">
+                        <label>系所</label>
+                        <input class="am-form-field" type="text" v-model="teacher.department"
+                               placeholder="系所">
+                        <span :class="{'am-icon-check':!!teacher.department, 'am-icon-times':!teacher.department}"></span>
+                    </div>
+                    <br>
+                    <div class="am-form-group am-form-icon am-form-feedback"
+                         :class="{'am-form-error':!teacher.phone, 'am-form-success':!!teacher.phone}">
+                        <label>电话</label>
+                        <input class="am-form-field" type="text" v-model="teacher.phone"
+                               placeholder="电话">
+                        <span :class="{'am-icon-check':!!teacher.phone, 'am-icon-times':!teacher.phone}"></span>
+                    </div>
+                    <div class="am-form-group am-form-icon am-form-feedback"
+                         :class="{'am-form-error':!teacher.email, 'am-form-success':!!teacher.email}">
+                        <label>Email</label>
+                        <input class="am-form-field" type="email" v-model="teacher.email"
+                               placeholder="Email">
+                        <span :class="{'am-icon-check':!!teacher.email, 'am-icon-times':!teacher.email}"></span>
+                    </div>
 
-                    <div style="margin-top: 0.8rem">
+
+                    <div>
                         <label for="">职称</label>
                         <select v-model="teacher.jobTitle">
                             <option :value="1">讲师</option>
                             <option :value="2">副教授</option>
                             <option :value="3">教授</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-top: 0.8rem">
+                        <label for="">导师资格</label>
+                        <select v-model="teacher.mentorType">
+                            <option :value="1">硕导</option>
+                            <option :value="2">博导</option>
                         </select>
                     </div>
 
@@ -142,7 +173,10 @@
                     account: "",
                     name: "",
                     password: "",
-                    jobTitle: 1
+                    jobTitle: 1,
+                    department: "",
+                    mentorType: 1,
+                    phone: ""
                 }
             },
             methods: {

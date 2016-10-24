@@ -7,9 +7,9 @@
         <#if session.userPrivileges?seq_contains("3")>
             <li><a href="/admin/teacher"><span class="am-icon-home"></span> 教师</a></li>
         </#if>
-        <#if session.userPrivileges?seq_contains("11")>
+        <#--<#if session.userPrivileges?seq_contains("11")>-->
             <li><a href="/admin/news"><span class="am-icon-home"></span> 内容维护</a></li>
-        </#if>
+        <#--</#if>-->
             <li><a href="/admin/blog"><span class="am-icon-home"></span> 板块维护</a></li>
 
         <#--超级管理员才能管理后台-->

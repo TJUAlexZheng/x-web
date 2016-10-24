@@ -44,6 +44,8 @@ public class TeacherController extends Controller {
         User model = JsonKit.parse(HttpKit.readData(getRequest()), User.class);
         if (StrKit.notBlank(model.getPassword())) {
             model.setPassword(DigestUtils.md5Hex(model.getPassword()));
+        } else {
+            model.remove("password");
         }
         if (model.getId() != null) {
             model.update();

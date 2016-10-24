@@ -4,15 +4,14 @@ import com.demo.biz.interceptors.AuthInterceptor;
 import com.demo.biz.interceptors.MenuInterceptors;
 import com.demo.biz.interceptors.SubMenuInterceptor;
 import com.demo.biz.interceptors.TeacherAuthInterceptor;
-import com.demo.common.model.Category;
 import com.demo.common.model.User;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.interceptor.SessionInViewInterceptor;
-import com.jfinal.json.Json;
 import com.jfinal.kit.HttpKit;
 import com.jfinal.kit.JsonKit;
+import com.jfinal.kit.StrKit;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import java.util.List;
@@ -99,12 +98,16 @@ public class TeacherController extends Controller {
     @Before({TeacherAuthInterceptor.class, SessionInViewInterceptor.class})
 	public void save() {
 		User model = JsonKit.parse(HttpKit.readData(getRequest()), User.class);
-        model.setPassword(DigestUtils.md5Hex(model.getPassword()));
-		if (model.getId() != null) {
-			model.update();
+		if (StrKit.notBlank(model.getPassword())) {
+			model.setPassword(DigestUtils.md5Hex(model.getPassword()));
 		} else {
-			model.save();
+			model.remove("password");
 		}
+
+		model.update();
+
+		model.findById(model.getId());
+		setSessionAttr(TEACHER_KEY, model);
 		renderJson(model);
 	}
 
