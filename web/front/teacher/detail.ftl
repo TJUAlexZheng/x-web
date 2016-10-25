@@ -54,9 +54,49 @@
     </div>
     <div id="sub_right">
         <div id="news_position">现在位置：<span class="news_index"><a href="/">首页</a></span>
-            &gt;&gt; 简介&gt;&gt; ${name}
+            &gt;&gt; 简介&gt;&gt; ${teacher.name}
         </div>
-        <div>${introduction}</div>
+
+
+        <div class="am-g" style="border-bottom:1px #c7d2eb dotted;margin-top: 22px">
+            <div class="am-u-sm-5">
+                <img class="am-img-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" alt=""/>
+            </div>
+            <div class="am-u-sm-7">
+                <p>${teacher.name}<#switch teacher.job_title>
+                    <#case 1>讲师<#break>
+                        <#case 2>副教授<#break>
+                        <#case 3>教授<#break>
+                    </#switch>    <#switch teacher.mentor_type>
+                        <#case 1>硕士生导师<#break>
+                        <#case 2>博士生导师<#break>
+                    </#switch></p>
+                <p>${teacher.department}</p>
+                <p>电话： ${teacher.phone}</p>
+                <p>email：  ${teacher.email}</p>
+                <p>研究所： ${teacher.laboratory()}</p>
+            </div>
+        </div>
+
+        <div style="border-bottom:1px #c7d2eb dotted">
+            <h2>个人简历</h2>
+            <div>${teacher.introduction}</div>
+        </div>
+
+        <div style="border-bottom:1px #c7d2eb dotted">
+            <h2>研究方向</h2>
+            <div>${teacher.direction}</div>
+        </div>
+
+        <div style="border-bottom:1px #c7d2eb dotted">
+            <h2>承担项目</h2>
+            <div>${teacher.project}</div>
+        </div>
+
+        <div style="border-bottom:1px #c7d2eb dotted">
+            <h2>标志性成果</h2>
+            <div>${teacher.achievement}</div>
+        </div>
     </div>
     <div style="clear:both;"></div>
 </div>

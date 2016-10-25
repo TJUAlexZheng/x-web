@@ -55,9 +55,10 @@ public class TeacherController extends Controller {
     @Before(SubMenuInterceptor.class)
     public void detail(){
         User model = User.dao.findById(getParaToInt());
+		model.setPassword("");
+		model.setAccount("");
         if (model.getVerified() == 1) {
-            setAttr("name", model.getName());
-            setAttr("introduction", model.getIntroduction());
+            setAttr("teacher",model);
             render("detail.ftl");
         }else {
             renderError(404);

@@ -53,9 +53,6 @@
                     <a href="profile">个人基本信息</a>
                 </li>
                 <li>
-                    <a href="introduction">简介管理</a>
-                </li>
-                <li>
                     <a href="/teacher/logout">退出</a>
                 </li>
             </ul>
@@ -141,6 +138,13 @@
                             <option :value="3">轻合金研究所</option>
                             <option :value="4">研究所4</option>
                         </select>
+                    </div>
+
+                    <div style="margin-top: 0.8rem">
+                        <label for="">个人简历</label>
+                        <div>
+                            <script id="ueintroduction" type="text/plain" style="height:300px;"></script>
+                        </div>
                     </div>
 
                     <div style="margin-top: 0.8rem">
