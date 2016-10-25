@@ -143,6 +143,26 @@
                         </select>
                     </div>
 
+                    <div style="margin-top: 0.8rem">
+                        <label for="">研究方向</label>
+                        <div>
+                            <script id="uedirection" type="text/plain" style="height:300px;"></script>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 0.8rem">
+                        <label for="">承担项目</label>
+                        <div>
+                            <script id="ueproject" type="text/plain" style="height:300px;"></script>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 0.8rem">
+                        <label for="">标志性成果</label>
+                        <div>
+                            <script id="ueachievement" type="text/plain" style="height:300px;"></script>
+                        </div>
+                    </div>
                     <p>
                         <button type="button" class="am-btn am-btn-primary" @click="saveItem">保存</button>
                     </p>
@@ -162,8 +182,14 @@
 </div>
 
 <script type="text/javascript">
+
+    var ue_i = UE.getEditor('ueintroduction');
+    var ue_d = UE.getEditor('uedirection');
+    var ue_p = UE.getEditor('ueproject');
+    var ue_a = UE.getEditor('ueachievement');
+
     $(function () {
-        new Vue({
+        var vr = new Vue({
             http: {
                 root: '/teacher'
             },
@@ -176,11 +202,20 @@
                     jobTitle: 1,
                     department: "",
                     mentorType: 1,
-                    phone: ""
+                    phone: "",
+                    introduction: "",
+                    direction:"",
+                    project:"",
+                    achievement:""
                 }
             },
             methods: {
                 "saveItem": function () {
+                    this.teacher.introduction = UE.getEditor('ueintroduction').getContent();
+                    this.teacher.direction = UE.getEditor('uedirection').getContent();
+                    this.teacher.project = UE.getEditor('ueproject').getContent();
+                    this.teacher.achievement = UE.getEditor('ueachievement').getContent();
+
                     this.$http.post('save', this.teacher).then(function (json) {
                         alert('操作成功');
                     }, function (json) {
@@ -192,8 +227,21 @@
             created: function () {
                 this.$http.get("getTeacher").then(
                         function (json) {
-                            this.teacher = json.data;}
+                            this.teacher = json.data;
+                        }
                 );
+                ue_i.ready(function () {
+                    ue_i.setContent(vr.teacher.introduction);
+                })
+                ue_d.ready(function () {
+                    ue_d.setContent(vr.teacher.direction);
+                })
+                ue_p.ready(function () {
+                    ue_p.setContent(vr.teacher.project);
+                })
+                ue_a.ready(function () {
+                    ue_a.setContent(vr.teacher.achievement);
+                })
             }
         });
     })

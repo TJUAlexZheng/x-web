@@ -44,7 +44,7 @@
 
 <script>
     $('nav li').hover(
-            function () {3
+            function () {
                 $('ul', this).stop().slideDown(200);
             },
             function () {
@@ -62,7 +62,7 @@
         <!--<div id="news_titles">学院简介</div-->
         <#if blog??>
             <@bd.blog blog=blog/>
-        <#else >
+        <#else>
             <@d.detail type=contentType.type detail=page/>
         </#if>
     </div>

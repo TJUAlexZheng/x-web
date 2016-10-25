@@ -71,12 +71,6 @@ public class TeacherController extends Controller {
 		setAttr("teacher", getSessionAttr(TEACHER_KEY));
 	}
 
-	@Before({TeacherAuthInterceptor.class, SessionInViewInterceptor.class})
-	public void introduction(){
-
-		setAttr("teacher", getSessionAttr(TEACHER_KEY));
-		render("introduction.ftl");
-	}
     @Before({TeacherAuthInterceptor.class, SessionInViewInterceptor.class})
 	public void getTeacher(){
         User model = getSessionAttr(TEACHER_KEY);

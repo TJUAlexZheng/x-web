@@ -137,4 +137,29 @@ public abstract class BaseUser<M extends BaseUser<M>> extends Model<M> implement
 		set("phone", phone);
 	}
 
+	public java.lang.String getDirection() {
+		return get("direction");
+	}
+
+	public void setDirection(java.lang.String direction) {
+		set("direction", direction);
+	}
+
+	public java.lang.String getProject() {
+		return get("project");
+	}
+
+	public void setProject(java.lang.String project) {
+		set("project", project);
+	}
+
+	public java.lang.String getAchievement() {
+		return get("achievement");
+	}
+
+	public void setAchievement(java.lang.String achievement) {
+		set("achievement", achievement);
+	}
+
+
 }
