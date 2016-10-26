@@ -31,7 +31,7 @@ public class ContentController extends Controller {
                 setAttr("blog", Blog.dao.findFirst("select * from blog where type = ?", category.getId()));
                 break;
             case NEW:
-                setAttr("page", News.dao.paginate(getParaToInt("page", 1), 15, "select *", "from news where type = ?",category.getId()));
+                setAttr("page", News.dao.paginate(getParaToInt("page", 1), 15, "select *", "from news where type = ? and verified = 1",category.getId()));
                 break;
         }
         render("content.ftl");

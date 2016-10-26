@@ -27,6 +27,7 @@ body {
     font-size: 12px;
     color: #fff;
     font-family: Arial;
+    float:right;
     background: url("/assets/i/language.png") no-repeat;
     text-align: center;
 }

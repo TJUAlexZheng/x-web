@@ -57,7 +57,7 @@
                 <input type="text" name="searchvalue" class="form-control-inline">
                 <button type="submit" class="am-btn form-control-inline" style="font-size: 0.4rem;"><span class="am-icon-search"></span></button>
             </form>
-            <div class="language" style="float: right">
+            <div class="language">
                 <a href="english/index.html" target="_blank">English</a>
             </div>
 
