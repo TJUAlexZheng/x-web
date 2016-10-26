@@ -14,10 +14,10 @@ body {
 }
 
 #banner {
-    /*height: 24px;*/
+    height: 148px;
     background: url("/assets/i/banner.jpg") no-repeat;
-    padding-top: 122px;
-    padding-left: 881px;
+    padding-top: 125px;
+    overflow: hidden;
 }
 
 .language {

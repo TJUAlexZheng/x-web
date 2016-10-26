@@ -36,4 +36,9 @@ public class NewsController extends Controller{
         }
 
     }
+
+    public void search(){
+        setAttr("page", News.dao.paginate(getParaToInt("page", 1), 15, "select *", "from news where title like ?",'%' + getPara("searchvalue") + '%'));
+        render("search.ftl");
+    }
 }

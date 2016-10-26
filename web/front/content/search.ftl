@@ -1,8 +1,6 @@
 <#include "/front/common/_layout.ftl"/>
 <#import "/front/common/_menu.ftl" as m/>
-<#import "/front/common/_treemenu.ftl" as tm/>
 <#import "/front/common/_detail.ftl" as d/>
-<#import "/front/common/_blogdetail.ftl" as bd/>
 <@layout>
 <link href="/assets/css/2015_default2.css" rel="stylesheet" type="text/css" media="all">
 <!--推荐站点--需JQquery文件-->
@@ -34,7 +32,14 @@
 <div class="wrap">
     <div class="middles">
         <div id="banner">
-            <div class="language"><a href="english/index.html" target="_blank">English</a></div>
+            <form action="news/search" method="get" style="float: right">
+                <input type="text" name="searchvalue" class="form-control-inline">
+                <button type="submit" class="am-btn form-control-inline" style="font-size: 0.4rem;"><span class="am-icon-search"></span></button>
+            </form>
+            <div class="language" style="float: right">
+                <a href="english/index.html" target="_blank">English</a>
+            </div>
+
         </div>
     <#--渲染菜单头部-->
         <@m.menu menuItems = types/>
@@ -54,17 +59,10 @@
 </script>
 
 <div class="middles" style="margin-top:18px;">
-    <div id="sub_left">
-        <@tm.type headType = headType/>
-    </div>
     <div id="sub_right">
-        <div id="news_position">现在位置：<span class="news_index"><a href="/">首页</a></span> &gt;&gt; ${contentType.name} &gt;&gt; 正文        </div>
+        <div id="news_position">现在位置：<span class="news_index"><a href="/">首页</a></span> &gt;&gt; 搜索结果</div>
         <!--<div id="news_titles">学院简介</div-->
-        <#if blog??>
-            <@bd.blog blog=blog/>
-        <#else>
-            <@d.detail type=contentType.type detail=page action="content"/>
-        </#if>
+        <@d.detail type="" detail=page action="news/search"/>
     </div>
     <div style="clear:both;"></div>
 </div>

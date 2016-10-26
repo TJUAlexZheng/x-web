@@ -9,15 +9,15 @@
 <script type="text/javascript" src="../assets/js/jquery-ui-1.8.6.core.widget.js"></script>
 <script type="text/javascript" src="../assets/js/jqueryui.bannerize.js"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('#banners').bannerize({
             shuffle: 0,
             interval: "5"
         });
-        $(".ui-line").hover(function(){
+        $(".ui-line").hover(function () {
             $(this).addClass("ui-line-hover");
             $(this).find(".ui-bnnerp").addClass("ui-bnnerp-hover");
-        },function(){
+        }, function () {
             $(this).removeClass("ui-line-hover");
             $(this).find(".ui-bnnerp").removeClass("ui-bnnerp-hover");
         });
@@ -53,7 +53,14 @@
 <div class="wrap">
     <div class="middles">
         <div id="banner">
-            <div class="language"><a href="english/index.html" target="_blank">English</a></div>
+            <form action="news/search" method="get" style="float: right">
+                <input type="text" name="searchvalue" class="form-control-inline">
+                <button type="submit" class="am-btn form-control-inline" style="font-size: 0.4rem;"><span class="am-icon-search"></span></button>
+            </form>
+            <div class="language" style="float: right">
+                <a href="english/index.html" target="_blank">English</a>
+            </div>
+
         </div>
     <#--渲染菜单头部-->
         <@m.menu menuItems=types/>
@@ -62,85 +69,7 @@
         <div class="indexadd mt50 mb60">
             <div id="banners" class="ui-banner">
                 <@nb.banner banneritems=banner_news/>
-                <#--<ul class="ui-banner-slides">-->
-                    <#--<li><a href="news_detail.php-id=342.html" target="_blank"><img-->
-                            <#--src="upload/photo/1473048783E7AoaH.JPG" alt="材料学院优秀校友座谈会成功举办" title="材料学院优秀校友座谈会成功举办"/></a>-->
-                    <#--</li>-->
-                    <#--<li><a href="news_detail.php-id=338.html" target="_blank"><img-->
-                            <#--src="upload/photo/1472519138xmuMDy.JPG" alt="材料学院2016级新生开学典礼隆重举行"-->
-                            <#--title="材料学院2016级新生开学典礼隆重举行"/></a></li>-->
-                    <#--<li><a href="news_detail.php-id=328.html" target="_blank"><img-->
-                            <#--src="upload/photo/1469753584Ux7gkF.JPG" alt="材料学院2017年研究生招生夏令营开营"-->
-                            <#--title="材料学院2017年研究生招生夏令营开营"/></a></li>-->
-                    <#--<li><a href="news_detail.php-id=311.html" target="_blank"><img-->
-                            <#--src="upload/photo/1467595466hw3Wd2.JPG" alt="材料学院召开纪念建党95周年“七一”表彰大会"-->
-                            <#--title="材料学院召开纪念建党95周年“七一”表彰大会"/></a></li>-->
-                    <#--<li><a href="news_detail.php-id=304.html" target="_blank"><img-->
-                            <#--src="upload/photo/1467595516myO0wK.JPG" alt="材料学院师昌绪塑像落成仪式" title="材料学院师昌绪塑像落成仪式"/></a></li>-->
-                <#--</ul><!--ui-banner-slides end&ndash;&gt;-->
-                <#--<ul class="ui-banner-slogans">-->
-                    <#--<li class="ui-line">-->
-                        <#--<div class="ullinehover">-->
-                            <#--<div class="ui-bnnerimg floatLeft">-->
-                                <#--<img src="upload/photo/small/1473048783E7AoaH.JPG" alt="" width="103"/>-->
-                            <#--</div>-->
-                            <#--<div class="ui-bnnerp floatRight">-->
-                                <#--<h3 style="margin-top: 10px;">材料学院优秀校友座谈会成功举办</h3>-->
-                                <#--<p>　　为进一步突出各行各业优秀校友的联动作用，搭建优秀校友与在校学生沟通交流平台。9月3日下午2点，天津大学...</p>-->
-                            <#--</div>-->
-                        <#--</div>-->
-                    <#--</li>-->
-                    <#--<li class="ui-line">-->
-                        <#--<div class="ullinehover">-->
-                            <#--<div class="ui-bnnerimg floatLeft">-->
-                                <#--<img src="upload/photo/small/1472519138xmuMDy.JPG" alt="" width="103"/>-->
-                            <#--</div>-->
-                            <#--<div class="ui-bnnerp floatRight">-->
-                                <#--<h3 style="margin-top: 10px;">材料学院2016级新生开学典礼隆重举行</h3>-->
-                                <#--<p>　　8月29日上午，天津大学材料学院2016级新生开学典礼在新校区大通学生活动中心隆重举行。院长胡文彬、院党委...</p>-->
-                            <#--</div>-->
-                        <#--</div>-->
-                    <#--</li>-->
-                    <#--<li class="ui-line">-->
-                        <#--<div class="ullinehover">-->
-                            <#--<div class="ui-bnnerimg floatLeft">-->
-                                <#--<img src="upload/photo/small/1469753584Ux7gkF.JPG" alt="" width="103"/>-->
-                            <#--</div>-->
-                            <#--<div class="ui-bnnerp floatRight">-->
-                                <#--<h3 style="margin-top: 10px;">材料学院2017年研究生招生夏令营开营</h3>-->
-                                <#--<p>-->
 
-                                    <#--7月9日上午，天津大学材料科学与工程学院2017年研究生招生夏令营开营仪式在31楼2105报告厅举行。此次夏令营活...</p>-->
-                            <#--</div>-->
-                        <#--</div>-->
-                    <#--</li>-->
-                    <#--<li class="ui-line">-->
-                        <#--<div class="ullinehover">-->
-                            <#--<div class="ui-bnnerimg floatLeft">-->
-                                <#--<img src="upload/photo/small/1467595466hw3Wd2.JPG" alt="" width="103"/>-->
-                            <#--</div>-->
-                            <#--<div class="ui-bnnerp floatRight">-->
-                                <#--<h3 style="margin-top: 10px;">材料学院召开纪念建党95周年“七一”表彰大会</h3>-->
-                                <#--<p>-->
-
-                                    <#--为庆祝建党95周年，深入推进&ldquo;两学一做&rdquo;学习教育，表彰2015&mdash;2016年度为学院改革、发展和稳...</p>-->
-                            <#--</div>-->
-                        <#--</div>-->
-                    <#--</li>-->
-                    <#--<li class="ui-line">-->
-                        <#--<div class="ullinehover">-->
-                            <#--<div class="ui-bnnerimg floatLeft">-->
-                                <#--<img src="upload/photo/small/1467595516myO0wK.JPG" alt="" width="103"/>-->
-                            <#--</div>-->
-                            <#--<div class="ui-bnnerp floatRight">-->
-                                <#--<h3 style="margin-top: 10px;">材料学院师昌绪塑像落成仪式</h3>-->
-                                <#--<p>-->
-
-                                    <#--2016年5月27日下午，天津大学材料学院师昌绪塑像落成仪式暨师昌绪荣誉学位计划座谈会在天津大学北洋园校区31...</p>-->
-                            <#--</div>-->
-                        <#--</div>-->
-                    <#--</li>-->
-                <#--</ul><!--ui-banner-slogans end&ndash;&gt;-->
             </div>
         </div>
 
@@ -206,12 +135,13 @@
     <div id="mainEnter">
         <div class="mainLeft">
             <a href="/content/23" target="_blank" class="floatLeft"><img
-                src="../assets/i/2015_contact.jpg"/>
+                    src="../assets/i/2015_contact.jpg"/>
             </a>
             <a href="/mail" class="floatRight"><img src="../assets/i/2015_login.jpg"/>
             </a>
         </div>
-        <div class="mainRight"><a href="vote/index.php.html" target="_blank"><img src="../assets/i/mainTip.jpg"/></a></div>
+        <div class="mainRight"><a href="vote/index.php.html" target="_blank"><img src="../assets/i/mainTip.jpg"/></a>
+        </div>
         <div class="cb"></div>
     </div>
 
