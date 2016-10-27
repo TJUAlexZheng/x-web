@@ -59,7 +59,10 @@ public class TeacherController extends Controller {
 		model.setAccount("");
         if (model.getVerified() == 1) {
             setAttr("teacher",model);
-            render("detail.ftl");
+			String imgBase64 = JsonKit.toJson(model.getImg());
+			String imgSrc = "data:image/jpeg;base64," + imgBase64.substring(1, imgBase64.length() - 1);
+			setAttr("photo", imgSrc);
+			render("detail.ftl");
         }else {
             renderError(404);
         }
@@ -93,6 +96,7 @@ public class TeacherController extends Controller {
     @Before({TeacherAuthInterceptor.class, SessionInViewInterceptor.class})
 	public void save() {
 		User model = JsonKit.parse(HttpKit.readData(getRequest()), User.class);
+
 		if (StrKit.notBlank(model.getPassword())) {
 			model.setPassword(DigestUtils.md5Hex(model.getPassword()));
 		} else {

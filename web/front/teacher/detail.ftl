@@ -59,8 +59,8 @@
 
 
         <div class="am-g" style="border-bottom:1px #c7d2eb dotted;margin-top: 22px">
-            <div class="am-u-sm-5">
-                <img class="am-img-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" alt=""/>
+            <div class="am-u-sm-5" style="text-align: center">
+                <img class="am-img-thumbnail" src="${photo}" style="max-width: 12rem;"/>
             </div>
             <div class="am-u-sm-7">
                 <p>${teacher.name}<#switch teacher.job_title>

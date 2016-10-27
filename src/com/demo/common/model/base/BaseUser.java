@@ -161,5 +161,12 @@ public abstract class BaseUser<M extends BaseUser<M>> extends Model<M> implement
 		set("achievement", achievement);
 	}
 
+    public byte[] getImg() {
+        return get("img");
+    }
+
+    public void setImg(byte[] img) {
+        set("img", img);
+    }
 
 }

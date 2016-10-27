@@ -110,7 +110,18 @@
                                placeholder="Email">
                         <span :class="{'am-icon-check':!!teacher.email, 'am-icon-times':!teacher.email}"></span>
                     </div>
+                    <div class="am-form-group am-form-icon am-form-feedback"
+                         :class="{'am-form-error':!teacher.account, 'am-form-success':!!teacher.account}">
 
+                        <label>头像</label>
+                        <div v-if="teacher.img">
+                            <img :src="imageSrc" style="width: 15rem;height: 20rem;"/>
+                        </div>
+                        <div>
+                            <input type="file" @change="onFileChange">
+                        </div>
+
+                    </div>
 
                     <div>
                         <label for="">职称</label>
@@ -210,8 +221,10 @@
                     introduction: "",
                     direction:"",
                     project:"",
-                    achievement:""
-                }
+                    achievement: "",
+                    img: ""
+                },
+
             },
             methods: {
                 "saveItem": function () {
@@ -226,12 +239,33 @@
                         alert('操作失败，请重试');
                     });
 
+                },
+                onFileChange: function (e) {
+                    var files = e.target.files || e.dataTransfer.files;
+                    if (!files.length)
+                        return;
+                    this.createImage(files[0]);
+                },
+                createImage: function (file) {
+                    var image = new Image();
+                    var reader = new FileReader();
+                    var vm = this;
+
+                    reader.onload = (e) =
+                    >
+                    {
+                        vm.teacher.img = e.target.result.substring(e.target.result.indexOf(",") + 1);
+                    }
+                    ;
+                    reader.readAsDataURL(file);
                 }
             },
             created: function () {
                 this.$http.get("getTeacher").then(
                         function (json) {
-                            this.teacher = json.data;
+                            json.data.img = json.data.img || ""
+                            this.teacher = json.data
+                            console.log(this.teacher)
                         }
                 );
                 ue_i.ready(function () {
@@ -246,6 +280,11 @@
                 ue_a.ready(function () {
                     ue_a.setContent(vr.teacher.achievement);
                 })
+            },
+            computed: {
+                imageSrc: function () {
+                    return "data:image/jpeg;base64," + this.teacher.img
+                }
             }
         });
     })
