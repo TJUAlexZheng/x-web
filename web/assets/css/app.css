@@ -206,6 +206,7 @@ nav li a:hover, nav .hover {
     width: 384px;
     height: 97%;
     padding-left: 15px;
+    overflow: hidden;
 }
 
 .ui-bnnerp h3 {
