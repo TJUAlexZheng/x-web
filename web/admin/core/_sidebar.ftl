@@ -23,6 +23,7 @@
                     </li>
                 </ul>
             </li>
+            <li><a href="/admin/mail"><span class="am-icon-sign-out"></span> 院长信箱</a></li>
             <li><a href="/admin/recommendSite"><span class="am-icon-sign-out"></span> 推荐站点</a></li>
         </#if>
 

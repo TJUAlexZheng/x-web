@@ -251,12 +251,9 @@
                     var reader = new FileReader();
                     var vm = this;
 
-                    reader.onload = (e) =
-                    >
-                    {
+                    reader.onload = function (e) {
                         vm.teacher.img = e.target.result.substring(e.target.result.indexOf(",") + 1);
-                    }
-                    ;
+                    };
                     reader.readAsDataURL(file);
                 }
             },
