@@ -86,6 +86,11 @@
         methods: {
             save: function () {
                 this.news.content = UE.getEditor('editor').getContent();
+                if (UE.getEditor('editor').getContentTxt().length > 100){
+                    this.news.overview = UE.getEditor('editor').getContentTxt().slice(0,100);
+                }else {
+                    this.news.overview = UE.getEditor('editor').getContentTxt();
+                }
                 this.$http.post('save', this.news).then(function (json) {
                     this.news = json.data
                     this.$message('保存成功');

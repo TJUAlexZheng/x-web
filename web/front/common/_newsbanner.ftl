@@ -15,7 +15,7 @@
                 </div>
                 <div class="ui-bnnerp floatRight">
                     <h3 style="margin-top: 10px;">${bannerItem.title}</h3>
-                    <p>${bannerItem.content}</p>
+                    <p>${bannerItem.overview}</p>
                 </div>
             </div>
         </li>
