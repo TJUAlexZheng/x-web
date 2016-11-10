@@ -14,7 +14,7 @@ public class SubMenuInterceptor implements Interceptor {
     public void intercept(Invocation inv) {
         Optional<Integer> cid = Optional.ofNullable(inv.getController().getParaToInt());
         //检查是否传递参数
-        if(!cid.isPresent()){
+        if (!cid.isPresent()) {
             inv.getController().renderError(404);
         }
         //查询逻辑

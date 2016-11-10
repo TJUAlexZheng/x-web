@@ -45,7 +45,7 @@ public class PageController extends Controller {
             if (newsList.size() < size) {
                 newsList.addAll(News.dao.find("select * from news where type = ? and top = ? and verified = 1", type, 0));
             }
-        }else {
+        } else {
             newsList = News.dao.find("select * from news where type = ? and top = ? and img is not null and verified = 1", type, 1);
             if (newsList.size() < size) {
                 newsList.addAll(News.dao.find("select * from news where type = ? and top = ? and img is not null and verified = 1", type, 0));

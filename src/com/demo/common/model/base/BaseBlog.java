@@ -9,69 +9,69 @@ import com.jfinal.plugin.activerecord.Model;
 @SuppressWarnings("serial")
 public abstract class BaseBlog<M extends BaseBlog<M>> extends Model<M> implements IBean {
 
-	public java.lang.Integer getId() {
-		return get("id");
-	}
+    public java.lang.Integer getId() {
+        return get("id");
+    }
 
-	public void setId(java.lang.Integer id) {
-		set("id", id);
-	}
+    public void setId(java.lang.Integer id) {
+        set("id", id);
+    }
 
-	public java.lang.String getTitle() {
-		return get("title");
-	}
+    public java.lang.String getTitle() {
+        return get("title");
+    }
 
-	public void setTitle(java.lang.String title) {
-		set("title", title);
-	}
+    public void setTitle(java.lang.String title) {
+        set("title", title);
+    }
 
-	public java.lang.String getContent() {
-		return get("content");
-	}
+    public java.lang.String getContent() {
+        return get("content");
+    }
 
-	public void setContent(java.lang.String content) {
-		set("content", content);
-	}
+    public void setContent(java.lang.String content) {
+        set("content", content);
+    }
 
-	public java.lang.Integer getType() {
-		return get("type");
-	}
+    public java.lang.Integer getType() {
+        return get("type");
+    }
 
-	public void setType(java.lang.Integer type) {
-		set("type", type);
-	}
+    public void setType(java.lang.Integer type) {
+        set("type", type);
+    }
 
-	public java.lang.Integer getVerified() {
-		return get("verified");
-	}
+    public java.lang.Integer getVerified() {
+        return get("verified");
+    }
 
-	public void setVerified(java.lang.Integer verified) {
-		set("verified", verified);
-	}
+    public void setVerified(java.lang.Integer verified) {
+        set("verified", verified);
+    }
 
-	public java.util.Date getCreatetime() {
-		return get("createtime");
-	}
+    public java.util.Date getCreatetime() {
+        return get("createtime");
+    }
 
-	public void setCreatetime(java.util.Date createtime) {
-		set("createtime", createtime);
-	}
+    public void setCreatetime(java.util.Date createtime) {
+        set("createtime", createtime);
+    }
 
-	public java.util.Date getUpdatetime() {
-		return get("updatetime");
-	}
+    public java.util.Date getUpdatetime() {
+        return get("updatetime");
+    }
 
-	public void setUpdatetime(java.util.Date updatetime) {
-		set("updatetime", updatetime);
-	}
+    public void setUpdatetime(java.util.Date updatetime) {
+        set("updatetime", updatetime);
+    }
 
-	public java.lang.String getImage() {
-		return get("image");
-	}
+    public java.lang.String getImage() {
+        return get("image");
+    }
 
-	public void setImage(java.lang.String image) {
-		set("image", image);
-	}
+    public void setImage(java.lang.String image) {
+        set("image", image);
+    }
 
     public java.lang.String getAuthor() {
         return get("author");

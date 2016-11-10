@@ -9,37 +9,37 @@ import com.jfinal.plugin.activerecord.Model;
 @SuppressWarnings("serial")
 public abstract class BaseCategory<M extends BaseCategory<M>> extends Model<M> implements IBean {
 
-	public java.lang.Long getId() {
-		return get("id");
-	}
+    public java.lang.Long getId() {
+        return get("id");
+    }
 
-	public void setId(java.lang.Long id) {
-		set("id", id);
-	}
+    public void setId(java.lang.Long id) {
+        set("id", id);
+    }
 
-	public java.lang.String getName() {
-		return get("name");
-	}
+    public java.lang.String getName() {
+        return get("name");
+    }
 
-	public void setName(java.lang.String name) {
-		set("name", name);
-	}
+    public void setName(java.lang.String name) {
+        set("name", name);
+    }
 
-	public java.lang.Long getType() {
-		return get("type");
-	}
+    public java.lang.Long getType() {
+        return get("type");
+    }
 
-	public void setType(java.lang.Long type) {
-		set("type", type);
-	}
+    public void setType(java.lang.Long type) {
+        set("type", type);
+    }
 
-	public java.lang.Integer getParentId() {
-		return get("parent_id");
-	}
+    public java.lang.Integer getParentId() {
+        return get("parent_id");
+    }
 
-	public void setParentId(java.lang.Integer parentId) {
-		set("parent_id", parentId);
-	}
+    public void setParentId(java.lang.Integer parentId) {
+        set("parent_id", parentId);
+    }
 
     public java.lang.String getHref() {
         return get("href");

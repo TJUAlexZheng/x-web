@@ -15,15 +15,15 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
  */
 public class _MappingKit {
 
-	public static void mapping(ActiveRecordPlugin arp) {
-		arp.addMapping("admin", "id", Admin.class);
-		arp.addMapping("admin_privileges", "user_id", AdminPrivileges.class);
-		arp.addMapping("blog", "id", Blog.class);
-		arp.addMapping("category", "id", Category.class);
-		arp.addMapping("email", "id", Email.class);
-		arp.addMapping("news", "id", News.class);
-		arp.addMapping("recommended_site", "id", RecommendedSite.class);
-		arp.addMapping("user", "id", User.class);
-	}
+    public static void mapping(ActiveRecordPlugin arp) {
+        arp.addMapping("admin", "id", Admin.class);
+        arp.addMapping("admin_privileges", "user_id", AdminPrivileges.class);
+        arp.addMapping("blog", "id", Blog.class);
+        arp.addMapping("category", "id", Category.class);
+        arp.addMapping("email", "id", Email.class);
+        arp.addMapping("news", "id", News.class);
+        arp.addMapping("recommended_site", "id", RecommendedSite.class);
+        arp.addMapping("user", "id", User.class);
+    }
 }
 

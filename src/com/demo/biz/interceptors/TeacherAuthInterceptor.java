@@ -10,14 +10,14 @@ import com.jfinal.core.Controller;
  */
 public class TeacherAuthInterceptor implements Interceptor {
 
-	@Override
-	public void intercept(Invocation inv) {
-		Controller controller = inv.getController();
-		Object sessionAttr = controller.getSessionAttr(TeacherController.TEACHER_KEY);
-		if (sessionAttr != null) {
-			inv.invoke();
-		}else{
-			controller.render("login.ftl");
-		}
-	}
+    @Override
+    public void intercept(Invocation inv) {
+        Controller controller = inv.getController();
+        Object sessionAttr = controller.getSessionAttr(TeacherController.TEACHER_KEY);
+        if (sessionAttr != null) {
+            inv.invoke();
+        } else {
+            controller.render("login.ftl");
+        }
+    }
 }

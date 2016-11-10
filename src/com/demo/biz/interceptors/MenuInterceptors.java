@@ -11,11 +11,11 @@ import java.util.List;
  */
 public class MenuInterceptors implements Interceptor {
 
-	@Override
-	public void intercept(Invocation inv) {
-		List<Category> types = Category.dao.findByCache("commons", "menus", "select * from category where parent_id is null limit 10");
+    @Override
+    public void intercept(Invocation inv) {
+        List<Category> types = Category.dao.findByCache("commons", "menus", "select * from category where parent_id is null limit 10");
 //		List<Category> types = Category.dao.find("select * from category where parent_id is null limit 10");
-		inv.getController().setAttr("types", types);
-		inv.invoke();
-	}
+        inv.getController().setAttr("types", types);
+        inv.invoke();
+    }
 }

@@ -6,12 +6,7 @@ import com.demo.common.model.Blog;
 import com.demo.common.model.Category;
 import com.demo.common.model.News;
 import com.jfinal.aop.Before;
-import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
-import com.jfinal.plugin.activerecord.Page;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by YanZ on 16/9/7.
@@ -19,19 +14,19 @@ import java.util.List;
 @Before(MenuInterceptors.class)
 public class ContentController extends Controller {
 
-    private static final int BLOG=1;
-    private static final int NEW=3;
+    private static final int BLOG = 1;
+    private static final int NEW = 3;
 
 
     @Before(SubMenuInterceptor.class)
-    public void index(){
+    public void index() {
         Category category = getAttr("contentType");
-        switch (category.getType().intValue()){
+        switch (category.getType().intValue()) {
             case BLOG:
                 setAttr("blog", Blog.dao.findFirst("select * from blog where type = ?", category.getId()));
                 break;
             case NEW:
-                setAttr("page", News.dao.paginate(getParaToInt("page", 1), 15, "select *", "from news where type = ? and verified = 1",category.getId()));
+                setAttr("page", News.dao.paginate(getParaToInt("page", 1), 15, "select *", "from news where type = ? and verified = 1", category.getId()));
                 break;
         }
         render("content.ftl");

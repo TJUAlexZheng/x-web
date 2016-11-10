@@ -29,7 +29,7 @@ public class BlogController extends Controller {
         render("blog.ftl");
     }
 
-    public void verify(){
+    public void verify() {
         render("verify.ftl");
     }
 
@@ -82,7 +82,7 @@ public class BlogController extends Controller {
             getResponse().setStatus(500);
             return;
         }
-        Blog blog = Blog.dao.findFirst("select * from blog where type = ?",id);
+        Blog blog = Blog.dao.findFirst("select * from blog where type = ?", id);
         if (blog == null) {
             blog = new Blog();
             blog.setTitle("");
@@ -113,7 +113,7 @@ public class BlogController extends Controller {
             categories = Category.dao.find("select id, name from category where parent_id is null and type = 1");
             String[] privileges = getSessionAttr(USER_PRIVILEGES_KEY);
             categories = categories.stream().filter(category -> {
-                for (String s: privileges) {
+                for (String s : privileges) {
                     if (category.getParentId() == Integer.valueOf(s) || category.getId().intValue() == Integer.valueOf(s))
                         return true;
                 }

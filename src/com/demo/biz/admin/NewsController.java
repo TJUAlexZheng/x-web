@@ -117,7 +117,7 @@ public class NewsController extends Controller {
             //filter the privileges
             String[] privileges = getSessionAttr(USER_PRIVILEGES_KEY);
             categories = categories.stream().filter(category -> {
-                for (String s: privileges) {
+                for (String s : privileges) {
                     if (category.getParentId() == Integer.valueOf(s) || category.getId().intValue() == Integer.valueOf(s))
                         return true;
                 }

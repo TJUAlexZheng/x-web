@@ -10,14 +10,14 @@ import com.jfinal.core.Controller;
  */
 public class AuthInterceptor implements Interceptor {
 
-	@Override
-	public void intercept(Invocation inv) {
-		Controller controller = inv.getController();
-		Object sessionAttr = controller.getSessionAttr(AdminController.USER_KEY);
-		if (sessionAttr != null) {
-			inv.invoke();
-		}else{
-			controller.redirect("/admin");
-		}
-	}
+    @Override
+    public void intercept(Invocation inv) {
+        Controller controller = inv.getController();
+        Object sessionAttr = controller.getSessionAttr(AdminController.USER_KEY);
+        if (sessionAttr != null) {
+            inv.invoke();
+        } else {
+            controller.redirect("/admin");
+        }
+    }
 }
