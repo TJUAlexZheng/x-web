@@ -29,15 +29,19 @@ public class User extends BaseUser<User> {
 
     public String laboratory() {
         if (this.getLaboratory() == 1) {
-            return "塑形成性技术与装备研究院";
+            return "新能源材料研究所";
         } else if (this.getLaboratory() == 2) {
-            return "复合材料研究所";
+            return "TJU-NIMS";
         } else if (this.getLaboratory() == 3) {
-            return "轻合金研究所";
+            return "焊接与先进制造研究所";
         } else if (this.getLaboratory() == 4) {
-            return "研究所4";
+            return "先进高分子研究所";
+        } else if (this.getLaboratory() == 5) {
+            return "金属材料研究所";
+        } else if (this.getLaboratory() == 6) {
+            return "先进陶瓷研究所";
         }
-        return null;
+        return "其他";
     }
 
 }

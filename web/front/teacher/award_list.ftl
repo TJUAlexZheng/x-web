@@ -80,6 +80,8 @@
         height: 30px;
         line-height: 30px;
         padding-top: 2px;
+        width: 68px;
+        text-align: center;
     }
 
 </style>

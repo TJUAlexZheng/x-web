@@ -31,7 +31,7 @@ public class TeacherController extends Controller {
         StringBuilder sb = new StringBuilder("from user ");
         Object[] selectParams = new Object[0];
         if (StrKit.notBlank(params.getSearchValue())) {
-            sb.append("where id like ? or account like ? or job_title like ? ");
+            sb.append("where id like ? or account like ? or name like ? ");
             String value = "%" + params.getSearchValue() + "%";
             selectParams = new Object[]{value, value, value};
         }

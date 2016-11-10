@@ -66,9 +66,16 @@
                     <div style="margin-top: 0.8rem">
                         <label for="">职称</label>
                         <select v-model="currentItem.jobTitle">
+                            <option :value="0">无</option>
                             <option :value="1">讲师</option>
                             <option :value="2">副教授</option>
                             <option :value="3">教授</option>
+                            <option :value="4">讲座教授</option>
+                            <option :value="5">工程师</option>
+                            <option :value="6">高级工程师</option>
+                            <option :value="7">副研究员</option>
+                            <option :value="8">研究员</option>
+                            <option :value="9">特聘研究员</option>
                         </select>
                     </div>
 
@@ -76,10 +83,14 @@
                     <div style="margin-top: 0.8rem">
                         <label for="">实验室</label>
                         <select v-model="currentItem.laboratory">
-                            <option :value="1">塑形成性技术与装备研究院</option>
-                            <option :value="2">复合材料研究所</option>
-                            <option :value="3">轻合金研究所</option>
-                            <option :value="4">研究所4</option>
+                            <option :value="1">新能源材料研究所</option>
+                            <option :value="2">TJU-NIMS</option>
+                            <option :value="3">焊接与先进制造研究所</option>
+                            <option :value="4">先进高分子研究所</option>
+                            <option :value="5">金属材料研究所</option>
+                            <option :value="6">先进陶瓷研究所</option>
+                            <option :value="7">其他</option>
+
                         </select>
                     </div>
 
@@ -139,12 +150,26 @@
                     targets: 3,
                     render: function (data) {
                         switch (data) {
+                            case 0:
+                                return '讲师';
                             case 1:
                                 return '讲师';
                             case 2:
                                 return '副教授';
                             case 3:
                                 return '教授';
+                            case 4:
+                                return '讲座教授';
+                            case 5:
+                                return '工程师';
+                            case 6:
+                                return '高级工程师';
+                            case 7:
+                                return '副研究员';
+                            case 8:
+                                return '研究员';
+                            case 9:
+                                return '特聘研究员';
                         }
                         return '异常数据';
                     }
