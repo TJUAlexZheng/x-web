@@ -36,26 +36,7 @@
             <div class="am-g">
                 <div class="am-u-sm-3" style="border-right: 1px solid #eeeeee;">
                 <#--树形菜单的渲染-->
-                    <ul class="am-tree am-tree-folder-select" role="tree" id="categoryTree">
-                        <li class="am-tree-branch am-hide" data-template="treebranch" role="treeitem"
-                            aria-expanded="false">
-                            <div class="am-tree-branch-header">
-                            <#--<button class="am-tree-icon am-tree-icon-caret am-icon-caret-right"><span class="am-sr-only">Open</span></button>-->
-                                <button class="am-tree-branch-name">
-                                    <span class="am-tree-icon am-tree-icon-folder"></span>
-                                    <span class="am-tree-label"></span>
-                                </button>
-                            </div>
-                            <ul class="am-tree-branch-children" role="group"></ul>
-                            <div class="am-tree-loader" role="alert">加载中...</div>
-                        </li>
-                        <li class="am-tree-item am-hide" data-template="treeitem" role="treeitem">
-                            <button class="am-tree-item-name">
-                            <#--<span class="am-tree-icon am-tree-icon-item"></span>-->
-                                <span class="am-tree-label"></span>
-                            </button>
-                        </li>
-                    </ul>
+                    <ul id="tree" class="ztree"></ul>
                 </div>
                 <div class="am-u-sm-9">
                     <div class="am-g" id="blog-form" style="display: none" :style="{display:show}">
@@ -131,9 +112,9 @@
     </div>
 </div>
 <link rel="stylesheet" type="text/css" href="/assets/dataTables/amazeui.datatables.min.css">
-<link rel="stylesheet" href="/assets/amazeui-tree/amazeui.tree.min.css">
+<link rel="stylesheet" type="text/css" href="/assets/zTree_v3-master/css/zTreeStyle/zTreeStyle.css">
 <script type="text/javascript" charset="utf8" src="/assets/dataTables/amazeui.datatables.min.js"></script>
-<script src="/assets/amazeui-tree/amazeui.tree.min.js"></script>
+<script src="/assets/zTree_v3-master/js/jquery.ztree.core.min.js"></script>
 <script src="/assets/js/moment.js"></script>
 
 <script type="text/javascript">
@@ -152,46 +133,40 @@
             dialogVisible: false
         };
 
-        $('#categoryTree').tree({
-            dataSource: function (options, callback) {
-                $.getJSON("/admin/blog/categories", {id: options.id}, function (data) {
-                    for (var d in data) {
-                        data[d].title = data[d].name;
-                        data[d].type = data[d].subContentTypes.length > 0 ? "folder" : "item"
-                    }
-                    console.log(data)
-                    callback({data: data});
-                });
+        var setting = {
+            data: {
+                simpleData: {
+                    enable: true,
+                    idKey: "id",
+                    pIdKey: "parentId"
+                }
             },
-            cacheItems: true,
-            folderSelect: false
-        });
+            callback: {
+                onClick: function (event, treeId, treeNode) {
+                    $.get("/admin/blog/detail?id=" + treeNode['id']).then(
+                            function (json) {
+                                if (json != null) {
+                                    data.blog = json;
+                                    UE.getEditor('editor').setContent(json.content);
+                                } else {
+                                    data.blog = null;
+                                    data.blog.type = d.target.id;
+                                    UE.getEditor('editor').setContent("");
+                                }
+                            }, function () {
+                                this.$message({
+                                    message: '读取数据错误，请重试',
+                                    type: 'error'
+                                });
+                            }
+                    )
+                }
+            }
+        };
 
-        $('#categoryTree').on('selected.tree.amui', function (event, d) {
-            // do something with data: { selected: [array], target: [object] }
-//            table.columns(3).search(data.target.id).draw()
-            $.get("/admin/blog/detail?id=" + d.target.id).then(
-                    function (json) {
-                        if (json != null) {
-                            data.blog = json;
-                            UE.getEditor('editor').setContent(json.content);
-                        } else {
-                            data.blog = null;
-                            data.blog.type = d.target.id;
-                            UE.getEditor('editor').setContent("");
-                        }
-//                        document.getElementById("input").value = data.title;
-                    }, function () {
-                        this.$message({
-                            message: '读取数据错误，请重试',
-                            type: 'error'
-                        });
-                    }
-            )
-        });
 
-        $('#categoryTree').on('deselected.tree.amui', function (event, data) {
-            console.log(data.target.id);
+        $.getJSON("/admin/blog/categories", {}, function (data) {
+            $.fn.zTree.init($("#tree"), setting, data);
         });
 
         $('#dt tbody').on('click', 'button', function (event) {

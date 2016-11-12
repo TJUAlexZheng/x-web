@@ -41,7 +41,7 @@ public class TeacherController extends Controller {
             setAttr("strategy", "award");
         } else if (getParaToInt() == 25) {  //查看教师简介
             groupStrategy = User::laboratory;
-            sql = "select * from user where laboratory is not null and verified = 1 order by order_index asc,  job_title desc, account asc";
+            sql = "select id, name, laboratory from user where laboratory is not null and verified = 1 order by order_index asc,  job_title desc, account asc";
             setAttr("strategy", "jobTitle");
         } else {
             redirect("/");
@@ -78,7 +78,7 @@ public class TeacherController extends Controller {
     @Before({TeacherAuthInterceptor.class, SessionInViewInterceptor.class})
     public void getTeacher() {
         User model = getSessionAttr(TEACHER_KEY);
-        model.setPassword("");
+        model = User.dao.findById(model.getId());
         renderJson(model);
     }
 

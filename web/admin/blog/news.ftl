@@ -21,25 +21,7 @@
             <div class="am-g">
                 <div class="am-u-sm-3" style="border-right: 1px solid #eeeeee;">
                 <#--树形菜单的渲染-->
-                    <ul class="am-tree am-tree-folder-select" role="tree" id="categoryTree">
-                        <li class="am-tree-branch am-hide" data-template="treebranch" role="treeitem"
-                            aria-expanded="false">
-                            <div class="am-tree-branch-header">
-                            <#--<button class="am-tree-icon am-tree-icon-caret am-icon-caret-right"><span class="am-sr-only">Open</span></button>-->
-                                <button class="am-tree-branch-name">
-                                    <span class="am-tree-icon am-tree-icon-folder"></span>
-                                    <span class="am-tree-label"></span>
-                                </button>
-                            </div>
-                            <ul class="am-tree-branch-children" role="group"></ul>
-                            <div class="am-tree-loader" role="alert">加载中...</div>
-                        </li>
-                        <li class="am-tree-item am-hide" data-template="treeitem" role="treeitem">
-                            <button class="am-tree-item-name">
-                                <span class="am-tree-label"></span>
-                            </button>
-                        </li>
-                    </ul>
+                    <ul class="ztree" id="tree"></ul>
                 </div>
                 <div class="am-u-sm-9">
                     <div class="am-g" id="blog-form" style="display: none" :style="{display:show}">
@@ -106,9 +88,9 @@
     </div>
 </div>
 <link rel="stylesheet" type="text/css" href="/assets/dataTables/amazeui.datatables.min.css">
-<link rel="stylesheet" href="/assets/amazeui-tree/amazeui.tree.min.css">
+<link rel="stylesheet" type="text/css" href="/assets/zTree_v3-master/css/zTreeStyle/zTreeStyle.css">
 <script type="text/javascript" charset="utf8" src="/assets/dataTables/amazeui.datatables.min.js"></script>
-<script src="/assets/amazeui-tree/amazeui.tree.min.js"></script>
+<script src="/assets/zTree_v3-master/js/jquery.ztree.core.min.js"></script>
 <script src="/assets/js/moment.js"></script>
 <style>
 
@@ -116,26 +98,8 @@
 <script type="text/javascript">
     $(function () {
 
-        //init vue share data
-//        var teacherData = {
-//            currentItem: null
-//        };
-
         var typeId = null;
-        $('#categoryTree').tree({
-            dataSource: function (options, callback) {
-                $.getJSON("/admin/news/categories", {id: options.id}, function (data) {
-                    for (var d in data) {
-                        data[d].title = data[d].name;
-                        data[d].type = data[d].subContentTypes.length > 0 ? "folder" : "item"
-                    }
-                    console.log(data)
-                    callback({data: data});
-                });
-            },
-            cacheItems: true,
-            folderSelect: false
-        });
+
         //init jquery datagrid
         var table = $('#dt').DataTable({
             "ajax": {
@@ -182,16 +146,6 @@
             }]
         });
 
-        $('#categoryTree').on('selected.tree.amui', function (event, data) {
-            typeId = data.target.id;
-            table.columns(3).search(data.target.id).draw()
-        });
-
-        $('#categoryTree').on('deselected.tree.amui', function (event, data) {
-            typeId = null;
-            table.columns(3).search("").draw()
-        });
-
         $('#dt tbody').on('click', 'button', function (event) {
             var data = table.row($(this).parents('tr')).data();
             if ($(this).hasClass("am-btn-danger")) {
@@ -227,7 +181,6 @@
         $("div.am-btn-toolbar").html('<div class="am-btn-group am-btn-group-xs"><button id="btn-add" type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span>新增 </button></div>');
 
         $("#btn-add").on('click', function () {
-//            teacherData.currentItem = {};
             if (!!typeId) {
                 layer.open({
                     type: 2,
@@ -240,50 +193,27 @@
             } else {
                 alert("请先从左侧菜单选择类型")
             }
+        });
 
-        })
 
-
-        //init vue component
-//        new Vue({
-//            http: {
-//                root: '/admin/teacher',
-//            },
-//            el: "#blog-form",
-//            data: teacherData,
-//            methods: {
-//                "saveItem": function () {
-//                    this.$http.post('save', this.currentItem).then(function (json) {
-//                        this.currentItem = null;
-//                        table.draw();
-//                        layer.alert('操作成功');
-//                    }, function (json) {
-//                        layer.alert('操作失败，请重试');
-//                    });
-//
-//                },
-//                "deleteItem": function () {
-//                    this.$http.get('delete', {
-//                        params: {id: this.currentItem.id}
-//                    }).then(function (json) {
-//                        this.currentItem = null;
-//                        table.draw();
-//                        layer.alert('操作成功');
-//                    }, function (json) {
-//                        layer.alert('操作失败，请重试');
-//                    });
-//
-//                },
-//                "clearItem": function () {
-//                    this.currentItem = null;
-//                }
-//            },
-//            computed: {
-//                show: function () {
-//                    return !this.currentItem ? 'none' : 'block';
-//                }
-//            }
-//        });
+        var setting = {
+            data: {
+                simpleData: {
+                    enable: true,
+                    idKey: "id",
+                    pIdKey: "parentId"
+                }
+            },
+            callback: {
+                onClick: function (event, treeId, treeNode) {
+                    typeId = treeNode.id;
+                    table.columns(3).search(treeNode.id).draw()
+                }
+            }
+        };
+        $.getJSON("/admin/news/categories", {}, function (data) {
+            $.fn.zTree.init($("#tree"), setting, data);
+        });
     });
 </script>
 </@layout>

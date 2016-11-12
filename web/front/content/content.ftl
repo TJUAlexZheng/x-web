@@ -58,18 +58,31 @@
         <@tm.type headType = headType/>
     </div>
     <div id="sub_right">
-        <div id="news_position">现在位置：<span class="news_index"><a href="/">首页</a></span> &gt;&gt; ${contentType.name} &gt;&gt; 正文        </div>
+        <div id="news_position">现在位置 : <span class="news_index"><a href="/">首页</a></span>
+            &gt;&gt; ${contentType.name} &gt;&gt; 正文
+        </div>
         <!--<div id="news_titles">学院简介</div-->
-        <#if blog??>
-            <@bd.blog blog=blog/>
-        <#else>
-            <@d.detail type=contentType.type detail=page action="content"/>
+        <#if contentType.type == 1>
+            <#if !blog?has_content>
+                <p>暂无内容</p>
+            <#else >
+                <@bd.blog blog=blog/>
+            </#if>
+        <#elseif contentType.type == 3>
+            <#if !page?has_content>
+                <p>暂无内容</p>
+            <#else >
+                <@d.detail type=contentType.type detail=page action="content"/>
+            </#if>
         </#if>
     </div>
     <div style="clear:both;"></div>
 </div>
 <div class="middles">
     <div id="copyRight">版权所有 © 天津大学材料科学与工程学院 2016新版上线<span></span></div>
-    <div id="footer">联系地址：天津市海河教育园区雅观道135号31号教学楼 [<a href="http://l.map.qq.com/11222015482?m" target="_blank">查看学院地图标注</a>]，邮政编码：300350<br>联系电话：022-27403405 传真：022-XXXXXXXX 电子邮件：mseic@tju.edu.cn</div>
+    <div id="footer">联系地址：天津市海河教育园区雅观道135号31号教学楼 [<a href="http://l.map.qq.com/11222015482?m"
+                                                     target="_blank">查看学院地图标注</a>]，邮政编码：300350<br>联系电话：022-27403405
+        传真：022-XXXXXXXX 电子邮件：mseic@tju.edu.cn
+    </div>
 </div>
 </@layout>

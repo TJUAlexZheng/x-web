@@ -1,6 +1,6 @@
 <#macro type headType>
 <div id="sub_left_title" style="margin-bottom:5px;">${headType.name}&gt;&gt;</div>
-    <#local subMenuItems = headType.getSubContentTypes()>
+    <#local subMenuItems = headType.subContentTypes()>
     <#local index = 0>
     <#if 0 < subMenuItems.size()>
         <#list subMenuItems as subItem>
@@ -13,7 +13,7 @@
         </div>
             <#local index = index+1>
             <#if subItem.id != 14>
-                <#local subMenuItems2 = subItem.getSubContentTypes()>
+                <#local subMenuItems2 = subItem.subContentTypes()>
                 <#if 0 < subMenuItems2.size()>
                     <#list subMenuItems2 as subItem2>
                     <div class="sub_left_list<#if 1 == index%2> gray</#if>">

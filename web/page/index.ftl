@@ -139,7 +139,7 @@
             <a href="/mail" class="floatRight"><img src="../assets/i/2015_login.jpg"/>
             </a>
         </div>
-        <div class="mainRight"><a href="vote/index.php.html" target="_blank"><img src="../assets/i/mainTip.jpg"/></a>
+        <div class="mainRight"><a href="/content/89" target="_blank"><img src="../assets/i/mainTip.jpg"/></a>
         </div>
         <div class="cb"></div>
     </div>

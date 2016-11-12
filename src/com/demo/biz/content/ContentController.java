@@ -39,7 +39,7 @@ public class ContentController extends Controller {
 //        Category hT = Category.dao.findById(blog.getType());//外层的板块
 //        Category cT;//当前板块
 //        if (hT.getParentId() == null){
-//            cT = Category.dao.getFirstSubContentType(hT.getId());
+//            cT = Category.dao.firstSubContentType(hT.getId());
 //        }else {
 //            cT = hT;
 //        }

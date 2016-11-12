@@ -19,13 +19,8 @@ public class SubMenuInterceptor implements Interceptor {
         }
         //查询逻辑
         Category hT = Category.dao.findById(cid.get());//最外层的板块
-        Category cT;//当前板块
-        if (hT.getParentId() == null) {
-            cT = Category.dao.getFirstSubContentType(hT.getId());
-        } else {
-            cT = hT;
-        }
-        inv.getController().setAttr("contentType", cT);
+
+        inv.getController().setAttr("contentType", hT);
         while (hT.getParentId() != null) {
             hT = Category.dao.findById(hT.getParentId());
         }

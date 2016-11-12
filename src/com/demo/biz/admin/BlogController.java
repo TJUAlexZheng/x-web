@@ -15,7 +15,6 @@ import com.jfinal.plugin.activerecord.Page;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.demo.biz.admin.AdminController.USER_PRIVILEGES_KEY;
 
@@ -27,10 +26,6 @@ public class BlogController extends Controller {
 
     public void index() {
         render("blog.ftl");
-    }
-
-    public void verify() {
-        render("verify.ftl");
     }
 
     //此方法已经只在verify中需要
@@ -105,21 +100,10 @@ public class BlogController extends Controller {
     }
 
     public void categories() {
-        String id = getPara("id");
-        List<Category> categories;
-        if (id != null) {
-            categories = Category.dao.find("select id, name from category where parent_id = ? and type = 1", id);
-        } else {
-            categories = Category.dao.find("select id, name from category where parent_id is null and type = 1");
-            String[] privileges = getSessionAttr(USER_PRIVILEGES_KEY);
-            categories = categories.stream().filter(category -> {
-                for (String s : privileges) {
-                    if (category.getParentId() == Integer.valueOf(s) || category.getId().intValue() == Integer.valueOf(s))
-                        return true;
-                }
-                return false;
-            }).collect(Collectors.toList());
-        }
+        List<Category> categories = Category.dao.find("select id, parent_id, name from category where type = 1");
+        String[] privileges = getSessionAttr(USER_PRIVILEGES_KEY);
+        categories = NewsController.filteredCategories(categories, privileges);
+
         renderJson(categories);
     }
 }

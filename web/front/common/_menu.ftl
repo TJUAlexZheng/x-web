@@ -5,7 +5,7 @@
         <#list menuItems as item>
             <li>
                 <a href="/<#if item.id != 1>content/${item.id}</#if>">${item.name}</a>
-                <#local subMenuItems = item.getSubContentTypes()>
+                <#local subMenuItems = item.subContentTypes()>
                 <#if 0 < subMenuItems.size()>
                     <ul>
                         <#list subMenuItems as subItem>

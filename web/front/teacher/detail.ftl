@@ -63,7 +63,8 @@
                 <img class="am-img-thumbnail" src="${photo}" style="max-width: 12rem;"/>
             </div>
             <div class="am-u-sm-7">
-                <p>${teacher.name}<#switch teacher.job_title>
+                <p>${teacher.name}
+                    <#switch teacher.job_title>
                     <#case 1>讲师<#break>
                         <#case 2>副教授<#break>
                         <#case 3>教授<#break>
@@ -71,31 +72,31 @@
                         <#case 1>硕士生导师<#break>
                         <#case 2>博士生导师<#break>
                     </#switch></p>
-                <p>${teacher.department}</p>
-                <p>电话： ${teacher.phone}</p>
-                <p>email：  ${teacher.email}</p>
-                <p>研究所： ${teacher.laboratory()}</p>
+                <p>${teacher.department!'暂无'}</p>
+                <p>电话： ${teacher.phone!'暂无'}</p>
+                <p>email：  ${teacher.email!'暂无'}</p>
+                <p>研究所： ${teacher.laboratory()!'暂无'}</p>
             </div>
         </div>
 
         <div style="border-bottom:1px #c7d2eb dotted">
             <h2>个人简历</h2>
-            <div>${teacher.introduction}</div>
+            <div>${teacher.introduction!'暂无'}</div>
         </div>
 
         <div style="border-bottom:1px #c7d2eb dotted">
             <h2>研究方向</h2>
-            <div>${teacher.direction}</div>
+            <div>${teacher.direction!'暂无'}</div>
         </div>
 
         <div style="border-bottom:1px #c7d2eb dotted">
             <h2>承担项目</h2>
-            <div>${teacher.project}</div>
+            <div>${teacher.project!'暂无'}</div>
         </div>
 
         <div style="border-bottom:1px #c7d2eb dotted">
             <h2>标志性成果</h2>
-            <div>${teacher.achievement}</div>
+            <div>${teacher.achievement!'暂无'}</div>
         </div>
     </div>
     <div style="clear:both;"></div>

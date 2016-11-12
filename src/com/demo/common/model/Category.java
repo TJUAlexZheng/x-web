@@ -14,21 +14,12 @@ public class Category extends BaseCategory<Category> {
     /**
      * 查询菜单的子菜单
      */
-    public List<Category> getSubContentTypes() {
+    public List<Category> subContentTypes() {
         return dao.find("select * from category where parent_id = ?", new Object[]{get("id")});
     }
 
 
-    public Category getFirstSubContentType(long parentId) {
-        List<Category> contentTypes = dao.find("select * from category where parent_id = ?", parentId);
-        if (contentTypes.size() > 0) {
-            return contentTypes.get(0);
-        }
-        return null;
-    }
-
-    public String getNewsContent() {
-        // TODO: 2016/9/26 从数据库中拿出详情
-        return "<p>测试【内容】<img src=\"/ueditor/jsp/upload/image/20161008/1475938330350003075.jpg\" title=\"1475938330350003075.jpg\" alt=\"IMG_20141009_205457.jpg\"/></p>";
+    public Category firstSubContentType(long parentId) {
+        return dao.findFirst("select * from category where parent_id = ?", parentId);
     }
 }

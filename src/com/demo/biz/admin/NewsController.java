@@ -24,6 +24,16 @@ import static com.demo.biz.admin.AdminController.USER_PRIVILEGES_KEY;
  */
 @Before({AuthInterceptor.class, SessionInViewInterceptor.class})
 public class NewsController extends Controller {
+    public static final List<Category> filteredCategories(List<Category> categories, String[] privileges) {
+        return categories.stream().filter(category -> {
+            for (String s : privileges) {
+                if (category.getParentId() == Integer.valueOf(s) || category.getId().intValue() == Integer.valueOf(s))
+                    return true;
+            }
+            return false;
+        }).collect(Collectors.toList());
+    }
+
     public void index() {
         render("news.ftl");
     }
@@ -108,24 +118,9 @@ public class NewsController extends Controller {
     }
 
     public void categories() {
-        String id = getPara("id");
-        List<Category> categories;
-        if (id != null) {
-            categories = Category.dao.find("select id, name from category where parent_id = ? and type = 3", id);
-        } else {
-            categories = Category.dao.find("select id, name from category where parent_id is null");
-            //filter the privileges
-            String[] privileges = getSessionAttr(USER_PRIVILEGES_KEY);
-            categories = categories.stream().filter(category -> {
-                for (String s : privileges) {
-                    if (category.getParentId() == Integer.valueOf(s) || category.getId().intValue() == Integer.valueOf(s))
-                        return true;
-                }
-                return false;
-            }).collect(Collectors.toList());
-        }
-
-
+        List<Category> categories = Category.dao.find("select id, parent_id, name from category where type = 3");
+        String[] privileges = getSessionAttr(USER_PRIVILEGES_KEY);
+        categories = filteredCategories(categories, privileges);
         renderJson(categories);
     }
 }

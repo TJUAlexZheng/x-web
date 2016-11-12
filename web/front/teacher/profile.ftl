@@ -271,22 +271,22 @@
                 this.$http.get("getTeacher").then(
                         function (json) {
                             json.data.img = json.data.img || ""
-                            this.teacher = json.data
-                            console.log(this.teacher)
+                            this.teacher = json.data;
+                            ue_i.ready(function () {
+                                ue_i.setContent(vr.teacher.introduction);
+                            })
+                            ue_d.ready(function () {
+                                ue_d.setContent(vr.teacher.direction);
+                            })
+                            ue_p.ready(function () {
+                                ue_p.setContent(vr.teacher.project);
+                            })
+                            ue_a.ready(function () {
+                                ue_a.setContent(vr.teacher.achievement);
+                            })
                         }
                 );
-                ue_i.ready(function () {
-                    ue_i.setContent(vr.teacher.introduction);
-                })
-                ue_d.ready(function () {
-                    ue_d.setContent(vr.teacher.direction);
-                })
-                ue_p.ready(function () {
-                    ue_p.setContent(vr.teacher.project);
-                })
-                ue_a.ready(function () {
-                    ue_a.setContent(vr.teacher.achievement);
-                })
+
             },
             computed: {
                 imageSrc: function () {
