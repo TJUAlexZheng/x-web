@@ -37,11 +37,11 @@ public class TeacherController extends Controller {
         //查看杰出人才
         if (getParaToInt() == 29) {
             groupStrategy = User::award;
-            sql = "select * from user where award_type is not null and verified = 1 order by job_title desc, name";
+            sql = "select * from user where award_type is not null and verified = 1 order by order_index asc,  job_title desc, account asc";
             setAttr("strategy", "award");
         } else if (getParaToInt() == 25) {  //查看教师简介
             groupStrategy = User::laboratory;
-            sql = "select * from user where laboratory is not null and verified = 1 order by job_title desc, name";
+            sql = "select * from user where laboratory is not null and verified = 1 order by order_index asc,  job_title desc, account asc";
             setAttr("strategy", "jobTitle");
         } else {
             redirect("/");
@@ -52,7 +52,6 @@ public class TeacherController extends Controller {
         render("award_list.ftl");
     }
 
-    @Before(SubMenuInterceptor.class)
     public void detail() {
         User model = User.dao.findById(getParaToInt());
         model.setPassword("");

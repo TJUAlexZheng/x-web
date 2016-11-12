@@ -27,7 +27,8 @@
                     <th class="table-id">账号</th>
                     <th class="table-title">标题</th>
                     <th class="table-type">职称</th>
-                    <th class="table-type">操作</th>
+                    <th class="table-title">显示顺序</th>
+                    <th class="table-type">是否显示</th>
                 </tr>
                 </thead>
             </table>
@@ -61,6 +62,21 @@
                         <input class="am-form-field am-input-sm" type="text" v-model="currentItem.name"
                                placeholder="教师姓名">
                         <span :class="{'am-icon-check':!!currentItem.name, 'am-icon-times':!currentItem.name}"></span>
+                    </div>
+                    <div class="am-form-group am-form-icon am-form-feedback"
+                         :class="{'am-form-error':!currentItem.orderIndex, 'am-form-success':!!currentItem.orderIndex}">
+                        <label>显示顺序</label>
+                        <input class="am-form-field am-input-sm" type="text" v-model="currentItem.orderIndex"
+                               placeholder="显示顺序">
+                        <span :class="{'am-icon-check':!!currentItem.orderIndex, 'am-icon-times':!currentItem.orderIndex}"></span>
+                    </div>
+
+                    <div style="margin-top: 0.8rem">
+                        <label for="">是否显示</label>
+                        <select v-model="currentItem.verified">
+                            <option :value="0">不显示</option>
+                            <option :value="1">显示</option>
+                        </select>
                     </div>
 
                     <div style="margin-top: 0.8rem">
@@ -117,7 +133,9 @@
                     account: "",
                     name: "",
                     password: "",
-                    jobTitle: 1
+                    jobTitle: 1,
+                    verified: 0,
+                    orderIndex: 100
                 }
             };
             var table = $('#dt').DataTable({
@@ -140,12 +158,14 @@
                     {"data": "account"},
                     {"data": "name"},
                     {"data": "jobTitle"},
-                    {"data": ""}
+                    {"data": "orderIndex"},
+                    {"data": "verified"}
                 ],
                 "columnDefs": [{
-                    "targets": -1,
-                    "data": null,
-                    "defaultContent": '<div class="am-btn-toolbar"> <div class="am-btn-group am-btn-group-xs"> <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑 </button></div>'
+                    "render": function (data, type, row) {
+                        return data == 1 ? "<span style='background-color: green;color: white;'>显示</span>" : "<span style='background-color: red;color: white;'>不显示</span>";
+                    },
+                    "targets": 5
                 }, {
                     targets: 3,
                     render: function (data) {
@@ -192,10 +212,8 @@
                 event.preventDefault();
                 var data = table.row($(this).parents('tr')).data();
                 teacherData.currentItem = data;
-                console.log(data)
             });
 
-            $("div.am-btn-toolbar").html('<div class="am-btn-group am-btn-group-xs"><button id="btn-add" type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span>新增 </button></div>');
 
             $("#btn-add").on('click', function () {
                 teacherData.currentItem = {};

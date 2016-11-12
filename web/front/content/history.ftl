@@ -66,147 +66,141 @@
                 <ul class="cbp_tmtimeline">
 
                     <li>
-
                         <time class="cbp_tmtime" datetime="2013-04-10 18:30"><span>1952</span></time>
-
                         <div class="cbp_tmicon cbp_tmicon-phone"></div>
-
                         <div class="cbp_tmlabel">
-                            <h2>天津大学贵烟酸工学专业建立</h2>
-
-                            <p>天津大学贵烟酸工学专业建立</p>
-
+                            <p>天津大学硅酸盐工学专业建立，隶属化工系，先改为技术陶瓷专业又改为无机非金属材料专业；天津大学焊接专业建立，隶属机械系。</p>
                         </div>
-
                     </li>
 
                     <li>
-
                         <time class="cbp_tmtime" datetime="2013-04-11T12:04"><span>1956</span></time>
-
                         <div class="cbp_tmicon cbp_tmicon-screen"></div>
-
                         <div class="cbp_tmlabel">
-
-                            <h2>Greens radish arugula</h2>
-
-                            <p>Caulie dandelion maize lentil collard greens radish arugula sweet pepper water spinach
-                                kombu courgette lettuce. Celery coriander bitterleaf epazote radicchio shallot winter
-                                purslane collard greens spring onion squash lentil. Artichoke salad bamboo shoot
-                                black-eyed pea brussels sprout garlic kohlrabi.</p>
-
+                            <p>天津大学金属学热处理设备及车间专业成立，隶属于机械系</p>
                         </div>
-
                     </li>
 
                     <li>
-
                         <time class="cbp_tmtime" datetime="2013-04-13 05:36"><span>1958</span></time>
-
                         <div class="cbp_tmicon cbp_tmicon-mail"></div>
-
                         <div class="cbp_tmlabel">
-
-                            <h2>Sprout garlic kohlrabi</h2>
-
-                            <p>Parsnip lotus root celery yarrow seakale tomato collard greens tigernut epazote ricebean
-                                melon tomatillo soybean chicory broccoli beet greens peanut salad. Lotus root burdock
-                                bell pepper chickweed shallot groundnut pea sprouts welsh onion wattle seed pea salsify
-                                turnip scallion peanut arugula bamboo shoot onion swiss chard. Avocado tomato peanut
-                                soko amaranth grape fennel chickweed mung bean soybean endive squash beet greens carrot
-                                chicory green bean. Tigernut dandelion sea lettuce garlic daikon courgette celery maize
-                                parsley komatsuna black-eyed pea bell pepper aubergine cauliflower zucchini. Quandong
-                                pea chickweed tomatillo quandong cauliflower spinach water spinach.</p>
-
+                            <p>天津大学塑料工学专业成立，隶属化工系，后改为高分子材料专业</p>
                         </div>
-
                     </li>
 
                     <li>
-
-                        <time class="cbp_tmtime" datetime="2013-04-15 13:15"><span>4/15/13</span> <span>13:15</span>
-                        </time>
-
-                        <div class="cbp_tmicon cbp_tmicon-phone"></div>
-
+                        <time class="cbp_tmtime" datetime="2013-04-13 05:36"><span>1962</span></time>
+                        <div class="cbp_tmicon cbp_tmicon-mail"></div>
                         <div class="cbp_tmlabel">
-
-                            <h2>Watercress ricebean</h2>
-
-                            <p>Peanut gourd nori welsh onion rock melon mustard jícama. Desert raisin amaranth kombu
-                                aubergine kale seakale brussels sprout pea. Black-eyed pea celtuce bamboo shoot salad
-                                kohlrabi leek squash prairie turnip catsear rock melon chard taro broccoli turnip
-                                greens. Fennel quandong potato watercress ricebean swiss chard garbanzo. Endive daikon
-                                brussels sprout lotus root silver beet epazote melon shallot.</p>
-
+                            <p>天津大学腐蚀与防护专业成立</p>
                         </div>
-
                     </li>
 
                     <li>
-
-                        <time class="cbp_tmtime" datetime="2013-04-16 21:30"><span>4/16/13</span> <span>21:30</span>
-                        </time>
-
-                        <div class="cbp_tmicon cbp_tmicon-earth"></div>
-
+                        <time class="cbp_tmtime" datetime="2013-04-13 05:36"><span>1985</span></time>
+                        <div class="cbp_tmicon cbp_tmicon-mail"></div>
                         <div class="cbp_tmlabel">
-
-                            <h2>Courgette daikon</h2>
-
-                            <p>Parsley amaranth tigernut silver beet maize fennel spinach. Ricebean black-eyed pea maize
-                                scallion green bean spinach cabbage jícama bell pepper carrot onion corn plantain
-                                garbanzo. Sierra leone bologi komatsuna celery peanut swiss chard silver beet squash
-                                dandelion maize chicory burdock tatsoi dulse radish wakame beetroot.</p>
-
+                            <p>天津大学材料科学与工程系成立，成为当时在国内首批建立材料系的高校之一</p>
                         </div>
-
                     </li>
 
                     <li>
-
-                        <time class="cbp_tmtime" datetime="2013-04-17 12:11"><span>4/17/13</span> <span>12:11</span>
-                        </time>
-
-                        <div class="cbp_tmicon cbp_tmicon-screen"></div>
-
+                        <time class="cbp_tmtime" datetime="2013-04-13 05:36"><span>1993</span></time>
+                        <div class="cbp_tmicon cbp_tmicon-mail"></div>
                         <div class="cbp_tmlabel">
-
-                            <h2>Greens radish arugula</h2>
-
-                            <p>Caulie dandelion maize lentil collard greens radish arugula sweet pepper water spinach
-                                kombu courgette lettuce. Celery coriander bitterleaf epazote radicchio shallot winter
-                                purslane collard greens spring onion squash lentil. Artichoke salad bamboo shoot
-                                black-eyed pea brussels sprout garlic kohlrabi.</p>
-
+                            <p>经教育部批准成立教育部重点实验室高温结构陶瓷研究所，1994年成为首批教育部重点实验室</p>
                         </div>
-
                     </li>
 
                     <li>
-
-                        <time class="cbp_tmtime" datetime="2013-04-18 09:56"><span>4/18/13</span> <span>09:56</span>
-                        </time>
-
-                        <div class="cbp_tmicon cbp_tmicon-phone"></div>
-
+                        <time class="cbp_tmtime" datetime="2013-04-13 05:36"><span>1994</span></time>
+                        <div class="cbp_tmicon cbp_tmicon-mail"></div>
                         <div class="cbp_tmlabel">
-
-                            <h2>Sprout garlic kohlrabi</h2>
-
-                            <p>Parsnip lotus root celery yarrow seakale tomato collard greens tigernut epazote ricebean
-                                melon tomatillo soybean chicory broccoli beet greens peanut salad. Lotus root burdock
-                                bell pepper chickweed shallot groundnut pea sprouts welsh onion wattle seed pea salsify
-                                turnip scallion peanut arugula bamboo shoot onion swiss chard. Avocado tomato peanut
-                                soko amaranth grape fennel chickweed mung bean soybean endive squash beet greens carrot
-                                chicory green bean. Tigernut dandelion sea lettuce garlic daikon courgette celery maize
-                                parsley komatsuna black-eyed pea bell pepper aubergine cauliflower zucchini. Quandong
-                                pea chickweed tomatillo quandong cauliflower spinach water spinach.</p>
-
+                            <p>经教育部批准成立形状记忆材料教育部工程研究中心</p>
                         </div>
-
                     </li>
 
+                    <li>
+                        <time class="cbp_tmtime" datetime="2013-04-13 05:36"><span>1997</span></time>
+                        <div class="cbp_tmicon cbp_tmicon-mail"></div>
+                        <div class="cbp_tmlabel">
+                            <p>天津大学材料科学与工程学院成立，下设金属材料系、无机非金属材料系和高分子材料系；测试机构有分析中心</p>
+                        </div>
+                    </li>
+
+                    <li>
+                        <time class="cbp_tmtime" datetime="2013-04-13 05:36"><span>1998</span></time>
+                        <div class="cbp_tmicon cbp_tmicon-mail"></div>
+                        <div class="cbp_tmlabel">
+                            <p>机械学院机械工程二系材料加工及自动化专业划入材料科学与工程学院，同时更名为材料加工及自动化系</p>
+                        </div>
+                    </li>
+
+                    <li>
+                        <time class="cbp_tmtime" datetime="2013-04-13 05:36"><span>2001</span></time>
+                        <div class="cbp_tmicon cbp_tmicon-mail"></div>
+                        <div class="cbp_tmlabel">
+                            <p>经批准材料科学与工程学院增设材料化学专业，并设立材料化学系，同年，材料加工工程学科被遴选为国家重点学科</p>
+                        </div>
+                    </li>
+
+                    <li>
+                        <time class="cbp_tmtime" datetime="2013-04-13 05:36"><span>2002</span></time>
+                        <div class="cbp_tmicon cbp_tmicon-mail"></div>
+                        <div class="cbp_tmlabel">
+                            <p>
+                                全面推行“大学科”背景的材料科学与工程专业人才培养体系，将金属材料工程专业、无机非金属材料工程专业、高分子材料工程专业合并，成立材料科学与工程专业，同年开始按材料科学与工程专业招生</p>
+                        </div>
+                    </li>
+
+                    <li>
+                        <time class="cbp_tmtime" datetime="2013-04-13 05:36"><span>2007</span></time>
+                        <div class="cbp_tmicon cbp_tmicon-mail"></div>
+                        <div class="cbp_tmlabel">
+                            <p>材料学被遴选为国家重点学科，材料科学与工程一级学科被认定为国家一级学科重点学科</p>
+                        </div>
+                    </li>
+
+                    <li>
+                        <time class="cbp_tmtime" datetime="2013-04-13 05:36"><span>2008</span></time>
+                        <div class="cbp_tmicon cbp_tmicon-mail"></div>
+                        <div class="cbp_tmlabel">
+                            <p>经教育部批准形状记忆材料教育部工程研究中心更名为材料复合与功能化教育部工程研究中心； 经天津市批准成立天津市材料复合与功能化重点实验室、天津市现代连接技术重点实验室</p>
+                        </div>
+                    </li>
+
+                    <li>
+                        <time class="cbp_tmtime" datetime="2013-04-13 05:36"><span>2010</span></time>
+                        <div class="cbp_tmicon cbp_tmicon-mail"></div>
+                        <div class="cbp_tmlabel">
+                            <p>国家启动实施“卓越工程师”教育培养计划。“材料科学与工程”、“材料成型及控制工程”于2011年入选国家首批卓越工程师教育培养计划专业</p>
+                        </div>
+                    </li>
+
+                    <li>
+                        <time class="cbp_tmtime" datetime="2013-04-13 05:36"><span>2011</span></time>
+                        <div class="cbp_tmicon cbp_tmicon-mail"></div>
+                        <div class="cbp_tmlabel">
+                            <p>天津大学材料科学与工程学院开办战略性新兴产业专业—功能材料专业，该专业于2011年正式招生，材料化学专业于2011年停止本科生招生</p>
+                        </div>
+                    </li>
+
+                    <li>
+                        <time class="cbp_tmtime" datetime="2013-04-13 05:36"><span>2011</span></time>
+                        <div class="cbp_tmicon cbp_tmicon-mail"></div>
+                        <div class="cbp_tmlabel">
+                            <p>天津大学与日本国立物质材料研究所（NIMS）成立天津大学-NIMS联合研究中心</p>
+                        </div>
+                    </li>
+
+                    <li>
+                        <time class="cbp_tmtime" datetime="2013-04-13 05:36"><span>2014</span></time>
+                        <div class="cbp_tmicon cbp_tmicon-mail"></div>
+                        <div class="cbp_tmlabel">
+                            <p>天津大学材料科学与工程学院成立先进金属材料研究所，先进高分子材料研究所、先进陶瓷研究所、焊接与先进制造技术研究所及新能源材料研究所</p>
+                        </div>
+                    </li>
                 </ul>
 
             </div>

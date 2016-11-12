@@ -36,7 +36,7 @@ public class TeacherController extends Controller {
             selectParams = new Object[]{value, value, value};
         }
         sb.append("order by " + StringUtil.camel2Underscore(params.getOrderColumn()) + " " + params.getOrderDirection());
-        Page<User> userList = User.dao.paginate(params.getPageNumber(), params.getPageSize(), "select id, account, name, job_title, laboratory", sb.toString(), selectParams);
+        Page<User> userList = User.dao.paginate(params.getPageNumber(), params.getPageSize(), "select id, account, name, job_title, laboratory, order_index, verified", sb.toString(), selectParams);
         renderJson(userList);
     }
 
