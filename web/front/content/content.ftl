@@ -72,7 +72,7 @@
             <#if !page?has_content>
                 <p>暂无内容</p>
             <#else >
-                <@d.detail type=contentType.type detail=page action="content"/>
+                <@d.detail detail=page action="content/${contentType.id}?"/>
             </#if>
         </#if>
     </div>

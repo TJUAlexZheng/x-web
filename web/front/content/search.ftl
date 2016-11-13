@@ -61,7 +61,7 @@
     <div id="sub_right">
         <div id="news_position">现在位置：<span class="news_index"><a href="/">首页</a></span> &gt;&gt; 搜索结果</div>
         <!--<div id="news_titles">学院简介</div-->
-        <@d.detail type="" detail=page action="news/search"/>
+        <@d.detail detail=page action="news/search?searchvalue=${sv}&"/>
     </div>
     <div style="clear:both;"></div>
 </div>
