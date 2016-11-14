@@ -139,14 +139,6 @@
                         </select>
                     </div>
 
-                    <div style="margin-top: 0.8rem">
-                        <label for="">导师资格</label>
-                        <select v-model="teacher.mentorType">
-                            <option :value="1">硕导</option>
-                            <option :value="2">博导</option>
-                        </select>
-                    </div>
-
 
                     <div style="margin-top: 0.8rem">
                         <label for="">实验室</label>
@@ -226,7 +218,6 @@
                     password: "",
                     jobTitle: 1,
                     department: "",
-                    mentorType: 1,
                     phone: "",
                     introduction: "",
                     direction:"",

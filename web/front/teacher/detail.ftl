@@ -68,10 +68,8 @@
                     <#case 1>讲师<#break>
                         <#case 2>副教授<#break>
                         <#case 3>教授<#break>
-                    </#switch>    <#switch teacher.mentor_type>
-                        <#case 1>硕士生导师<#break>
-                        <#case 2>博士生导师<#break>
-                    </#switch></p>
+                    </#switch>
+                </p>
                 <p>${teacher.department!'暂无'}</p>
                 <p>电话： ${teacher.phone!'暂无'}</p>
                 <p>email：  ${teacher.email!'暂无'}</p>

@@ -22,9 +22,6 @@
     <el-row :gutter="20">
         <el-col :span="18" :offset="3">
             <h2>文章内容</h2>
-        <#if id??>
-            <p>创建于:{{this.news.createtime | moment}} - 更新时间:{{this.news.updatetime | moment}}</p>
-        </#if>
             <el-form :inline="true" :model="news" @submit.prevent="onSubmit" class="demo-form-inline">
                 <el-form-item>
                     <img :src="imgUrl" style="width: 400px;height:200px">
@@ -42,11 +39,19 @@
                 <el-form-item>
                     <el-input v-model="news.title" placeholder="标题"></el-input>
                 </el-form-item>
+
+                <el-form-item>
+                    <span class="demonstration">发文时间</span>
+                    <el-date-picker
+                            v-model="news.createtime"
+                            type="datetime"
+                            placeholder="选择日期时间">
+                    </el-date-picker>
+                </el-form-item>
+
                 <el-form-item>
                     <el-input v-model="news.author" placeholder="发稿人"></el-input>
                 </el-form-item>
-
-
 
                 <el-button type="primary" @click.native="save">保存</el-button>
             </el-form>
@@ -58,7 +63,6 @@
             <script id="editor" type="text/plain" style="height:300px;"></script>
         </el-col>
     </el-row>
-
 </div>
 
 <script type="text/javascript">
@@ -74,7 +78,10 @@
         },
         data: {
             news: {
-                <#if type??>type:${type}</#if>},
+                createtime: new Date(),
+                <#if type??>type:${type},</#if>
+                <#if session.user??>author: "${session.user.name}"</#if>
+            },
             formInline: {
                 user: '',
                 region: ''
@@ -92,7 +99,8 @@
                     this.news.overview = UE.getEditor('editor').getContentTxt();
                 }
                 this.$http.post('save', this.news).then(function (json) {
-                    this.news = json.data
+                    this.news = json.data;
+                    this.news.createtime = new Date(json.data.createtime);
                     this.$message('保存成功');
                 }, function (json) {
                     this.$message({
@@ -141,7 +149,8 @@
                     <#if id??>
                         this.$http.get("detail", {params: {id: "${id}"}}).then(
                                 function (json) {
-                                    this.news = json.data
+                                    this.news = json.data;
+                                    this.news.createtime = new Date(json.data.createtime);
                                     UE.getEditor('editor').setContent(this.news.content)
                                 }, function () {
                                     this.$message({

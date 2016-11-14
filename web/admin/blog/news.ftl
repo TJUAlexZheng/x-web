@@ -73,6 +73,7 @@
                                     <th>编号</th>
                                     <th>标题</th>
                                     <th>是否显示</th>
+                                    <th>是否置顶</th>
                                     <th>创建时间</th>
                                     <th>操作</th>
                                 </tr>
@@ -120,30 +121,43 @@
                 {"data": "id"},
                 {"data": "title"},
                 {"data": "verified"},
+                {"data": "top"},
                 {"data": "createtime"},
                 {"data": ""}
             ],
-            "columnDefs": [{
-                "targets": -1,
-//                "width": "10%",
-                "data": null,
-                "defaultContent": '<div class="am-btn-toolbar"> ' +
-                '<div class="am-btn-group am-btn-group-xs"> ' +
-                '<button class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil-square-o"></span>编辑</button>' +
-                '<button class="am-btn am-btn-success am-btn-xs"><span class="am-icon-pencil-square-o"></span>切换状态</button>' +
-                '<button class="am-btn am-btn-danger am-btn-xs"><span class="am-icon-pencil-square-o"></span> 删除 </button>' +
-                '</div>'
-            }, {
-                "render": function (data, type, row) {
-                    return moment(data).format("YYYY-MM-DD HH:mm:ss");
-                },
-                "targets": 3
-            }, {
-                "render": function (data, type, row) {
-                    return data == 1 ? "<span style='background-color: green;color: white;'>显示</span>" : "<span style='background-color: red;color: white;'>不显示</span>";
-                },
-                "targets": 2
-            }]
+            "columnDefs": [
+                {
+                    "targets": 0,
+                    "width": "5%"
+                }, {
+                    "targets": -1,
+                    "data": null,
+                    "defaultContent": '<div class="am-btn-toolbar"> ' +
+                    '<div class="am-btn-group am-btn-group-xs"> ' +
+                    '<button class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil-square-o"></span>编辑</button>' +
+                    '<button class="am-btn am-btn-success am-btn-xs"><span class="am-icon-pencil-square-o"></span>切换状态</button>' +
+                    '<button class="am-btn am-btn-primary am-btn-xs"><span class="am-icon-pencil-square-o"></span>切换置顶</button>' +
+                    '<button class="am-btn am-btn-danger am-btn-xs"><span class="am-icon-pencil-square-o"></span> 删除 </button>' +
+                    '</div>'
+                }, {
+                    "render": function (data, type, row) {
+                        return moment(data).format("YYYY-MM-DD HH:mm:ss");
+                    },
+                    "targets": 4,
+                    "width": "10%"
+                }, {
+                    "render": function (data, type, row) {
+                        return data == 1 ? "<span style='background-color: green;color: white;'>显示</span>" : "<span style='background-color: red;color: white;'>不显示</span>";
+                    },
+                    "width": "5%",
+                    "targets": 2
+                }, {
+                    "render": function (data, type, row) {
+                        return data == 1 ? "<span style='background-color: green;color: white;'>是</span>" : "<span style='background-color: red;color: white;'>否</span>";
+                    },
+                    "width": "5%",
+                    "targets": 3
+                }]
         });
 
         $('#dt tbody').on('click', 'button', function (event) {
@@ -171,6 +185,15 @@
                     btn: ['确定', '取消'] //按钮
                 }, function () {
                     $.get("/admin/news/verified?id=" + data.id + "&show=" + !data.verified, function (data) {
+                        layer.msg('成功', {icon: 1});
+                        table.draw();
+                    })
+                });
+            } else if ($(this).hasClass("am-btn-primary")) {
+                layer.confirm('确定切换置顶？', {
+                    btn: ['确定', '取消'] //按钮
+                }, function () {
+                    $.get("/admin/news/top?id=" + data.id + "&top=" + !data.top, function (data) {
                         layer.msg('成功', {icon: 1});
                         table.draw();
                     })

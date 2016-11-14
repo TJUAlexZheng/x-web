@@ -79,6 +79,7 @@ public class TeacherController extends Controller {
     public void getTeacher() {
         User model = getSessionAttr(TEACHER_KEY);
         model = User.dao.findById(model.getId());
+        model.remove("password");
         renderJson(model);
     }
 
@@ -102,6 +103,10 @@ public class TeacherController extends Controller {
             model.setPassword(DigestUtils.md5Hex(model.getPassword()));
         } else {
             model.remove("password");
+        }
+
+        if (model.getImg() == null || model.getImg().length == 0) {
+            model.remove("img");
         }
 
         model.update();

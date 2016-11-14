@@ -99,7 +99,7 @@
                 </div>
             </div>
             <div class="newsBox floatRight">
-                <div class="mainNewsTitle">通知通告<span><a href="/content/83" target="_blank" style="font-size: 1.3rem">>>more</a></span>
+                <div class="mainNewsTitle">通知公告<span><a href="/content/83" target="_blank" style="font-size: 1.3rem">>>more</a></span>
                 </div>
                 <div class="mainNewsLine">
                     <div class="mainNewsLineBlue floatLeft"></div>
@@ -133,8 +133,7 @@
     </div>
     <div id="mainEnter">
         <div class="mainLeft">
-            <a href="/content/23" target="_blank" class="floatLeft"><img
-                    src="../assets/i/2015_contact.jpg"/>
+            <a href="/content/23" target="_blank" class="floatLeft"><img src="../assets/i/2015_contact.jpg"/>
             </a>
             <a href="/mail" class="floatRight"><img src="../assets/i/2015_login.jpg"/>
             </a>

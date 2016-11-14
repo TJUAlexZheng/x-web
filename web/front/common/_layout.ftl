@@ -36,6 +36,13 @@
     <link rel="canonical" href="http://www.example.com/">
     -->
 
+    <!--[if lt IE 10]>
+    <script>
+        alert("您的浏览器版本太低，建议使用Chrome, Firefox, Safari, IE 10以上的浏览器，点击确定下载最新的浏览器");
+        window.location = "http://www.google.cn/intl/zh-CN/chrome/browser/desktop/index.html"
+    </script>
+    <![endif]-->
+
     <link rel="stylesheet" href="/assets/css/amazeui.flat.min.css">
     <link rel="stylesheet" href="/assets/css/app.css">
     <script src="/assets/js/jquery-1.12.4.min.js"></script>

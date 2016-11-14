@@ -1,7 +1,11 @@
 <#macro detail detail action>
 <div id="news_contents">
     <#list detail.list as item>
-        <li><a href="/news/${item.id}">${item.title}</a> ${item.updatetime}</li>
+        <li>
+            <a href="/news/${item.id}">
+                <#if item.top == 1><span style="color: red">[顶]</span></#if>${item.title}
+            </a> ${item.createtime}
+        </li>
     </#list>
 </div>
     <#if detail.totalPage gt 0>

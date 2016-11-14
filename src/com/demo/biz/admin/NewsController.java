@@ -68,7 +68,7 @@ public class NewsController extends Controller {
     public void save() {
         News model = JsonKit.parse(HttpKit.readData(getRequest()), News.class);
         if (model.getId() != null) {
-            model.remove("createtime", "updatetime", "type");
+            model.remove("updatetime", "type");
             model.update();
             model = model.findById(model.getId());
         } else {
@@ -101,7 +101,6 @@ public class NewsController extends Controller {
         }
         renderJson(news);
     }
-
     //打开查看新闻详情页面
     public void content() {
         setAttr("id", getPara("id"));
@@ -114,6 +113,14 @@ public class NewsController extends Controller {
         Integer id = getParaToInt("id");
         Boolean verified = getParaToBoolean("show", false);
         Db.update("update news set verified = ? where id = ?", verified, id);
+        renderJson();
+    }
+
+    //置顶新闻
+    public void top() {
+        Integer id = getParaToInt("id");
+        Boolean top = getParaToBoolean("top", false);
+        Db.update("update news set top = ? where id = ?", top, id);
         renderJson();
     }
 

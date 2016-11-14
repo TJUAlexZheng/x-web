@@ -41,14 +41,14 @@ public class PageController extends Controller {
     private List<News> getNews(int type, int size, boolean needImg) {
         List<News> newsList = new ArrayList<>();
         if (!needImg) {
-            newsList = News.dao.find("select * from news where type = ? and top = ? and verified = 1", type, 1);
+            newsList = News.dao.find("select * from news where type = ? and top = ? and verified = 1 order by createtime desc", type, 1);
             if (newsList.size() < size) {
-                newsList.addAll(News.dao.find("select * from news where type = ? and top = ? and verified = 1", type, 0));
+                newsList.addAll(News.dao.find("select * from news where type = ? and top = ? and verified = 1 order by createtime desc", type, 0));
             }
         } else {
-            newsList = News.dao.find("select * from news where type = ? and top = ? and img is not null and verified = 1", type, 1);
+            newsList = News.dao.find("select * from news where type = ? and top = ? and img is not null and verified = 1 order by createtime desc", type, 1);
             if (newsList.size() < size) {
-                newsList.addAll(News.dao.find("select * from news where type = ? and top = ? and img is not null and verified = 1", type, 0));
+                newsList.addAll(News.dao.find("select * from news where type = ? and top = ? and img is not null and verified = 1 order by createtime desc", type, 0));
             }
         }
         if (newsList.size() > size) {

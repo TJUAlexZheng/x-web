@@ -15,13 +15,8 @@ public class NewsController extends Controller {
             setAttr("news", news);
 
             Category hT = Category.dao.findById(news.getType());//最外层的板块
-            Category cT;//当前板块
-            if (hT.getParentId() == null) {
-                cT = Category.dao.firstSubContentType(hT.getId());
-            } else {
-                cT = hT;
-            }
-            setAttr("contentType", cT);
+
+            setAttr("contentType", hT);
             while (hT.getParentId() != null) {
                 hT = Category.dao.findById(hT.getParentId());
             }

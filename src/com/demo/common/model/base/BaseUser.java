@@ -73,14 +73,6 @@ public abstract class BaseUser<M extends BaseUser<M>> extends Model<M> implement
         set("award_type", awardType);
     }
 
-    public java.lang.Integer getMentorType() {
-        return get("mentor_type");
-    }
-
-    public void setMentorType(java.lang.Integer mentorType) {
-        set("mentor_type", mentorType);
-    }
-
     public java.lang.String getDepartment() {
         return get("department");
     }
