@@ -154,6 +154,34 @@
                     </div>
 
                     <div style="margin-top: 0.8rem">
+                        <label for="">杰出人才类型</label>
+                        <select v-model="teacher.awardType">
+                            <option :value="1">国家千人计划</option>
+                            <option :value="2">国家杰出青年基金获得者</option>
+                            <option :value="3">国家级教学名师</option>
+                            <option :value="4">国家优秀青年基金获得者</option>
+                            <option :value="5">教育部“新世纪人才”</option>
+                            <option :value="6">天津市千人计划</option>
+                            <option :value="7">天津市中青年科技创新领军人才</option>
+                            <option :value="8">天津市青年科技优秀人才</option>
+                            <option :value="9">天津市重点领域创新团队</option>
+                            <option :value="10">天津市青年拔尖人才</option>
+                            <option :value="11">万人计划</option>
+                            <option :value="12">天津市教学名师</option>
+                            <option :value="13">天津市131创新团队</option>
+                            <option :value="14">天津市131创新型人才工程第一层次</option>
+                        </select>
+                    </div>
+
+                    <div class="am-form-group am-form-icon am-form-feedback"
+                         :class="{'am-form-error':!teacher.awardName, 'am-form-success':!!teacher.awardName}">
+                        <label>奖项名称</label>
+                        <input class="am-form-field" type="text" v-model="teacher.awardName"
+                               placeholder="奖项名称">
+                        <span :class="{'am-icon-check':!!teacher.awardName, 'am-icon-times':!teacher.awardName}"></span>
+                    </div>
+
+                    <div style="margin-top: 0.8rem">
                         <label for="">个人简历</label>
                         <div>
                             <script id="ueintroduction" type="text/plain" style="height:300px;"></script>

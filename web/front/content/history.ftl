@@ -62,7 +62,7 @@
         <link rel="stylesheet" type="text/css" href="/assets/css/component.css"/>
         <script src="/assets/js/modernizr.custom.js"></script>
         <div class="container">
-            <div class="main">
+            <div class="main" style="width: 500px;position: relative;margin: 0 auto;">
                 <ul class="cbp_tmtimeline">
 
                     <li>

@@ -9,12 +9,13 @@
 .cbp_tmtimeline:before {
     content: '';
     position: absolute;
-    top: 0;
+    top: 7px;
     bottom: 0;
-    width: 10px;
-    background: #afdcf8;
+    width: 5px;
+    /*background: #afdcf8;*/
+    background: #ccc;
     left: 20%;
-    margin-left: -10px;
+    margin-left: -8px;
 }
 
 /* The date/time */
@@ -37,7 +38,7 @@
 }
 
 .cbp_tmtimeline > li .cbp_tmtime span:last-child {
-    font-size: 2em;
+    font-size: 1.5em;
     color: #3594cb;
 }
 
@@ -93,8 +94,8 @@
 
 /* The icons */
 .cbp_tmtimeline > li .cbp_tmicon {
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
     font-family: 'ecoico';
     speak: none;
     font-style: normal;
@@ -110,25 +111,10 @@
     border-radius: 50%;
     box-shadow: 0 0 0 8px #afdcf8;
     text-align: center;
-    left: 20%;
-    margin: 0 0 0 -25px;
+    left: 9.1rem;
+    margin: 14px 0 0 -25px;
 }
 
-.cbp_tmicon-phone:before {
-    content: "\e000";
-}
-
-.cbp_tmicon-screen:before {
-    content: "\e001";
-}
-
-.cbp_tmicon-mail:before {
-    content: "\e002";
-}
-
-.cbp_tmicon-earth:before {
-    content: "\e003";
-}
 
 /* Example Media Queries */
 @media screen and (max-width: 65.375em) {

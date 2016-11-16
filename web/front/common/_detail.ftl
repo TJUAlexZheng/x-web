@@ -3,7 +3,7 @@
     <#list detail.list as item>
         <li>
             <a href="/news/${item.id}">
-                <#if item.top == 1><span style="color: red">[顶]</span></#if>${item.title}
+                <#if item.top == 1><span style="color: red">${item.title}<#else >${item.title}</span></#if>
             </a> ${item.createtime}
         </li>
     </#list>

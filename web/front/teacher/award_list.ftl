@@ -100,7 +100,8 @@
                 <h1>${k.key}</h1>
                 <ul>
                     <#list k.value as t>
-                        <li><a href="/teacher/detail/${t.id}"><#if strategy == "award">${t.awardName}
+                        <li style="width:100%;text-align: left"><a
+                                href="/teacher/detail/${t.id}"><#if strategy == "award">${t.awardName}
                             : </#if>${t.name}</a></li>
                     </#list>
                     <#if strategy == "jobTitle">

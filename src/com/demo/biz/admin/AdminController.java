@@ -8,6 +8,9 @@ import com.jfinal.aop.Clear;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.interceptor.SessionInViewInterceptor;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -47,7 +50,20 @@ public class AdminController extends Controller {
             setSessionAttr(USER_KEY, admin.get());
             //检查用户权限并存入session
             Optional<AdminPrivileges> privileges = Optional.ofNullable(AdminPrivileges.dao.findById(admin.get().getId()));
-            setSessionAttr(USER_PRIVILEGES_KEY, privileges.isPresent() ? privileges.get().getPrivileges().substring(1, privileges.get().getPrivileges().length() - 1).split(",") : "");
+            if (privileges.isPresent()) {
+                List<String> strings = new LinkedList<>(Arrays.asList(privileges.get().getPrivileges().substring(1, privileges.get().getPrivileges().length() - 1).split(",")));
+                if (strings.contains("2")) {
+                    strings.add("14");
+                }
+                if (strings.contains("4")) {
+                    strings.add("30");
+                }
+                String[] res = new String[strings.size()];
+                setSessionAttr(USER_PRIVILEGES_KEY, strings.toArray(res));
+            } else {
+                setSessionAttr(USER_PRIVILEGES_KEY, "");
+            }
+
             renderJson("verify", true);
         } else {
             renderJson("verify", false);

@@ -8,7 +8,7 @@
 </ul>
 <ul class="ui-banner-slogans">
     <#list banneritems as bannerItem>
-        <li class="ui-line">
+        <li class="ui-line" onclick="window.location.href='/news/${bannerItem.id}'">
             <div class="ullinehover">
                 <div class="ui-bnnerimg floatLeft">
                     <img src="/upload/${bannerItem.img}" alt="" width="103"/>

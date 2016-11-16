@@ -126,23 +126,32 @@
         "name": "材料科学与工程学院",
         "children": [
             {
-                "name": "院行政综合办公室"
+                "name": "院行政综合办公室",
+                "url": "15"
             }, {
-                "name": "院党委学生工作办公室/团委办公室"
+                "name": "院党委学生工作办公室/团委办公室",
+                "url": "16"
             }, {
-                "name": "先进高分子材料研究所"
+                "name": "先进高分子材料研究所",
+                "url": "17"
             }, {
-                "name": "先进金属材料研究所"
+                "name": "先进金属材料研究所",
+                "url": "18"
             }, {
-                "name": "焊接与先进制造技术研究所"
+                "name": "焊接与先进制造技术研究所",
+                "url": "19"
             }, {
-                "name": "先进陶瓷研究所"
+                "name": "先进陶瓷研究所",
+                "url": "20"
             }, {
-                "name": "新能源材料研究所"
+                "name": "新能源材料研究所",
+                "url": "21"
             }, {
-                "name": "天津大学-日本国立物质材料研究所（NIMS）联合研究中心"
+                "name": "天津大学-日本国立物质材料研究所（NIMS）联合研究中心",
+                "url": "22"
             }, {
-                "name": "教学与大型仪器实验中心"
+                "name": "教学与大型仪器实验中心",
+                "url": "90"
             }
         ]
     }
@@ -214,7 +223,7 @@
                 })
                 .style("fill-opacity", 1e-6)
                 .on("click", function (d) {
-                    console.log(d)
+                    window.location.href = "/content/" + d.url
                 });
 
         // Transition nodes to their new position.

@@ -16,13 +16,33 @@ public class User extends BaseUser<User> {
 
     public String award() {
         if (this.getAwardType() == 1) {
-            return "长江学者奖励计划";
+            return "国家千人计划";
         } else if (this.getAwardType() == 2) {
-            return "国家重点基础研究发展规划(973)首席科学家";
-        } else if (this.getAwardType() == 3) {
             return "国家杰出青年基金获得者";
+        } else if (this.getAwardType() == 3) {
+            return "国家级教学名师";
         } else if (this.getAwardType() == 4) {
-            return "国家千人计划入选者";
+            return "国家优秀青年基金获得者";
+        } else if (this.getAwardType() == 5) {
+            return "教育部“新世纪人才”";
+        } else if (this.getAwardType() == 6) {
+            return "天津市千人计划";
+        } else if (this.getAwardType() == 7) {
+            return "天津市中青年科技创新领军人才";
+        } else if (this.getAwardType() == 8) {
+            return "天津市青年科技优秀人才";
+        } else if (this.getAwardType() == 9) {
+            return "天津市重点领域创新团队";
+        } else if (this.getAwardType() == 10) {
+            return "天津市青年拔尖人才";
+        } else if (this.getAwardType() == 11) {
+            return "万人计划";
+        } else if (this.getAwardType() == 12) {
+            return "天津市教学名师";
+        } else if (this.getAwardType() == 13) {
+            return "天津市131创新团队";
+        } else if (this.getAwardType() == 14) {
+            return "天津市131创新型人才工程第一层次";
         }
         return null;
     }
