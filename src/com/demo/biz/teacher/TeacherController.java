@@ -37,7 +37,7 @@ public class TeacherController extends Controller {
         //查看杰出人才
         if (getParaToInt() == 29) {
             groupStrategy = User::award;
-            sql = "select * from user where award_type is not null and verified = 1 order by order_index asc,  job_title desc, account asc";
+            sql = "select * from user where award_type > 0 and verified = 1 order by order_index asc,  job_title desc, account asc";
             setAttr("strategy", "award");
         } else if (getParaToInt() == 25) {  //查看教师简介
             groupStrategy = User::laboratory;

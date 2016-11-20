@@ -14,7 +14,6 @@
                     <img src="/upload/${bannerItem.img}" alt="" width="103"/>
                 </div>
                 <div class="ui-bnnerp floatRight">
-                    <h3 style="margin-top: 10px;">${bannerItem.title}</h3>
                     <p>${bannerItem.overview}</p>
                 </div>
             </div>

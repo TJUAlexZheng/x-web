@@ -57,7 +57,7 @@
                 <input type="text" name="searchvalue" class="form-control-inline" placeholder="请输入查询内容">
             </form>
             <div class="language">
-                <a href="english/index.html" target="_blank">English</a>
+                <a href="http://211.81.54.98/english/" target="_blank">English</a>
             </div>
 
         </div>
@@ -137,8 +137,9 @@
             </a>
             <a href="/mail" class="floatRight"><img src="../assets/i/2015_login.jpg"/>
             </a>
+
         </div>
-        <div class="mainRight"><a href="/content/89" target="_blank"><img src="../assets/i/mainTip.jpg"/></a>
+        <div class="mainRight"><a href="/content/89" target="_blank"><img src="../assets/i/mainTip.png"/></a>
         </div>
         <div class="cb"></div>
     </div>

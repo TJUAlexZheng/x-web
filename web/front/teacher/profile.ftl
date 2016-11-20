@@ -156,6 +156,7 @@
                     <div style="margin-top: 0.8rem">
                         <label for="">杰出人才类型</label>
                         <select v-model="teacher.awardType">
+                            <option :value="0">无</option>
                             <option :value="1">国家千人计划</option>
                             <option :value="2">国家杰出青年基金获得者</option>
                             <option :value="3">国家级教学名师</option>

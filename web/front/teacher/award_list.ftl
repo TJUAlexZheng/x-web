@@ -32,7 +32,7 @@
 <div class="wrap">
     <div class="middles">
         <div id="banner">
-            <div class="language"><a href="english/index.html" target="_blank">English</a></div>
+            <div class="language"><a href="http://211.81.54.98/english/" target="_blank">English</a></div>
         </div>
     <#--渲染菜单头部-->
         <@m.menu menuItems = types/>
@@ -100,9 +100,13 @@
                 <h1>${k.key}</h1>
                 <ul>
                     <#list k.value as t>
-                        <li style="width:100%;text-align: left"><a
-                                href="/teacher/detail/${t.id}"><#if strategy == "award">${t.awardName}
-                            : </#if>${t.name}</a></li>
+                        <li <#if strategy == "award">style="text-align: left;width: 100%" </#if>><a
+                                href="/teacher/detail/${t.id}">
+                            <#if strategy == "award">
+                                <#if t.awardName?has_content>
+                                ${t.awardName} :
+                                </#if>
+                            </#if>${t.name}</a></li>
                     </#list>
                     <#if strategy == "jobTitle">
                         <div style="clear:both"></div></#if>
