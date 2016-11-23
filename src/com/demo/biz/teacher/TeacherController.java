@@ -5,6 +5,7 @@ import com.demo.biz.interceptors.MenuInterceptors;
 import com.demo.biz.interceptors.SubMenuInterceptor;
 import com.demo.biz.interceptors.TeacherAuthInterceptor;
 import com.demo.common.model.User;
+import com.demo.common.model.UserAward;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
 import com.jfinal.core.Controller;
@@ -37,9 +38,13 @@ public class TeacherController extends Controller {
             //变量名需要重新设计
             Object res = CacheKit.get("teacher", "bestTeacher", () -> {
                 Map<String, List<User>> result = new LinkedHashMap<>();
-                List<User> bt = User.dao.find("select * from user where award_type > 0 and verified = 1 order by order_index asc,  job_title desc, account asc");
-                Map<String, List<User>> t = bt.stream().collect(Collectors.groupingBy(User::award));
-                t.entrySet().stream().sorted((o1, o2) -> new Long(o1.getValue().get(0).getAwardType() - o2.getValue().get(0).getAwardType()).intValue()).forEachOrdered(x -> result.put(x.getKey(), x.getValue()));
+                List<User> bt = User.dao.find("select id, account, name, user_award.award_id, user_award.award_name from user, user_award where `user`.id = user_award.user_id and user_award.award_id > 0 and `user`.verified = 1 order by order_index asc,  job_title desc, account asc");
+                Map<String, List<User>> t = bt.stream().collect(Collectors.groupingBy(u -> User.award(u.get("award_id"))));
+                t.entrySet().stream().sorted((o1, o2) -> {
+
+                    return o1.getValue().get(0).<Long>get("award_id").intValue() - o2.getValue().get(0).<Long>get("award_id").intValue();
+
+                }).forEachOrdered(x -> result.put(x.getKey(), x.getValue()));
                 return result;
             });
             setAttr("teachers", res);
@@ -91,6 +96,39 @@ public class TeacherController extends Controller {
         model.remove("password");
         renderJson(model);
     }
+
+    @Before({TeacherAuthInterceptor.class, SessionInViewInterceptor.class})
+    public void saveAward() {
+        User model = getSessionAttr(TEACHER_KEY);
+
+        UserAward data = JsonKit.parse(HttpKit.readData(getRequest()), UserAward.class);
+
+        if (data.getAwardId() == null) {
+            renderError(404);
+            return;
+        }
+
+        if (data.getUserId() != null && data.getUserId() == model.getId().intValue()) {
+            data.update();
+        } else {
+            data.setUserId(model.getId());
+            data.save();
+        }
+
+        renderJson(model);
+    }
+
+    @Before({TeacherAuthInterceptor.class, SessionInViewInterceptor.class})
+    public void deleteAward() {
+        User model = getSessionAttr(TEACHER_KEY);
+        Integer awardId = getParaToInt("awardId");
+        try {
+            UserAward.dao.deleteById(awardId, model.getId());
+        } catch (Exception ex) {
+            renderError(404);
+        }
+    }
+
 
     @Before({TeacherAuthInterceptor.class, SessionInViewInterceptor.class})
     public void saveIntroduction() {

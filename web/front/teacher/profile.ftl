@@ -41,6 +41,17 @@
     <script type="text/javascript" charset="utf-8" src="/assets/ueeditor/lang/zh-cn/zh-cn.js"></script>
     <script src="/assets/js/vue2.0.js"></script>
     <script type="text/javascript" charset="utf-8" src="/assets/js/vue-resource.min.js"></script>
+    <style>
+
+        li.todo:hover {
+            color: green;
+            cursor: pointer;
+        }
+
+        li.todo:hover a {
+            display: inline !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -155,32 +166,51 @@
                     </div>
 
                     <div style="margin-top: 0.8rem">
-                        <label for="">杰出人才类型</label>
-                        <select v-model="teacher.awardType">
-                            <option :value="0">无</option>
-                            <option :value="1">国家千人计划</option>
-                            <option :value="2">国家杰出青年基金获得者</option>
-                            <option :value="3">国家级教学名师</option>
-                            <option :value="4">国家优秀青年基金获得者</option>
-                            <option :value="5">教育部“新世纪人才”</option>
-                            <option :value="6">天津市千人计划</option>
-                            <option :value="7">天津市中青年科技创新领军人才</option>
-                            <option :value="8">天津市青年科技优秀人才</option>
-                            <option :value="9">天津市重点领域创新团队</option>
-                            <option :value="10">天津市青年拔尖人才</option>
-                            <option :value="11">万人计划</option>
-                            <option :value="12">天津市教学名师</option>
-                            <option :value="13">天津市131创新团队</option>
-                            <option :value="14">天津市131创新型人才工程第一层次</option>
-                        </select>
-                    </div>
+                        <div class="am-form-group am-form-icon am-form-feedback">
+                            <label>杰出人才类型</label>
+                            <select v-model="newAward.awardId">
+                                <option :value="0">无</option>
+                                <option :value="1">国家千人计划</option>
+                                <option :value="2">国家杰出青年基金获得者</option>
+                                <option :value="3">国家级教学名师</option>
+                                <option :value="4">国家优秀青年基金获得者</option>
+                                <option :value="5">教育部“新世纪人才”</option>
+                                <option :value="6">天津市千人计划</option>
+                                <option :value="7">天津市中青年科技创新领军人才</option>
+                                <option :value="8">天津市青年科技优秀人才</option>
+                                <option :value="9">天津市重点领域创新团队</option>
+                                <option :value="10">天津市青年拔尖人才</option>
+                                <option :value="11">万人计划</option>
+                                <option :value="12">天津市教学名师</option>
+                                <option :value="13">天津市131创新团队</option>
+                                <option :value="14">天津市131创新型人才工程第一层次</option>
+                            </select>
+                        </div>
+                        <div class="am-form-group am-form-icon am-form-feedback">
+                            <label>描述</label>
+                            <input class="am-form-field" type="text" v-model="newAward.awardName" placeholder="获奖描述">
+                        </div>
+                        <div class="am-form-group am-form-icon am-form-feedback">
+                            <button type="button" class="am-btn am-btn-primary" @click.prevent="saveAward"
+                                    style="margin-top:25px">保存获奖荣誉
+                            </button>
+                        </div>
+                        <hr>
 
-                    <div class="am-form-group am-form-icon am-form-feedback"
-                         :class="{'am-form-error':!teacher.awardName, 'am-form-success':!!teacher.awardName}">
-                        <label>奖项名称</label>
-                        <input class="am-form-field" type="text" v-model="teacher.awardName"
-                               placeholder="奖项名称">
-                        <span :class="{'am-icon-check':!!teacher.awardName, 'am-icon-times':!teacher.awardName}"></span>
+                        <label>我的荣誉:</label>
+
+                        <ul class="todo-list">
+                            <li v-for="awd in teacher.awards" class="todo" :key="awd.awardId">
+                                <div>
+                                    <span @click.prevent="editAward(awd)">
+                                        {{ awd.awardId | awardName}}
+                                        <strong v-if="awd.awardName">: {{awd.awardName}}</strong>
+                                    </span>
+                                    <a type="button" @click.prevent="deleteAward(awd)"
+                                       style="color: #ff3d46;display: none"> 删除</a>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
 
                     <div style="margin-top: 0.8rem">
@@ -255,6 +285,10 @@
                     achievement: "",
                     img: ""
                 },
+                newAward: {
+                    awardId: "",
+                    awardName: ""
+                }
 
             },
             methods: {
@@ -286,6 +320,31 @@
                         vm.teacher.img = e.target.result.substring(e.target.result.indexOf(",") + 1);
                     };
                     reader.readAsDataURL(file);
+                },
+                saveAward: function () {
+                    this.$http.post('saveAward', this.newAward).then(function (json) {
+                        if (!this.newAward.userId) {
+                            this.teacher.awards.push(this.newAward);
+                        }
+                        this.newAward = {}
+                        alert('操作成功');
+
+                    }, function (json) {
+                        alert('操作失败，请重试');
+                    });
+                    console.log(this.newAward)
+                },
+                editAward: function (awd) {
+                    this.newAward = awd;
+                    console.log((awd))
+                },
+                deleteAward: function (awd) {
+                    this.$http.get("deleteAward?awardId=" + awd.awardId).then(
+                            function (json) {
+                                alert('操作成功');
+                                this.teacher.awards.splice(this.teacher.awards.indexOf(awd), 1)
+                            }
+                    );
                 }
             },
             created: function () {
@@ -294,16 +353,16 @@
                             json.data.img = json.data.img || ""
                             this.teacher = json.data;
                             ue_i.ready(function () {
-                                ue_i.setContent(vr.teacher.introduction);
+                                ue_i.setContent(vr.teacher.introduction || "");
                             })
                             ue_d.ready(function () {
-                                ue_d.setContent(vr.teacher.direction);
+                                ue_d.setContent(vr.teacher.direction || "");
                             })
                             ue_p.ready(function () {
-                                ue_p.setContent(vr.teacher.project);
+                                ue_p.setContent(vr.teacher.project || "");
                             })
                             ue_a.ready(function () {
-                                ue_a.setContent(vr.teacher.achievement);
+                                ue_a.setContent(vr.teacher.achievement || "");
                             })
                         }
                 );
@@ -312,6 +371,43 @@
             computed: {
                 imageSrc: function () {
                     return "data:image/jpeg;base64," + this.teacher.img
+                }
+            },
+            filters: {
+                awardName: function (type) {
+                    console.log(type)
+                    switch (type) {
+                        case 1:
+                            return "国家千人计划";
+                        case 2:
+                            return "国家杰出青年基金获得者";
+                        case 3:
+                            return "国家级教学名师";
+                        case 4:
+                            return "国家优秀青年基金获得者";
+                        case 5:
+                            return "教育部“新世纪人才”";
+                        case 6:
+                            return "天津市千人计划";
+                        case 7:
+                            return "天津市中青年科技创新领军人才";
+                        case 8:
+                            return "天津市青年科技优秀人才";
+                        case 9:
+                            return "天津市重点领域创新团队";
+                        case 10:
+                            return "天津市青年拔尖人才";
+                        case 11:
+                            return "万人计划";
+                        case 12:
+                            return "天津市教学名师";
+                        case 13:
+                            return "天津市131创新团队";
+                        case 14:
+                            return "天津市131创新型人才工程第一层次";
+                        default:
+                            return "异常数据";
+                    }
                 }
             }
         });

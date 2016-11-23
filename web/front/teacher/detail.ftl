@@ -64,16 +64,31 @@
             </div>
             <div class="am-u-sm-7">
                 <p>${teacher.name}
-                    <#switch teacher.job_title>
-                    <#case 1>讲师<#break>
-                        <#case 2>副教授<#break>
-                        <#case 3>教授<#break>
-                    </#switch>
+                    <#if teacher.id == 175>
+                    </p><p>院党委副书记</p>
+                    <#elseif  teacher.id == 176>
+                        </p><p>院党委书记</p>
+                    <#else >
+                        <#switch teacher.job_title>
+                            <#case 1>讲师<#break>
+                            <#case 2>副教授<#break>
+                            <#case 3>教授<#break>
+                        </#switch>
+
+                    </#if>
                 </p>
-                <p>${teacher.department!'暂无'}</p>
+                    <#if teacher.id != 175 && teacher.id != 176>
+                        <p>${teacher.department!'暂无'}</p>
+                    </#if>
                 <p>电话： ${teacher.phone!'暂无'}</p>
-                <p>email：  ${teacher.email!'暂无'}</p>
-                <p>研究所： ${teacher.laboratory()!'暂无'}</p>
+                    <p>Email：  ${teacher.email!'暂无'}</p>
+                    <#if teacher.id == 175>
+                        办公地点: 材料学院 31-345(北洋园)
+                    <#elseif  teacher.id == 176>
+                        办公地点: 材料学院 31-348(北洋园)
+                    <#else >
+                        <p>研究所： ${teacher.laboratory()!'暂无'}</p>
+                    </#if>
             </div>
         </div>
 
@@ -81,21 +96,22 @@
             <h2>个人简历</h2>
             <div>${teacher.introduction!'暂无'}</div>
         </div>
+        <#if teacher.id != 175 && teacher.id != 176>
+            <div style="border-bottom:1px #c7d2eb dotted">
+                <h2>研究方向</h2>
+                <div>${teacher.direction!'暂无'}</div>
+            </div>
 
-        <div style="border-bottom:1px #c7d2eb dotted">
-            <h2>研究方向</h2>
-            <div>${teacher.direction!'暂无'}</div>
-        </div>
+            <div style="border-bottom:1px #c7d2eb dotted">
+                <h2>承担项目</h2>
+                <div>${teacher.project!'暂无'}</div>
+            </div>
 
-        <div style="border-bottom:1px #c7d2eb dotted">
-            <h2>承担项目</h2>
-            <div>${teacher.project!'暂无'}</div>
-        </div>
-
-        <div style="border-bottom:1px #c7d2eb dotted">
-            <h2>标志性成果</h2>
-            <div>${teacher.achievement!'暂无'}</div>
-        </div>
+            <div style="border-bottom:1px #c7d2eb dotted">
+                <h2>标志性成果</h2>
+                <div>${teacher.achievement!'暂无'}</div>
+            </div>
+        </#if>
     </div>
     <div style="clear:both;"></div>
 </div>

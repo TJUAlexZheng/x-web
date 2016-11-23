@@ -24,6 +24,8 @@ public class _MappingKit {
         arp.addMapping("news", "id", News.class);
         arp.addMapping("recommended_site", "id", RecommendedSite.class);
         arp.addMapping("user", "id", User.class);
+        // Composite Primary Key order: award_id,user_id
+        arp.addMapping("user_award", "award_id,user_id", UserAward.class);
     }
 }
 
