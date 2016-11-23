@@ -49,17 +49,19 @@ public class User extends BaseUser<User> {
 
     public String laboratory() {
         if (this.getLaboratory() == 1) {
-            return "新能源材料研究所";
+            return "先进高分子材料研究所";
         } else if (this.getLaboratory() == 2) {
-            return "TJU-NIMS";
+            return "先进金属材料研究所";
         } else if (this.getLaboratory() == 3) {
-            return "焊接与先进制造研究所";
-        } else if (this.getLaboratory() == 4) {
-            return "先进高分子研究所";
-        } else if (this.getLaboratory() == 5) {
-            return "金属材料研究所";
-        } else if (this.getLaboratory() == 6) {
             return "先进陶瓷研究所";
+        } else if (this.getLaboratory() == 4) {
+            return "焊接与先进制造技术研究所";
+        } else if (this.getLaboratory() == 5) {
+            return "新能源材料研究所";
+        } else if (this.getLaboratory() == 6) {
+            return "天津大学-日本国立物质材料研究所（NIMS）联合研究中心";
+        } else if (this.getLaboratory() == 7) {
+            return "教学与大型仪器实验中心";
         }
         return "其他";
     }

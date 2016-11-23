@@ -26,7 +26,7 @@ public class PageController extends Controller {
      */
     @ActionKey("/")
     public void index() {
-        List<News> newsOnBanner = getNews(TYPE_DYNAMIC_NEWS, 5, true);
+        List<News> newsOnBanner = News.dao.find("select * from news where type = 82 and top = true and verified = 1 order by createtime desc");
         setAttr("banner_news", newsOnBanner);
         List<News> noticeNews = getNews(TYPE_NOTICE_NEWS, 3, false);
         setAttr("notice_news", noticeNews);

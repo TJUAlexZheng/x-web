@@ -99,14 +99,14 @@
                     <div style="margin-top: 0.8rem">
                         <label for="">实验室</label>
                         <select v-model="currentItem.laboratory">
-                            <option :value="1">新能源材料研究所</option>
-                            <option :value="2">TJU-NIMS</option>
-                            <option :value="3">焊接与先进制造研究所</option>
-                            <option :value="4">先进高分子研究所</option>
-                            <option :value="5">金属材料研究所</option>
-                            <option :value="6">先进陶瓷研究所</option>
-                            <option :value="7">其他</option>
-
+                            <option :value="1">先进高分子材料研究所</option>
+                            <option :value="2">先进金属材料研究所</option>
+                            <option :value="3">先进陶瓷研究所</option>
+                            <option :value="4">焊接与先进制造技术研究所</option>
+                            <option :value="5">新能源材料研究所</option>
+                            <option :value="6">天津大学-日本国立物质材料研究所（NIMS）联合研究中心</option>
+                            <option :value="7">教学与大型仪器实验中心</option>
+                            <option :value="8">其他</option>
                         </select>
                     </div>
 

@@ -39,11 +39,13 @@
     is also the maximum cache size. Note that when a cache is eternal, timeToLive and
     timeToIdle are not used and do not need to be specified.
     -->
-    <cache name="sampleCache2"
+    <cache name="teacher"
            maxEntriesLocalHeap="1000"
            eternal="true"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="600"
            overflowToDisk="false"
-           memoryStoreEvictionPolicy="FIFO"
+           memoryStoreEvictionPolicy="LFU"
     />
 
     <!--

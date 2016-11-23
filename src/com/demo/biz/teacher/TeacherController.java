@@ -12,12 +12,13 @@ import com.jfinal.ext.interceptor.SessionInViewInterceptor;
 import com.jfinal.kit.HttpKit;
 import com.jfinal.kit.JsonKit;
 import com.jfinal.kit.StrKit;
+import com.jfinal.plugin.ehcache.CacheKit;
 import org.apache.commons.codec.digest.DigestUtils;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -30,25 +31,33 @@ public class TeacherController extends Controller {
 
     @Before(SubMenuInterceptor.class)
     public void index() {
-        List<User> teacherList;
-        Map<String, List<User>> teachers = null;
-        Function<User, String> groupStrategy = null;
-        String sql = null;
         //查看杰出人才
         if (getParaToInt() == 29) {
-            groupStrategy = User::award;
-            sql = "select * from user where award_type > 0 and verified = 1 order by order_index asc,  job_title desc, account asc";
             setAttr("strategy", "award");
+            //变量名需要重新设计
+            Object res = CacheKit.get("teacher", "bestTeacher", () -> {
+                Map<String, List<User>> result = new LinkedHashMap<>();
+                List<User> bt = User.dao.find("select * from user where award_type > 0 and verified = 1 order by order_index asc,  job_title desc, account asc");
+                Map<String, List<User>> t = bt.stream().collect(Collectors.groupingBy(User::award));
+                t.entrySet().stream().sorted((o1, o2) -> new Long(o1.getValue().get(0).getAwardType() - o2.getValue().get(0).getAwardType()).intValue()).forEachOrdered(x -> result.put(x.getKey(), x.getValue()));
+                return result;
+            });
+            setAttr("teachers", res);
         } else if (getParaToInt() == 25) {  //查看教师简介
-            groupStrategy = User::laboratory;
-            sql = "select id, name, laboratory from user where laboratory is not null and verified = 1 order by order_index asc,  job_title desc, account asc";
             setAttr("strategy", "jobTitle");
+            Object res = CacheKit.get("teacher", "allTeacher", () -> {
+                Map<String, List<User>> result = new LinkedHashMap<>();
+                List<User> bt = User.dao.find("select id, name, laboratory from user where laboratory is not null and verified = 1 order by order_index asc,  job_title desc, account asc");
+
+                Map<String, List<User>> t = bt.stream().collect(Collectors.groupingBy(User::laboratory));
+                t.entrySet().stream().sorted((me, that) -> me.getValue().get(0).getLaboratory() - that.getValue().get(0).getLaboratory()).forEachOrdered(x -> result.put(x.getKey(), x.getValue()));
+                return result;
+            });
+            setAttr("teachers", res);
         } else {
             redirect("/");
         }
-        teacherList = User.dao.find(sql);
-        teachers = teacherList.stream().collect(Collectors.groupingBy(groupStrategy));
-        setAttr("teachers", teachers);
+
         render("award_list.ftl");
     }
 
@@ -56,7 +65,7 @@ public class TeacherController extends Controller {
         User model = User.dao.findById(getParaToInt());
         model.setPassword("");
         model.setAccount("");
-        if (model.getVerified() == 1) {
+        if (model.getVerified() == 1 || model.getId().intValue() == 175 || model.getId().intValue() == 176) {
             setAttr("teacher", model);
             String imgBase64 = JsonKit.toJson(model.getImg());
             String imgSrc = "data:image/jpeg;base64," + imgBase64.substring(1, imgBase64.length() - 1);
