@@ -56,10 +56,12 @@
             <form action="/news/search" method="get" style="float: right;position: relative;top: 0px;">
                 <input type="text" name="searchvalue" class="form-control-inline" placeholder="请输入查询内容">
             </form>
+            <div style="width: 119px;height: 24px;line-height: 25px;font-size: 12px;background-color: #0d8a98;float: right;text-align: center;">
+                <a href="http://mse.tju.edu.cn/teacher/profile" style="color:white;">教师入口</a>
+            </div>
             <div class="language">
                 <a href="http://211.81.54.98/english/" target="_blank">English</a>
             </div>
-
         </div>
     <#--渲染菜单头部-->
         <@m.menu menuItems=types/>
@@ -68,7 +70,6 @@
         <div class="indexadd mt50 mb60">
             <div id="banners" class="ui-banner">
                 <@nb.banner banneritems=banner_news/>
-
             </div>
         </div>
 

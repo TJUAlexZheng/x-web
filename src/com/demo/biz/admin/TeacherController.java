@@ -64,4 +64,19 @@ public class TeacherController extends Controller {
         renderJson();
     }
 
+    public void peek() {
+        try {
+            User model = User.dao.findById(getParaToInt());
+            model.setPassword("");
+            model.setAccount("");
+            setAttr("teacher", model);
+            String imgBase64 = JsonKit.toJson(model.getImg());
+            String imgSrc = "data:image/jpeg;base64," + imgBase64.substring(1, imgBase64.length() - 1);
+            setAttr("photo", imgSrc);
+            render("teacherPeek.ftl");
+        } catch (Exception ex) {
+            renderError(404);
+        }
+    }
+
 }

@@ -115,6 +115,9 @@
                         <button type="button" class="am-btn am-btn-danger" @click="deleteItem"
                                 :disabled="!currentItem.id">删除
                         </button>
+                        <button type="button" class="am-btn am-btn-success" @click="peekItem"
+                                :disabled="!currentItem.id">预览
+                        </button>
                     </p>
                 </fieldset>
             </form>
@@ -249,6 +252,9 @@
                     },
                     "clearItem": function () {
                         this.currentItem = null;
+                    },
+                    "peekItem": function () {
+                        window.open("http://localhost:8080/admin/teacher/peek/" + this.currentItem.id);
                     }
                 },
                 computed: {
