@@ -41,26 +41,41 @@
             </div>
         </div>
 
-        <div style="border-bottom:1px #c7d2eb dotted">
-            <h2>个人简历</h2>
-            <div>${teacher.introduction!'暂无'}</div>
-        </div>
-        <#if teacher.id != 175 && teacher.id != 176>
+        <#if (teacher.introduction)?has_content>
+            <div style="border-bottom:1px #c7d2eb dotted">
+                <h2>个人简历</h2>
+                <div>${teacher.introduction!'暂无'}</div>
+            </div>
+        </#if>
+
+        <#if (teacher.direction)?has_content>
             <div style="border-bottom:1px #c7d2eb dotted">
                 <h2>研究方向</h2>
                 <div>${teacher.direction!'暂无'}</div>
             </div>
+        </#if>
 
+        <#if (teacher.project)?has_content>
             <div style="border-bottom:1px #c7d2eb dotted">
                 <h2>承担项目</h2>
                 <div>${teacher.project!'暂无'}</div>
             </div>
+        </#if>
 
+        <#if (teacher.achievement)?has_content>
             <div style="border-bottom:1px #c7d2eb dotted">
                 <h2>标志性成果</h2>
                 <div>${teacher.achievement!'暂无'}</div>
             </div>
         </#if>
+
+        <#if (teacher.attachment)?has_content>
+            <div style="border-bottom:1px #c7d2eb dotted">
+                <h2>上传资料</h2>
+                <div>${teacher.attachment!'暂无'}</div>
+            </div>
+        </#if>
+
     </div>
 </div>
 

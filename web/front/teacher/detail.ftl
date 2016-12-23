@@ -63,55 +63,84 @@
                 <img class="am-img-thumbnail" src="${photo}" style="max-width: 12rem;"/>
             </div>
             <div class="am-u-sm-7">
-                <p>${teacher.name}
-                    <#if teacher.id == 175>
-                    </p><p>院党委副书记</p>
-                    <#elseif  teacher.id == 176>
-                        </p><p>院党委书记</p>
-                    <#else >
-                        <#switch teacher.job_title>
-                            <#case 1>讲师<#break>
-                            <#case 2>副教授<#break>
-                            <#case 3>教授<#break>
-                        </#switch>
-
-                    </#if>
+            <p>${teacher.name}
+                <#if teacher.id == 175>
+                </p><p>院党委副书记</p>
+                <#elseif  teacher.id == 176>
+                    </p><p>院党委书记</p>
+                <#else >
+                    <#switch teacher.job_title>
+                        <#case 1>讲师<#break>
+                        <#case 2>副教授<#break>
+                        <#case 3>教授<#break>
+                    </#switch>
+                </#if>
                 </p>
-                    <#if teacher.id != 175 && teacher.id != 176>
-                        <p>${teacher.department!'暂无'}</p>
-                    </#if>
+
+                <#if teacher.id == 175 >
+                    <p>主管工作：学生思想政治教育、工会工作</p>
+                <#elseif teacher.id == 176>
+                    <p>主管工作：负责学院党委工作</p>
+                <#elseif teacher.id == 93>
+                    <p>主管工作：本科教学工作、学院大型仪器测试平台、教学平台工作</p>
+                <#elseif teacher.id == 151>
+                    <p>主管工作：纵向科研和军工项目</p>
+                <#elseif teacher.id == 62>
+                    <p>主管工作：研究生教学、横向科研、新校区工程中心建设</p>
+                <#elseif teacher.id == 127>
+                    <p>主管工作：行政工作,人事安全、财务工作等</p>
+                <#elseif teacher.id == 137>
+                    <p>主管工作：负责统筹学院整体工作</p>
+                <#else>
+                    <p>${teacher.department!'暂无'}</p>
+                </#if>
                 <p>电话： ${teacher.phone!'暂无'}</p>
-                    <p>Email：  ${teacher.email!'暂无'}</p>
-                    <#if teacher.id == 175>
-                        办公地点: 材料学院 31-345(北洋园)
-                    <#elseif  teacher.id == 176>
-                        办公地点: 材料学院 31-348(北洋园)
-                    <#else >
-                        <p>研究所： ${teacher.laboratory()!'暂无'}</p>
-                    </#if>
+                <p>Email：  ${teacher.email!'暂无'}</p>
+                <#if teacher.id == 175>
+                    办公地点: 材料学院 31-345(北洋园)
+                <#elseif  teacher.id == 176>
+                    办公地点: 材料学院 31-348(北洋园)
+                <#else >
+                    <p>研究所： ${teacher.laboratory()!'暂无'}</p>
+                </#if>
             </div>
         </div>
 
-        <div style="border-bottom:1px #c7d2eb dotted">
-            <h2>个人简历</h2>
-            <div>${teacher.introduction!'暂无'}</div>
-        </div>
-        <#if teacher.id != 175 && teacher.id != 176>
+        <#if (teacher.introduction)?has_content>
+            <div style="border-bottom:1px #c7d2eb dotted">
+                <h2>个人简历</h2>
+                <div>${teacher.introduction!'暂无'}</div>
+            </div>
+        </#if>
+
+        <#if (teacher.direction)?has_content>
             <div style="border-bottom:1px #c7d2eb dotted">
                 <h2>研究方向</h2>
                 <div>${teacher.direction!'暂无'}</div>
             </div>
+        </#if>
 
+        <#if (teacher.project)?has_content>
             <div style="border-bottom:1px #c7d2eb dotted">
                 <h2>承担项目</h2>
                 <div>${teacher.project!'暂无'}</div>
             </div>
+        </#if>
 
+        <#if (teacher.achievement)?has_content>
             <div style="border-bottom:1px #c7d2eb dotted">
                 <h2>标志性成果</h2>
                 <div>${teacher.achievement!'暂无'}</div>
             </div>
         </#if>
+
+        <#if (teacher.attachment)?has_content>
+            <div style="border-bottom:1px #c7d2eb dotted">
+                <h2>上传资料</h2>
+                <div>${teacher.attachment!'暂无'}</div>
+            </div>
+        </#if>
+
     </div>
     <div style="clear:both;"></div>
 </div>

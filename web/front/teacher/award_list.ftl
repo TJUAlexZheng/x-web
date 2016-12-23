@@ -68,8 +68,9 @@
     }
 
     div.t-l li {
-            <#if strategy == "award">border-bottom: 1px #CCCCCC dashed;</#if>
-            <#if strategy == "jobTitle">float: left;</#if>
+            <#--<#if strategy == "award">border-bottom: 1px #CCCCCC dashed;</#if>-->
+    <#--<#if strategy == "jobTitle">float: left;</#if>-->
+        float: left;
         color: #999999;
         <#if strategy == "jobTitle">
             margin: 0 2.5rem;
@@ -100,7 +101,7 @@
                 <h1>${k.key}</h1>
                 <ul>
                     <#list k.value as t>
-                        <li <#if strategy == "award">style="text-align: left;width: 100%" </#if>><a
+                        <li <#if strategy == "award">style="text-align: left;width: auto;" </#if>><a
                                 href="/teacher/detail/${t.id}">
                             <#if strategy == "award">
                                 <#if t.awardName?has_content>
@@ -108,8 +109,9 @@
                                 </#if>
                             </#if>${t.name}</a></li>
                     </#list>
-                    <#if strategy == "jobTitle">
-                        <div style="clear:both"></div></#if>
+                <#--<#if strategy == "jobTitle">-->
+                <#--<div style="clear:both"></div></#if>-->
+                    <div style="clear:both"></div>
                 </ul>
                 <br>
             </#list>

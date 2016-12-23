@@ -161,4 +161,12 @@ public abstract class BaseUser<M extends BaseUser<M>> extends Model<M> implement
 		set("img", img);
 	}
 
+	public void setAttachment(String attachment) {
+		this.set("attachment", attachment);
+	}
+
+	public String getAttachment() {
+		return (String)this.get("attachment");
+	}
+
 }

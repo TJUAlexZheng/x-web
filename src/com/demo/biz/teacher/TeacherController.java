@@ -16,10 +16,7 @@ import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.ehcache.CacheKit;
 import org.apache.commons.codec.digest.DigestUtils;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -40,7 +37,7 @@ public class TeacherController extends Controller {
                 Map<String, List<User>> result = new LinkedHashMap<>();
                 List<User> bt = User.dao.find("select id, account, name, user_award.award_id, user_award.award_name from user, user_award where `user`.id = user_award.user_id and user_award.award_id > 0 and `user`.verified = 1 order by order_index asc,  job_title desc, account asc");
                 Map<String, List<User>> t = bt.stream().collect(Collectors.groupingBy(u -> User.award(u.get("award_id"))));
-                t.entrySet().stream().sorted((o1, o2) -> o1.getValue().get(0).<Long>get("award_id").intValue() - o2.getValue().get(0).<Long>get("award_id").intValue()).forEachOrdered(x -> result.put(x.getKey(), x.getValue()));
+                t.entrySet().stream().sorted(Comparator.comparingInt(o -> o.getValue().get(0).<Long>get("award_id").intValue())).forEachOrdered(x -> result.put(x.getKey(), x.getValue()));
                 return result;
             });
             setAttr("teachers", res);
@@ -50,7 +47,7 @@ public class TeacherController extends Controller {
                 Map<String, List<User>> result = new LinkedHashMap<>();
                 List<User> bt = User.dao.find("select id, name, laboratory from user where laboratory is not null and verified = 1 order by order_index asc,  job_title desc, account asc");
                 Map<String, List<User>> t = bt.stream().collect(Collectors.groupingBy(User::laboratory));
-                t.entrySet().stream().sorted((me, that) -> me.getValue().get(0).getLaboratory() - that.getValue().get(0).getLaboratory()).forEachOrdered(x -> result.put(x.getKey(), x.getValue()));
+                t.entrySet().stream().sorted(Comparator.comparingInt(me -> me.getValue().get(0).getLaboratory())).forEachOrdered(x -> result.put(x.getKey(), x.getValue()));
                 return result;
             });
             setAttr("teachers", res);

@@ -240,6 +240,18 @@
                             <script id="ueachievement" type="text/plain" style="height:300px;"></script>
                         </div>
                     </div>
+                    <div style="margin-top: 0.8rem">
+                        <label for="">上传资料
+                            <span style="padding: 0 30px;color: red;">请点击下方的按钮
+                                <div class="edui-box edui-icon edui-default"
+                                     style="height: 20px !important;width: 20px !important; background: url(/assets/ueeditor/themes/default/images/icons.png) -620px -40px;">
+                                </div>上传附件
+                            </span>
+                        </label>
+                        <div>
+                            <script id="ueattachment" type="text/plain" style="height:300px;"></script>
+                        </div>
+                    </div>
                     <p>
                         <button type="button" class="am-btn am-btn-primary" @click="saveItem">保存</button>
                     </p>
@@ -264,6 +276,8 @@
     var ue_d = UE.getEditor('uedirection');
     var ue_p = UE.getEditor('ueproject');
     var ue_a = UE.getEditor('ueachievement');
+    var ue_at = UE.getEditor('ueattachment');
+
 
     $(function () {
         var vr = new Vue({
@@ -280,9 +294,10 @@
                     department: "",
                     phone: "",
                     introduction: "",
-                    direction:"",
-                    project:"",
+                    direction: "",
+                    project: "",
                     achievement: "",
+                    attachment: "",
                     img: ""
                 },
                 newAward: {
@@ -297,6 +312,7 @@
                     this.teacher.direction = UE.getEditor('uedirection').getContent();
                     this.teacher.project = UE.getEditor('ueproject').getContent();
                     this.teacher.achievement = UE.getEditor('ueachievement').getContent();
+                    this.teacher.attachment = UE.getEditor('ueattachment').getContent();
 
                     this.$http.post('save', this.teacher).then(function (json) {
                         alert('操作成功');
@@ -363,6 +379,9 @@
                             })
                             ue_a.ready(function () {
                                 ue_a.setContent(vr.teacher.achievement || "");
+                            })
+                            ue_at.ready(function () {
+                                ue_at.setContent(vr.teacher.attachment || "");
                             })
                         }
                 );

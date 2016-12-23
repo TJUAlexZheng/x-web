@@ -1,4 +1,9 @@
 <#macro banner banneritems>
+<style>
+    ul.ui-banner-slogans li:hover {
+        cursor: pointer;
+    }
+</style>
 <ul class="ui-banner-slides">
     <#list banneritems as bannerItem>
         <li><a href="/news/${bannerItem.id}" target="_blank"><img src="/upload/${bannerItem.img}"

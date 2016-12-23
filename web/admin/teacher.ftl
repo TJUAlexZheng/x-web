@@ -254,7 +254,7 @@
                         this.currentItem = null;
                     },
                     "peekItem": function () {
-                        window.open("http://localhost:8080/admin/teacher/peek/" + this.currentItem.id);
+                        window.open("http://mse.tju.edu.cn/admin/teacher/peek/" + this.currentItem.id);
                     }
                 },
                 computed: {
