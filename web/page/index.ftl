@@ -60,7 +60,7 @@
                 <a href="http://mse.tju.edu.cn/teacher/profile" style="color:white;">教师入口</a>
             </div>
             <div class="language">
-                <a href="http://211.81.54.98/english/" target="_blank">English</a>
+                <a href="http://mse.tju.edu.cn/english/" target="_blank">English</a>
             </div>
         </div>
     <#--渲染菜单头部-->
@@ -147,8 +147,8 @@
 
     <div class="middles">
         <div id="copyRight">版权所有 &copy; 天津大学材料科学与工程学院 2016新版上线</div>
-        <div id="footer">联系地址：天津市海河教育园区雅观道135号31号教学楼 [<a href="http://l.map.qq.com/11222015482?m" target="_blank">查看学院地图标注</a>]，邮政编码：300350<br>联系电话：022-27403405
-            传真：022-XXXXXXXX 电子邮件：mseic@tju.edu.cn
+        <div id="footer">联系地址：天津市海河教育园区雅观道135号31号教学楼 [<a href="http://l.map.qq.com/11222015482?m" target="_blank">查看学院地图标注</a>]，邮政编码：300350<br>联系电话：022-85356663
+            传真：022-XXXXXXXX 电子邮件：dean_smse@tju.edu.cn
         </div>
     </div>
 </div>
