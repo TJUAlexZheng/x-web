@@ -49,7 +49,10 @@
             <a href="/teacher/25">教师简介</a>
         </div>
         <div class="sub_left_list">
-            <a href="/teacher/29">杰出人才</a>
+            <a href="/content/29">杰出人才</a>
+        </div>
+        <div class="sub_left_list">
+            <a href="/content/94">人才招聘</a>
         </div>
     </div>
     <div id="sub_right">
@@ -147,8 +150,7 @@
 <div class="middles">
     <div id="copyRight">版权所有 © 天津大学材料科学与工程学院 2016新版上线<span></span></div>
     <div id="footer">联系地址：天津市海河教育园区雅观道135号31号教学楼 [<a href="http://l.map.qq.com/11222015482?m"
-                                                     target="_blank">查看学院地图标注</a>]，邮政编码：300350<br>联系电话：022-85356663
-        传真：022-XXXXXXXX 电子邮件：dean_smse@tju.edu.cn
+                                                     target="_blank">查看学院地图标注</a>]，邮政编码：300350<br>联系电话：022-85356661
     </div>
 </div>
 </@layout>
