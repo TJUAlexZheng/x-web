@@ -52,11 +52,6 @@
 
 <#--<script src="/assets/js/amazeui.min.js"></script>-->
 
-<div style="position:absolute; top: 20px; right: 20px;">
-    <a href="/content/94">
-        <img src="/assets/i/rczp.jpg">
-    </a>
-</div>
 </body>
 </html>
 </#macro>

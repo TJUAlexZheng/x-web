@@ -163,4 +163,60 @@
     );
 </script>
 <!-- 以上页面内容 开发时删除 -->
+
+
+<div id="rczp" style="position:absolute;" onmouseout= 'start()'>
+    <a href="/content/94">
+        <img src="/assets/i/rczp.jpg" onmouseover='mystop()' style="z-index: 1">
+    </a>
+</div>
+<script>
+    var xPos = 0;var yPos = 0; var step = 1;var delay = 10;var height = 0;
+    var Hoffset = 0;var Woffset = 0; var yon = 0;var xon = 0; var xon = 0; var interval;
+    var element = document.getElementById('rczp');
+    element.style.top = 0;
+
+    function changePos(){
+        width =  document.documentElement.clientWidth||document.body.clientWidth;
+        height = document.documentElement.clientHeight||document.body.clientHeight;
+        Hoffset = element.offsetHeight;
+        Woffset = element.offsetWidth;
+        if (yon) {
+            yPos = yPos + step;
+        }else {
+            yPos = yPos - step;
+        }
+        if (yPos < 0) {
+            yon = 1;
+            yPos = 0;
+        }
+        if (yPos >= (height - Hoffset)) {
+            yon = 0;
+            yPos = (height - Hoffset);
+        }
+        if (xon) {
+            xPos = xPos + step;
+        }else {
+            xPos = xPos - step;
+        }
+        if (xPos < 0) {
+            xon = 1;
+            xPos = 0;
+        }
+        if (xPos >= (width - Woffset)) {
+            xon = 0;
+            xPos = (width - Woffset);
+        }
+        element.style.left = xPos + document.body.scrollLeft+"px";
+        element.style.top = yPos + document.body.scrollTop +"px";
+    }
+    function start() {
+        element.visibility = 'visible';
+        interval = setInterval('changePos()', delay);
+    }
+    function mystop(){
+        clearInterval(interval)
+    }
+    start()
+</script>
 </@layout>
